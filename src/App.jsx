@@ -118,6 +118,7 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
             // Render other routes
             <Route path="/signin" element={<SigninForm login={login} />} />
           }
+          <Route path="/" element={<SigninForm login={login} />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
