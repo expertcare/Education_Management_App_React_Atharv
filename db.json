@@ -1,0 +1,73 @@
+{
+  "todoItems": [
+    {
+      "name": "Fetch data from Json server ",
+      "dueDate": "2024-05-21",
+      "id": "4131"
+    },
+    {
+      "name": "Host your website on free platforms like github or firebase",
+      "dueDate": "2024-05-27",
+      "id": "e73b"
+    },
+    {
+      "id": "c85b",
+      "name": "Make a proper authentication",
+      "dueDate": "2024-05-29"
+    }
+  ],
+  "users": [
+    {
+      "id": "1afe",
+      "name": "Atharv Mirajkar",
+      "gender": "Male",
+      "address": "Kolhapur",
+      "contact": "8237888033"
+    },
+    {
+      "id": "89d4",
+      "name": "Prathamesh Patil",
+      "gender": "Male",
+      "address": "Kolhapur",
+      "contact": "9898985624"
+    },
+    {
+      "id": "e7da",
+      "name": "Shubham More",
+      "gender": "Male",
+      "address": "Latur",
+      "contact": "4598569878"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "854f",
+      "name": "Atharv Mirajkar",
+      "email": "atharvm@walstartechnologies.com",
+      "message": "I want product information"
+    },
+    {
+      "id": "4951",
+      "name": "Prathamesh",
+      "email": "arm@mai.com",
+      "message": "Hello 123"
+    },
+    {
+      "id": "7b5e",
+      "name": "Atharv Mirajkar",
+      "email": "test@g.com",
+      "message": "HEllo"
+    }
+  ],
+  "signupData": [
+    {
+      "id": "9be4",
+      "name": "Shubham",
+      "email": "test@g.com",
+      "password": "Test@123",
+      "repeatPassword": "Test@123",
+      "agreedToTerms": "on"
+    }
+  ],
+  "signinData": []
+}
