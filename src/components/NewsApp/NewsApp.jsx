@@ -32,7 +32,7 @@ const NewsApp = () => {
   }, []); // Empty dependency array means this effect runs only once, when component mounts
 
   return (
-    <div className="m-4 p-4">
+    <div className="m-4 p-4 container ">
       <h1 className="text-center mt-4 mb-4">Latest News</h1>
       {loading ? (
         <p>Loading...</p>

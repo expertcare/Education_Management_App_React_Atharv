@@ -7,7 +7,7 @@ const About = () => {
       <Row className="mt-5">
         <Col md="6" className="mb-4">
           <img
-            src="https://img.freepik.com/free-vector/male-programmer-working-computer-office-wall-with-hanging-reminder-stickers-developer-creating-new-software-interface-coding-programming-system-administrator-designer-character_575670-1159.jpg?w=1060&t=st=1716559026~exp=1716559626~hmac=814ef4cd81cfa5716a9663794ae89fd943a28bb0678631c3be90a3bae1b74d1d"
+            src="https://img.freepik.com/free-vector/programming-concept-illustration_114360-1351.jpg?w=740&t=st=1717422615~exp=1717423215~hmac=504473763b68549c27f4be8ab1a146d5975350fc77ebdb321c43f99dd887b420"
             alt="About Us"
             className="img-fluid"
           />

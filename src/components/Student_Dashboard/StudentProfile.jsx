@@ -42,6 +42,7 @@ const StudentProfile = () => {
                   <li className="list-group-item">
                     <strong>Birth Date:</strong> {userData.birthDate}
                   </li>
+
                   {/* <li className="list-group-item">
                     <strong>Address:</strong> {userData.address.address},{" "}
                     {userData.address.city}

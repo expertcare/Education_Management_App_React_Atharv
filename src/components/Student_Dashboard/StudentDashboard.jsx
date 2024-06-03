@@ -35,7 +35,7 @@ const StudentDashboard = () => {
       title: "Attendance",
       description: "Check your attendance record.",
       buttonText: "Check Attendance",
-      link: "/todo",
+      link: "/student_attendance_record",
     },
     {
       image:
@@ -43,7 +43,7 @@ const StudentDashboard = () => {
       title: "Assignments",
       description: "View and submit assignments.",
       buttonText: "View Assignments",
-      link: "/todo",
+      link: "/student_assignment",
     },
     {
       image:

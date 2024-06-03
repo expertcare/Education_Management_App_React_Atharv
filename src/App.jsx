@@ -28,6 +28,10 @@ import StudentProfile from "./components/Student_Dashboard/StudentProfile";
 import UserProfile from "./components/Student_Dashboard/UserProfile ";
 import FacultyDashboard from "./components/Faculty_Dashboard/FacultyDashboard";
 import AdminDashboard from "./components/Admin_Dashboard/AdminDashboard";
+import FacultyAssignment from "./components/Faculty_Dashboard/FacultyAssignment";
+import StudentAssignment from "./components/Student_Dashboard/StudentAssignment";
+import FacultyAttendance from "./components/Faculty_Dashboard/StudentList";
+import StudentAttendanceRecord from "./components/Student_Dashboard/StudentAttendanceRecord";
 
 const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
   const location = useLocation();
@@ -86,6 +90,14 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                   />
                   <Route path="/student_profile" element={<StudentProfile />} />
                   <Route path="/user_profile" element={<UserProfile />} />
+                  <Route
+                    path="/student_assignment"
+                    element={<StudentAssignment />}
+                  />
+                  <Route
+                    path="/student_attendance_record"
+                    element={<StudentAttendanceRecord />}
+                  />
 
                   {/* Add more student-specific routes here */}
                 </>
@@ -95,6 +107,14 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                   <Route
                     path="/faculty_dashboard"
                     element={<FacultyDashboard />}
+                  />
+                  <Route
+                    path="/faculty_assignments"
+                    element={<FacultyAssignment />}
+                  />
+                  <Route
+                    path="/manage_attendance"
+                    element={<FacultyAttendance />}
                   />
 
                   {/* Add more faculty-specific routes here */}

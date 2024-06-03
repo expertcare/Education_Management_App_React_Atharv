@@ -69,5 +69,463 @@
       "agreedToTerms": "on"
     }
   ],
-  "signinData": []
+  "signinData": [],
+  "assignments": [
+    {
+      "section": "Math",
+      "title": "Dervatives",
+      "description": "Solve Exercise 4 from chapter 2",
+      "dueDate": "2024-06-11",
+      "id": "7242"
+    },
+    {
+      "id": "111b",
+      "section": "Physics",
+      "title": "Resistance",
+      "description": "solve 4 problems on resistance",
+      "dueDate": "2024-06-09"
+    },
+    {
+      "section": "Chemistry",
+      "title": "Organic",
+      "description": "Make a list of organic compounds",
+      "dueDate": "2024-06-08",
+      "id": "a9e3"
+    }
+  ],
+  "submissions": [
+    {}
+  ],
+  "attendance": [
+    {
+      "id": "59ce",
+      "date": "2024-06-03",
+      "users": [
+        {
+          "id": 1,
+          "attendance": "present"
+        },
+        {
+          "id": 2,
+          "attendance": "absent"
+        },
+        {
+          "id": 3,
+          "attendance": "present"
+        },
+        {
+          "id": 4,
+          "attendance": "absent"
+        },
+        {
+          "id": 5,
+          "attendance": "absent"
+        },
+        {
+          "id": 6,
+          "attendance": "present"
+        },
+        {
+          "id": 7,
+          "attendance": "present"
+        },
+        {
+          "id": 8,
+          "attendance": "absent"
+        },
+        {
+          "id": 9,
+          "attendance": "present"
+        },
+        {
+          "id": 10,
+          "attendance": "present"
+        },
+        {
+          "id": 11,
+          "attendance": "present"
+        },
+        {
+          "id": 12,
+          "attendance": "absent"
+        },
+        {
+          "id": 13,
+          "attendance": "present"
+        },
+        {
+          "id": 14,
+          "attendance": "absent"
+        },
+        {
+          "id": 15,
+          "attendance": "present"
+        },
+        {
+          "id": 16,
+          "attendance": "present"
+        },
+        {
+          "id": 17,
+          "attendance": "absent"
+        },
+        {
+          "id": 18,
+          "attendance": "present"
+        },
+        {
+          "id": 19,
+          "attendance": "absent"
+        },
+        {
+          "id": 20,
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "2def",
+      "date": "2024-06-02",
+      "users": [
+        {
+          "id": 1,
+          "attendance": "absent"
+        },
+        {
+          "id": 2,
+          "attendance": "absent"
+        },
+        {
+          "id": 3,
+          "attendance": "absent"
+        },
+        {
+          "id": 4,
+          "attendance": "absent"
+        },
+        {
+          "id": 5,
+          "attendance": "present"
+        },
+        {
+          "id": 6,
+          "attendance": "absent"
+        },
+        {
+          "id": 7,
+          "attendance": "present"
+        },
+        {
+          "id": 8,
+          "attendance": "absent"
+        },
+        {
+          "id": 9,
+          "attendance": "present"
+        },
+        {
+          "id": 10,
+          "attendance": "present"
+        },
+        {
+          "id": 11,
+          "attendance": "absent"
+        },
+        {
+          "id": 12,
+          "attendance": "present"
+        },
+        {
+          "id": 13,
+          "attendance": "present"
+        },
+        {
+          "id": 14,
+          "attendance": "absent"
+        },
+        {
+          "id": 15,
+          "attendance": "present"
+        },
+        {
+          "id": 16,
+          "attendance": "absent"
+        },
+        {
+          "id": 17,
+          "attendance": "present"
+        },
+        {
+          "id": 18,
+          "attendance": "present"
+        },
+        {
+          "id": 19,
+          "attendance": "absent"
+        },
+        {
+          "id": 20,
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "e8d8",
+      "date": "2024-06-01",
+      "users": [
+        {
+          "id": 1,
+          "attendance": "absent"
+        },
+        {
+          "id": 2,
+          "attendance": "present"
+        },
+        {
+          "id": 3,
+          "attendance": "absent"
+        },
+        {
+          "id": 4,
+          "attendance": "present"
+        },
+        {
+          "id": 5,
+          "attendance": "absent"
+        },
+        {
+          "id": 6,
+          "attendance": "present"
+        },
+        {
+          "id": 7,
+          "attendance": "present"
+        },
+        {
+          "id": 8,
+          "attendance": "absent"
+        },
+        {
+          "id": 9,
+          "attendance": "present"
+        },
+        {
+          "id": 10,
+          "attendance": "present"
+        },
+        {
+          "id": 11,
+          "attendance": "present"
+        },
+        {
+          "id": 12,
+          "attendance": "absent"
+        },
+        {
+          "id": 13,
+          "attendance": "present"
+        },
+        {
+          "id": 14,
+          "attendance": "present"
+        },
+        {
+          "id": 15,
+          "attendance": "present"
+        },
+        {
+          "id": 16,
+          "attendance": "present"
+        },
+        {
+          "id": 17,
+          "attendance": "absent"
+        },
+        {
+          "id": 18,
+          "attendance": "present"
+        },
+        {
+          "id": 19,
+          "attendance": "present"
+        },
+        {
+          "id": 20,
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "570d",
+      "date": "2024-05-31",
+      "users": [
+        {
+          "id": 1,
+          "attendance": "present"
+        },
+        {
+          "id": 2,
+          "attendance": "absent"
+        },
+        {
+          "id": 3,
+          "attendance": "present"
+        },
+        {
+          "id": 4,
+          "attendance": "present"
+        },
+        {
+          "id": 5,
+          "attendance": "absent"
+        },
+        {
+          "id": 6,
+          "attendance": "present"
+        },
+        {
+          "id": 7,
+          "attendance": "present"
+        },
+        {
+          "id": 8,
+          "attendance": "present"
+        },
+        {
+          "id": 9,
+          "attendance": "present"
+        },
+        {
+          "id": 10,
+          "attendance": "present"
+        },
+        {
+          "id": 11,
+          "attendance": "present"
+        },
+        {
+          "id": 12,
+          "attendance": "present"
+        },
+        {
+          "id": 13,
+          "attendance": "present"
+        },
+        {
+          "id": 14,
+          "attendance": "present"
+        },
+        {
+          "id": 15,
+          "attendance": "present"
+        },
+        {
+          "id": 16,
+          "attendance": "present"
+        },
+        {
+          "id": 17,
+          "attendance": "absent"
+        },
+        {
+          "id": 18,
+          "attendance": "present"
+        },
+        {
+          "id": 19,
+          "attendance": "present"
+        },
+        {
+          "id": 20,
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "f471",
+      "date": "2024-05-30",
+      "users": [
+        {
+          "id": 1,
+          "attendance": "absent"
+        },
+        {
+          "id": 2,
+          "attendance": "present"
+        },
+        {
+          "id": 3,
+          "attendance": "present"
+        },
+        {
+          "id": 4,
+          "attendance": "present"
+        },
+        {
+          "id": 5,
+          "attendance": "absent"
+        },
+        {
+          "id": 6,
+          "attendance": "present"
+        },
+        {
+          "id": 7,
+          "attendance": "present"
+        },
+        {
+          "id": 8,
+          "attendance": "present"
+        },
+        {
+          "id": 9,
+          "attendance": "present"
+        },
+        {
+          "id": 10,
+          "attendance": "absent"
+        },
+        {
+          "id": 11,
+          "attendance": "present"
+        },
+        {
+          "id": 12,
+          "attendance": "present"
+        },
+        {
+          "id": 13,
+          "attendance": "present"
+        },
+        {
+          "id": 14,
+          "attendance": "present"
+        },
+        {
+          "id": 15,
+          "attendance": "present"
+        },
+        {
+          "id": 16,
+          "attendance": "absent"
+        },
+        {
+          "id": 17,
+          "attendance": "present"
+        },
+        {
+          "id": 18,
+          "attendance": "present"
+        },
+        {
+          "id": 19,
+          "attendance": "present"
+        },
+        {
+          "id": 20,
+          "attendance": "present"
+        }
+      ]
+    }
+  ]
 }

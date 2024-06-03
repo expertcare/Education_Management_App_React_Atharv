@@ -35,7 +35,7 @@ const FacultyDashboard = () => {
       title: "Attendance",
       description: "Manage attendance records for your courses.",
       buttonText: "Manage Attendance",
-      link: "/faculty_attendance",
+      link: "/manage_attendance",
     },
     {
       image:
