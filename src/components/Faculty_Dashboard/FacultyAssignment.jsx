@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AssignmentCheck from "./AssignmentCheck";
 
 const AssignmentList = () => {
   const [assignments, setAssignments] = useState([]);
@@ -96,8 +97,8 @@ const AssignmentList = () => {
   };
 
   return (
-    <div className="container">
-      <h2 className="mt-4 mb-4">Add/Edit Assignments</h2>
+    <div className="container margin-top-bottom">
+      <h2 className="mb-4">Add/Edit Assignments</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="section">Section:</label>
@@ -198,6 +199,8 @@ const AssignmentList = () => {
           </tbody>
         </table>
       </div>
+
+      <AssignmentCheck />
     </div>
   );
 };

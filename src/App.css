@@ -38,6 +38,11 @@ li {
   color: #ffffff;
 }
 
+.margin-top-bottom {
+  margin-block: 60px;
+  padding: 30px;
+}
+
 .twiter-icon {
   color: rgb(4, 199, 248);
 }

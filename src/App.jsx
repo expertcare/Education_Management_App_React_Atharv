@@ -32,6 +32,9 @@ import FacultyAssignment from "./components/Faculty_Dashboard/FacultyAssignment"
 import StudentAssignment from "./components/Student_Dashboard/StudentAssignment";
 import FacultyAttendance from "./components/Faculty_Dashboard/StudentList";
 import StudentAttendanceRecord from "./components/Student_Dashboard/StudentAttendanceRecord";
+import DeveloperDashboard from "./components/Admin_Dashboard/DeveloperDashboard";
+import UserList from "./components/Admin_Dashboard/UserList";
+// import CreateUser from "./components/Admin_Dashboard/CreateUser";
 
 const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
   const location = useLocation();
@@ -50,32 +53,7 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
     <>
       {/* Render header only if not on auth page */}
       {!isAuthPage && <Header logout={logout} />}
-      <Sidebar />
-      {/* 
-      <Routes>
-        {isLoggedIn && (
-          <>
-            <Route path="/home" element={<Home />} />
-            <Route path="/todo" element={<TodoApp />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/news" element={<NewsApp />} />
-            <Route path="/weather" element={<WeatherApp />} />
-            <Route path="/users-data" element={<UserData />} />
-          </>
-        )}
-        {
-          <>
-            <Route path="/" element={<SigninForm login={login} />} />
-            <Route path="/signin" element={<SigninForm login={login} />} />
-            <Route path="/signup" element={<SignupForm />} />
-          </>
-        }
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<ContactUs />} />
-        {/* Route for handling page not found */}
-      {/* <Route path="*" element={<NotFound />} /> */}
-
-      {/* </Routes> */}
+      <Sidebar userRole={userRole} />
 
       <UserProvider>
         <Routes>
@@ -123,6 +101,13 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
               {userRole === "admin" && (
                 <>
                   <Route path="/admin_dashboard" element={<AdminDashboard />} />
+                  <Route
+                    path="/developer_dashboard"
+                    element={<DeveloperDashboard />}
+                  />
+                  <Route path="/admin/user_list" element={<UserList />} />
+                  {/* <Route path="/admin/manage_users" element={<CreateUser />} /> */}
+
                   <Route path="/todo" element={<TodoApp />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/news" element={<NewsApp />} />

@@ -38,7 +38,7 @@ const StudentAttendanceRecord = () => {
   );
 
   return (
-    <div className="container my-4">
+    <div className="container margin-top-bottom">
       <h2 className="text-center">Attendance Record</h2>
       <p className="h5 m-4">
         Hello {userData.firstName} , Your ID of student is {userData.id}

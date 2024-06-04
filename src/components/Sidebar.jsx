@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ userRole }) => {
   return (
     <>
-      {/* Aside */}
-
       <aside
         className="bsb-sidebar-1 offcanvas offcanvas-start"
         tabIndex="-1"
@@ -39,7 +37,7 @@ const Sidebar = () => {
           {/* main list */}
           <ul className="navbar-nav">
             {/* List of Dashboard  */}
-            <li className="nav-item" data-bs-dismiss="offcanvas">
+            <li className="nav-item">
               <a
                 className="nav-link p-3 active bg-light rounded"
                 data-bs-toggle="collapse"
@@ -55,42 +53,63 @@ const Sidebar = () => {
               </a>
               <div className="collapse show" id="dashboardExamples">
                 <ul className="nav flex-column ms-4">
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link active"
-                      aria-current="page"
-                      to="/admin_dashboard"
-                    >
-                      <div className="nav-link-icon text-primary-emphasis">
-                        <i className="fa-solid fa-user-tie"></i>
-                      </div>
-                      <span className="nav-link-text">Admin Dashboard</span>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link active"
-                      aria-current="page"
-                      to="/faculty_dashboard"
-                    >
-                      <div className="nav-link-icon text-danger-emphasis">
-                        <i className="fa-solid fa-chalkboard-user"></i>
-                      </div>
-                      <span className="nav-link-text">Faculty Dashboard</span>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link active"
-                      aria-current="page"
-                      to="/student_dashboard"
-                    >
-                      <div className="nav-link-icon text-info-emphasis">
-                        <i className="fa-solid fa-graduation-cap"></i>
-                      </div>
-                      <span className="nav-link-text">Student Dashboard</span>
-                    </Link>
-                  </li>
+                  {/* Render project links based on user's role */}
+                  {userRole === "admin" ? (
+                    <>
+                      <li className="nav-item" data-bs-dismiss="offcanvas">
+                        <Link
+                          className="nav-link active"
+                          aria-current="page"
+                          to="/admin_dashboard"
+                        >
+                          <div className="nav-link-icon text-primary-emphasis">
+                            <i className="fa-solid fa-user-tie"></i>
+                          </div>
+                          <span className="nav-link-text">Admin Dashboard</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item" data-bs-dismiss="offcanvas">
+                        <Link
+                          className="nav-link active"
+                          aria-current="page"
+                          to="/developer_dashboard"
+                        >
+                          <div className="nav-link-icon text-primary-emphasis">
+                            <i className="fa-solid fa-user-tie"></i>
+                          </div>
+                          <span className="nav-link-text">
+                            Developer Dashboard
+                          </span>
+                        </Link>
+                      </li>
+                    </>
+                  ) : userRole === "faculty" ? (
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
+                      <Link
+                        className="nav-link active"
+                        aria-current="page"
+                        to="/faculty_dashboard"
+                      >
+                        <div className="nav-link-icon text-danger-emphasis">
+                          <i className="fa-solid fa-chalkboard-user"></i>
+                        </div>
+                        <span className="nav-link-text">Faculty Dashboard</span>
+                      </Link>
+                    </li>
+                  ) : userRole === "student" ? (
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
+                      <Link
+                        className="nav-link active"
+                        aria-current="page"
+                        to="/student_dashboard"
+                      >
+                        <div className="nav-link-icon text-info-emphasis">
+                          <i className="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span className="nav-link-text">Student Dashboard</span>
+                      </Link>
+                    </li>
+                  ) : null}
                 </ul>
               </div>
             </li>

@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="text-center text-lg-start bg-dark text-white">
+    <footer className="text-center text-lg-start">
       {/* Section: Social media */}
-      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom border-top">
         {/* Left */}
         <div className="me-5 d-none d-lg-block">
           <span>Get connected with us on social networks:</span>

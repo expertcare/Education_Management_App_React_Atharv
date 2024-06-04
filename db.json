@@ -87,14 +87,54 @@
     },
     {
       "section": "Chemistry",
-      "title": "Organic",
-      "description": "Make a list of organic compounds",
-      "dueDate": "2024-06-08",
-      "id": "a9e3"
+      "title": "Organic Chemistry",
+      "description": "write all the molecular formulas from chapter 2",
+      "dueDate": "2024-06-13",
+      "id": "8df3"
     }
   ],
-  "submissions": [
-    {}
+  "submissions": [],
+  "usersData": [
+    {
+      "username": "Admin",
+      "role": "admin",
+      "id": "c77f"
+    },
+    {
+      "username": "Emily ",
+      "role": "student",
+      "id": "c5c1"
+    },
+    {
+      "id": "d771",
+      "username": "Kminshell",
+      "role": "faculty"
+    },
+    {
+      "id": "7cb7",
+      "username": "Atharv",
+      "role": "admin"
+    },
+    {
+      "username": "Sophia",
+      "role": "student",
+      "id": "4a4d"
+    },
+    {
+      "id": "0bf7",
+      "username": "Emma",
+      "role": "student"
+    },
+    {
+      "id": "cae1",
+      "username": "Olivia",
+      "role": "faculty"
+    },
+    {
+      "username": "Alexa",
+      "role": "student",
+      "id": "9c3b"
+    }
   ],
   "attendance": [
     {
@@ -442,7 +482,7 @@
       ]
     },
     {
-      "id": "f471",
+      "id": "d34a",
       "date": "2024-05-30",
       "users": [
         {
@@ -463,7 +503,7 @@
         },
         {
           "id": 5,
-          "attendance": "absent"
+          "attendance": "present"
         },
         {
           "id": 6,
@@ -472,6 +512,178 @@
         {
           "id": 7,
           "attendance": "present"
+        },
+        {
+          "id": 8,
+          "attendance": "present"
+        },
+        {
+          "id": 9,
+          "attendance": "present"
+        },
+        {
+          "id": 10,
+          "attendance": "present"
+        },
+        {
+          "id": 11,
+          "attendance": "absent"
+        },
+        {
+          "id": 12,
+          "attendance": "present"
+        },
+        {
+          "id": 13,
+          "attendance": "present"
+        },
+        {
+          "id": 14,
+          "attendance": "present"
+        },
+        {
+          "id": 15,
+          "attendance": "present"
+        },
+        {
+          "id": 16,
+          "attendance": "present"
+        },
+        {
+          "id": 17,
+          "attendance": "present"
+        },
+        {
+          "id": 18,
+          "attendance": "present"
+        },
+        {
+          "id": 19,
+          "attendance": "present"
+        },
+        {
+          "id": 20,
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "e7bc",
+      "date": "2024-06-04",
+      "users": [
+        {
+          "id": 1,
+          "attendance": "present"
+        },
+        {
+          "id": 2,
+          "attendance": "absent"
+        },
+        {
+          "id": 3,
+          "attendance": "present"
+        },
+        {
+          "id": 4,
+          "attendance": "absent"
+        },
+        {
+          "id": 5,
+          "attendance": "present"
+        },
+        {
+          "id": 6,
+          "attendance": "present"
+        },
+        {
+          "id": 7,
+          "attendance": "absent"
+        },
+        {
+          "id": 8,
+          "attendance": "present"
+        },
+        {
+          "id": 9,
+          "attendance": "present"
+        },
+        {
+          "id": 10,
+          "attendance": "present"
+        },
+        {
+          "id": 11,
+          "attendance": "absent"
+        },
+        {
+          "id": 12,
+          "attendance": "present"
+        },
+        {
+          "id": 13,
+          "attendance": "present"
+        },
+        {
+          "id": 14,
+          "attendance": "absent"
+        },
+        {
+          "id": 15,
+          "attendance": "present"
+        },
+        {
+          "id": 16,
+          "attendance": "present"
+        },
+        {
+          "id": 17,
+          "attendance": "present"
+        },
+        {
+          "id": 18,
+          "attendance": "present"
+        },
+        {
+          "id": 19,
+          "attendance": "absent"
+        },
+        {
+          "id": 20,
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "93f3",
+      "date": "2024-05-26",
+      "users": [
+        {
+          "id": 1,
+          "attendance": "present"
+        },
+        {
+          "id": 2,
+          "attendance": "absent"
+        },
+        {
+          "id": 3,
+          "attendance": "present"
+        },
+        {
+          "id": 4,
+          "attendance": "present"
+        },
+        {
+          "id": 5,
+          "attendance": "present"
+        },
+        {
+          "id": 6,
+          "attendance": "present"
+        },
+        {
+          "id": 7,
+          "attendance": "absent"
         },
         {
           "id": 8,
@@ -507,7 +719,93 @@
         },
         {
           "id": 16,
+          "attendance": "present"
+        },
+        {
+          "id": 17,
+          "attendance": "present"
+        },
+        {
+          "id": 18,
+          "attendance": "present"
+        },
+        {
+          "id": 19,
           "attendance": "absent"
+        },
+        {
+          "id": 20,
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "8078",
+      "date": "2024-05-24",
+      "users": [
+        {
+          "id": 1,
+          "attendance": "present"
+        },
+        {
+          "id": 2,
+          "attendance": "absent"
+        },
+        {
+          "id": 3,
+          "attendance": "present"
+        },
+        {
+          "id": 4,
+          "attendance": "present"
+        },
+        {
+          "id": 5,
+          "attendance": "present"
+        },
+        {
+          "id": 6,
+          "attendance": "present"
+        },
+        {
+          "id": 7,
+          "attendance": "absent"
+        },
+        {
+          "id": 8,
+          "attendance": "present"
+        },
+        {
+          "id": 9,
+          "attendance": "present"
+        },
+        {
+          "id": 10,
+          "attendance": "present"
+        },
+        {
+          "id": 11,
+          "attendance": "present"
+        },
+        {
+          "id": 12,
+          "attendance": "absent"
+        },
+        {
+          "id": 13,
+          "attendance": "present"
+        },
+        {
+          "id": 14,
+          "attendance": "present"
+        },
+        {
+          "id": 15,
+          "attendance": "present"
+        },
+        {
+          "id": 16,
+          "attendance": "present"
         },
         {
           "id": 17,
@@ -523,7 +821,7 @@
         },
         {
           "id": 20,
-          "attendance": "present"
+          "attendance": "absent"
         }
       ]
     }

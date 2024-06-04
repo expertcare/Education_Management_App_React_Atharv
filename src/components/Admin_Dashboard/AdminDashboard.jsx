@@ -1,46 +1,27 @@
 import React from "react";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import { Link } from "react-router-dom";
-// import Sidebar from "./Sidebar";
 import Dashboard from "../Dashboard";
 
 const AdminDashboard = () => {
   const cards = [
     {
       image:
-        "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "See latest news",
-      description:
-        "Locate articles and breaking news headlines from news sources and blogs across the web with our JSON API",
-      buttonText: "View",
-      link: "/news",
+        "https://img.freepik.com/free-vector/hand-drawn-remote-recruitment-illustration_52683-143681.jpg?w=740&t=st=1717476289~exp=1717476889~hmac=c6efa2376f510650b0c37c4f66b14d827fd5c48ca81d5da4e3e82886e4affb63",
+      title: "Manage Users",
+      description: "View user accounts.",
+      buttonText: "Manage Users",
+      link: "/admin/user_list", // Update the link path
     },
     {
       image:
-        "https://plus.unsplash.com/premium_photo-1661761077411-d50cba031848?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "Add Your Notes",
-      description:
-        "Make your own notes on this page, write your quick thoughts on this page",
-      buttonText: "View",
-      link: "/notes",
+        "https://img.freepik.com/free-photo/front-view-stacked-books-graduation-cap-open-book-education-day_23-2149241017.jpg?w=740&t=st=1717146244~exp=1717146844~hmac=41e2fcdef80c2cffdfa50e20fee9dc3ea2e859b2384b0f3e5d0b7a10b03ae6ad",
+      title: "Manage Courses",
+      description: "View and manage courses.",
+      buttonText: "Manage Courses",
+      link: "/admin/manage_courses", // Update the link path
     },
-    {
-      image:
-        "https://img.freepik.com/free-vector/weather-concept-illustration_114360-1234.jpg?w=826&t=st=1715939101~exp=1715939701~hmac=3ee79767cb42c9b1159a3b6895b930b4530296bc30a5291460534db8a60af526",
-      title: "Weather in Kolhapur",
-      description: "It show the current temperature of the Kolhapur city",
-      buttonText: "View",
-      link: "/weather",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "To-Do App",
-      description:
-        "You can maintain your to-do list in our app. This Todo app can Add, Update, Delete your tasks that you add in daily Todo list.",
-      buttonText: "View",
-      link: "/todo",
-    },
+    // Add more cards for other functionalities as needed
   ];
 
   return (
