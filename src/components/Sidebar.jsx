@@ -12,15 +12,15 @@ const Sidebar = ({ userRole }) => {
       >
         {/* Logo and clsose button  */}
 
-        <div className="offcanvas-header">
-          <a className="sidebar-brand" href="/home">
+        <div className="offcanvas-header" data-bs-dismiss="offcanvas">
+          <Link className="sidebar-brand" to="/home">
             <img
               src="https://rajrajhans.com/static/99e4a225dd2b10d50d9f3002d228ff6b/c1b63/post-13-2.png"
               alt="BootstrapBrain Logo"
               width="175"
               height="65"
             />
-          </a>
+          </Link>
           <button
             type="button"
             className="btn-close"

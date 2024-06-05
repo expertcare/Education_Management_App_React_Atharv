@@ -12,14 +12,14 @@ const Header = ({ logout }) => {
       <header id="header-demo" className="header">
         <nav className="navbar navbar-expand-sm bg-body-tertiary fixed-top">
           <div className="container">
-            <a className="navbar-brand d-sm-none" href="#!">
+            <Link className="navbar-brand d-sm-none" to="/home">
               <img
                 src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"
                 alt="BootstrapBrain Logo"
                 width="55"
               />
               React
-            </a>
+            </Link>
             <button
               className="navbar-toggler"
               type="button"

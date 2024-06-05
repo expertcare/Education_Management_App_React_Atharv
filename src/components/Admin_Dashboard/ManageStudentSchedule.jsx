@@ -149,7 +149,7 @@ const ManageStudentSchedule = () => {
       <div className="table-responsive mt-5">
         <table className="table table-bordered">
           <thead>
-            <tr>
+            <tr className="text-center">
               <th>Time</th>
               <th>Subject</th>
               <th>Teacher</th>
@@ -158,7 +158,7 @@ const ManageStudentSchedule = () => {
           </thead>
           <tbody>
             {schedule.map((item, index) => (
-              <tr key={item.id}>
+              <tr key={item.id} className="text-center">
                 <td>{item.time}</td>
                 <td>
                   {isEditing === index ? (

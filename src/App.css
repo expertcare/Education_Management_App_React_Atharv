@@ -78,3 +78,10 @@ li {
   background-size: cover;
   height: 100vh;
 }
+
+@media (max-width: 768px) {
+  .border-remove {
+    border: none;
+    padding-bottom: 40px;
+  }
+}

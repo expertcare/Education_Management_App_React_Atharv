@@ -88,22 +88,10 @@
   ],
   "submissions": [
     {
-      "id": "eaaf",
+      "id": "d9f7",
       "assignmentId": "7242",
-      "file": "blob:http://localhost:5173/46dde5aa-06aa-4bcc-b16f-0a0458c4285b",
-      "userId": 3
-    },
-    {
-      "id": "cbea",
-      "assignmentId": "7242",
-      "file": "blob:http://localhost:5173/6322269a-c513-45db-9c21-b81a000e8f8d",
-      "userId": 10
-    },
-    {
-      "id": "84d6",
-      "assignmentId": "8df3",
-      "file": "blob:http://localhost:5173/f239df8a-6e69-43b2-9627-5399eee4f911",
-      "userId": 10
+      "file": "blob:http://localhost:5173/bcfd79fd-3503-4f78-8734-bda6ace8bdde",
+      "userId": 1
     }
   ],
   "notifications": [
@@ -116,11 +104,6 @@
       "id": "28d5",
       "title": "Final Year Result",
       "message": "The Exam results of final year will be declared on 10th June 2024"
-    },
-    {
-      "id": "a9aa",
-      "title": "Library Fees ",
-      "message": "Please pay your library fees before 20 june 2024"
     }
   ],
   "usersData": [
@@ -163,6 +146,11 @@
       "username": "Alexa",
       "role": "student",
       "id": "9c3b"
+    },
+    {
+      "id": "ff5d",
+      "username": "atharv ",
+      "role": "student"
     }
   ],
   "student_schedule": [
