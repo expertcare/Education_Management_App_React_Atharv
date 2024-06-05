@@ -13,7 +13,7 @@ const Sidebar = ({ userRole }) => {
         {/* Logo and clsose button  */}
 
         <div className="offcanvas-header">
-          <a className="sidebar-brand" href="#!">
+          <a className="sidebar-brand" href="/home">
             <img
               src="https://rajrajhans.com/static/99e4a225dd2b10d50d9f3002d228ff6b/c1b63/post-13-2.png"
               alt="BootstrapBrain Logo"

@@ -9,8 +9,8 @@ const Header = ({ logout }) => {
   return (
     <>
       {/* <!-- Header comment --> */}
-      <header id="header-demo">
-        <nav className="navbar navbar-expand-sm bg-body-tertiary">
+      <header id="header-demo" className="header">
+        <nav className="navbar navbar-expand-sm bg-body-tertiary fixed-top">
           <div className="container">
             <a className="navbar-brand d-sm-none" href="#!">
               <img

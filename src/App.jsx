@@ -34,6 +34,13 @@ import FacultyAttendance from "./components/Faculty_Dashboard/StudentList";
 import StudentAttendanceRecord from "./components/Student_Dashboard/StudentAttendanceRecord";
 import DeveloperDashboard from "./components/Admin_Dashboard/DeveloperDashboard";
 import UserList from "./components/Admin_Dashboard/UserList";
+import ManageStudentSchedule from "./components/Admin_Dashboard/ManageStudentSchedule";
+import ManageFacultySchedule from "./components/Admin_Dashboard/ManageFacultySchedule";
+import StudentSchedule from "./components/Student_Dashboard/StudentSchedule";
+import AdminNotification from "./components/Admin_Dashboard/AdminNotification";
+import "react-notifications/lib/notifications.css";
+import NotificationPopup from "./components/NotificationPopup";
+
 // import CreateUser from "./components/Admin_Dashboard/CreateUser";
 
 const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
@@ -76,6 +83,14 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     path="/student_attendance_record"
                     element={<StudentAttendanceRecord />}
                   />
+                  <Route
+                    path="/student_schedule"
+                    element={<StudentSchedule />}
+                  />
+                  <Route
+                    path="/notifications"
+                    element={<NotificationPopup />}
+                  />
 
                   {/* Add more student-specific routes here */}
                 </>
@@ -94,6 +109,10 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     path="/manage_attendance"
                     element={<FacultyAttendance />}
                   />
+                  <Route
+                    path="/notifications"
+                    element={<NotificationPopup />}
+                  />
 
                   {/* Add more faculty-specific routes here */}
                 </>
@@ -106,14 +125,25 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     element={<DeveloperDashboard />}
                   />
                   <Route path="/admin/user_list" element={<UserList />} />
-                  {/* <Route path="/admin/manage_users" element={<CreateUser />} /> */}
+                  <Route
+                    path="/admin/student_schedule"
+                    element={<ManageStudentSchedule />}
+                  />
+                  <Route
+                    path="/admin/faculty_schedule"
+                    element={<ManageFacultySchedule />}
+                  />
+                  <Route
+                    path="/admin/notifications"
+                    element={<AdminNotification />}
+                  />
 
+                  {/* <Route path="/admin/manage_users" element={<CreateUser />} /> */}
                   <Route path="/todo" element={<TodoApp />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/news" element={<NewsApp />} />
                   <Route path="/weather" element={<WeatherApp />} />
                   <Route path="/users-data" element={<UserData />} />
-
                   {/* Add more admin-specific routes here */}
                 </>
               )}

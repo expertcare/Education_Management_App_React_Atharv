@@ -41,7 +41,8 @@ const StudentAttendanceRecord = () => {
     <div className="container margin-top-bottom">
       <h2 className="text-center">Attendance Record</h2>
       <p className="h5 m-4">
-        Hello {userData.firstName} , Your ID of student is {userData.id}
+        Hello {userData.firstName} {userData.lastName} , Your ID of student is{" "}
+        {userData.id}
       </p>
       <div className="table-responsive">
         <table className="table table-striped table-bordered">

@@ -3,7 +3,7 @@ import { Container, Row, Col, Button } from "reactstrap";
 
 const About = () => {
   return (
-    <Container>
+    <Container className="pt-5">
       <Row className="mt-5">
         <Col md="6" className="mb-4">
           <img

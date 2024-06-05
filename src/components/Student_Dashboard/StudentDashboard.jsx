@@ -1,9 +1,44 @@
-import React from "react";
-import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "../Dashboard";
 
 const StudentDashboard = () => {
+  const [notifications, setNotifications] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/notifications");
+      setNotifications(response.data);
+    } catch (error) {
+      console.error("Error fetching notifications: ", error);
+    }
+  };
+
+  useEffect(() => {
+    // Display toast when notifications change
+    notifications.forEach((notification) => {
+      toast.info(
+        <div onClick={() => handleNotificationClick(notification)}>
+          {notification.title}
+        </div>,
+        { autoClose: 3000 }
+      );
+    });
+  }, [notifications]);
+
+  const handleNotificationClick = () => {
+    // Navigate to /notifications when a toast is clicked
+    navigate("/notifications");
+  };
+
   const cards = [
     {
       image:
@@ -27,7 +62,7 @@ const StudentDashboard = () => {
       title: "My Schedule",
       description: "View your class schedule and upcoming events.",
       buttonText: "View Schedule",
-      link: "/weather",
+      link: "/student_schedule",
     },
     {
       image:
@@ -51,13 +86,14 @@ const StudentDashboard = () => {
       title: "Notifications",
       description: "Check important notifications.",
       buttonText: "View Notifications",
-      link: "/todo",
+      link: "/notifications",
     },
   ];
 
   return (
     <>
       <Dashboard title="Student Dashboard" cards={cards} />;
+      <ToastContainer className="mt-5" />
     </>
   );
 };

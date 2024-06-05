@@ -11,7 +11,31 @@ const AdminDashboard = () => {
       title: "Manage Users",
       description: "View user accounts.",
       buttonText: "Manage Users",
-      link: "/admin/user_list", // Update the link path
+      link: "/admin/user_list",
+    },
+    {
+      image:
+        "https://img.freepik.com/free-vector/people-calendar-time-management-concept_23-2148822826.jpg?w=740&t=st=1717557700~exp=1717558300~hmac=2829b3f800eb79353bcc60044b5d97cbeff1956ec50bc40bb906edd41334c2d0",
+      title: "Manage Students Schedule",
+      description: "Manage the students schedules",
+      buttonText: "Manage Schedules",
+      link: "/admin/student_schedule",
+    },
+    // {
+    //   image:
+    //     "https://img.freepik.com/free-vector/tiny-students-office-person-process-making-plan-reach-aims-time_74855-20401.jpg?t=st=1717557884~exp=1717561484~hmac=eb5699bc69a19d23b88aaa760503da1ac700aab6ec2d8133e56b49568d1953e9&w=740",
+    //   title: "Manage Faculties Schedule",
+    //   description: "Manage the faculties schedules",
+    //   buttonText: "Manage Schedules",
+    //   link: "/admin/faculty_schedule",
+    // },
+    {
+      image:
+        "https://img.freepik.com/free-vector/online-certification-with-smartphone_23-2148571385.jpg?t=st=1717146570~exp=1717150170~hmac=028407c7036005de45c351e19134fe539af38b2fc6aa025611145e89006511ec&w=740",
+      title: "Manage Notifications",
+      description: "Manage Notification for faculties and students",
+      buttonText: "Manage Schedules",
+      link: "/admin/notifications",
     },
     {
       image:
@@ -19,7 +43,7 @@ const AdminDashboard = () => {
       title: "Manage Courses",
       description: "View and manage courses.",
       buttonText: "Manage Courses",
-      link: "/admin/manage_courses", // Update the link path
+      link: "/admin/manage_courses",
     },
     // Add more cards for other functionalities as needed
   ];

@@ -34,7 +34,8 @@ const ContactUs = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         height: "100%",
-        paddingBottom: "40px",
+        paddingBlock: "50px",
+        paddingBottom: "75px",
       }}
     >
       <div className="container">

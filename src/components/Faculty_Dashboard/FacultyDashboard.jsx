@@ -51,7 +51,7 @@ const FacultyDashboard = () => {
       title: "Notifications",
       description: "Check important notifications.",
       buttonText: "View Notifications",
-      link: "/faculty_notifications",
+      link: "/notifications",
     },
   ];
 

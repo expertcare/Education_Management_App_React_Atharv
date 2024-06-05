@@ -79,13 +79,6 @@
       "id": "7242"
     },
     {
-      "id": "111b",
-      "section": "Physics",
-      "title": "Resistance",
-      "description": "solve 4 problems on resistance",
-      "dueDate": "2024-06-09"
-    },
-    {
       "section": "Chemistry",
       "title": "Organic Chemistry",
       "description": "write all the molecular formulas from chapter 2",
@@ -93,7 +86,43 @@
       "id": "8df3"
     }
   ],
-  "submissions": [],
+  "submissions": [
+    {
+      "id": "eaaf",
+      "assignmentId": "7242",
+      "file": "blob:http://localhost:5173/46dde5aa-06aa-4bcc-b16f-0a0458c4285b",
+      "userId": 3
+    },
+    {
+      "id": "cbea",
+      "assignmentId": "7242",
+      "file": "blob:http://localhost:5173/6322269a-c513-45db-9c21-b81a000e8f8d",
+      "userId": 10
+    },
+    {
+      "id": "84d6",
+      "assignmentId": "8df3",
+      "file": "blob:http://localhost:5173/f239df8a-6e69-43b2-9627-5399eee4f911",
+      "userId": 10
+    }
+  ],
+  "notifications": [
+    {
+      "id": "b229",
+      "title": "Holiday",
+      "message": "Due to heavy rain on June 6, 2024, the college will be closed for 3 days."
+    },
+    {
+      "id": "28d5",
+      "title": "Final Year Result",
+      "message": "The Exam results of final year will be declared on 10th June 2024"
+    },
+    {
+      "id": "a9aa",
+      "title": "Library Fees ",
+      "message": "Please pay your library fees before 20 june 2024"
+    }
+  ],
   "usersData": [
     {
       "username": "Admin",
@@ -101,7 +130,7 @@
       "id": "c77f"
     },
     {
-      "username": "Emily ",
+      "username": "Emily",
       "role": "student",
       "id": "c5c1"
     },
@@ -134,6 +163,44 @@
       "username": "Alexa",
       "role": "student",
       "id": "9c3b"
+    }
+  ],
+  "student_schedule": [
+    {
+      "id": "5999",
+      "time": "9:00 am - 11:00 am",
+      "subject": "Data Structures and Algorithms",
+      "teacher": "Emma Miller"
+    },
+    {
+      "id": "cc53",
+      "time": "11:00 am - 11:30 am",
+      "subject": "break",
+      "teacher": "--"
+    },
+    {
+      "id": "1edb",
+      "time": "11:30 am - 1:30 pm",
+      "subject": "Computer Programming",
+      "teacher": "Olivia Willson"
+    },
+    {
+      "id": "7e9a",
+      "time": "1:30 pm - 2:15 pm",
+      "subject": "break",
+      "teacher": "--"
+    },
+    {
+      "id": "5bc8",
+      "time": "2:15 pm - 4:15 pm",
+      "subject": "Machine Learning",
+      "teacher": "Kminshell"
+    },
+    {
+      "id": "e66c",
+      "time": "4:15 pm - 5:00 pm",
+      "subject": "Psychology",
+      "teacher": "Emily Johnson"
     }
   ],
   "attendance": [

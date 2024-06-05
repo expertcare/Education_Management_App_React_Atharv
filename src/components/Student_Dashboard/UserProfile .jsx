@@ -4,7 +4,7 @@ import { useUser } from "../../context/UserContext";
 const UserProfile = () => {
   const { userData } = useUser();
   return (
-    <div className="container mt-5">
+    <div className="container margin-top-bottom">
       <h2 className="text-center mb-4">Employee Profile</h2>
       {userData && (
         <div className="row justify-content-center">
