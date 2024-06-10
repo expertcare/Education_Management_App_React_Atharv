@@ -1,9 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "../Dashboard";
+import { useUser } from "../../context/UserContext";
+import axios from "axios";
 
 const FacultyDashboard = () => {
+  const { userData } = useUser();
+
+  const [notifications, setNotifications] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/notifications");
+      const filteredNotifications = response.data.filter(
+        (notification) => notification.role === userData.role
+      );
+      setNotifications(filteredNotifications);
+    } catch (error) {
+      console.error("Error fetching notifications: ", error);
+    }
+  };
+
+  useEffect(() => {
+    // Display toast when notifications change
+    notifications.forEach((notification) => {
+      toast.info(
+        <div onClick={() => handleNotificationClick(notification)}>
+          {notification.title}
+        </div>,
+        { autoClose: 3000 }
+      );
+    });
+  }, [notifications]);
+
+  const handleNotificationClick = () => {
+    // Navigate to /notifications when a toast is clicked
+    navigate("/notifications");
+  };
+
   const cards = [
     {
       image:
@@ -58,6 +100,7 @@ const FacultyDashboard = () => {
   return (
     <>
       <Dashboard title="Faculty Dashboard" cards={cards} />;
+      <ToastContainer className="mt-5" />
     </>
   );
 };

@@ -7,6 +7,14 @@ const AdminDashboard = () => {
   const cards = [
     {
       image:
+        "https://img.freepik.com/free-vector/competent-resume-writing-professional-cv-constructor-online-job-application-profile-creation-african-american-woman-filling-up-digital-form-concept-illustration_335657-2053.jpg?t=st=1717146650~exp=1717150250~hmac=418967f7967eb53f9a283fa2fa379a43dc6813d523ebc759a5b9f48840537b0d&w=740",
+      title: "My Profile",
+      description: "View and update your profile information.",
+      buttonText: "Go to Profile",
+      link: "/admin_profile",
+    },
+    {
+      image:
         "https://img.freepik.com/free-vector/hand-drawn-remote-recruitment-illustration_52683-143681.jpg?w=740&t=st=1717476289~exp=1717476889~hmac=c6efa2376f510650b0c37c4f66b14d827fd5c48ca81d5da4e3e82886e4affb63",
       title: "Manage Users",
       description: "View user accounts.",
@@ -16,8 +24,8 @@ const AdminDashboard = () => {
     {
       image:
         "https://img.freepik.com/free-vector/people-calendar-time-management-concept_23-2148822826.jpg?w=740&t=st=1717557700~exp=1717558300~hmac=2829b3f800eb79353bcc60044b5d97cbeff1956ec50bc40bb906edd41334c2d0",
-      title: "Manage Students Schedule",
-      description: "Manage the students schedules",
+      title: "Manage Schedule",
+      description: "Manage the schedules",
       buttonText: "Manage Schedules",
       link: "/admin/student_schedule",
     },

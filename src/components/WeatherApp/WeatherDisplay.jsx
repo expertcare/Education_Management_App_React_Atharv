@@ -25,7 +25,7 @@ const WeatherDisplay = ({ data }) => {
             className="img-fluid"
           />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-8 col-lg-6">
           <div className="card">
             <div className="card-header bg-primary text-white">
               <h2 className="card-title mb-0 h3">Weather in {data.city}</h2>

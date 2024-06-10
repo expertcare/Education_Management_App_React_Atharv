@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "../context/UserContext";
 
 const SigninSection = ({ login }) => {
   const { updateUser } = useUser();
-
   const navigate = useNavigate();
-
+  const [usersData, setUsersData] = useState([]);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -17,39 +16,58 @@ const SigninSection = ({ login }) => {
 
   const [errors, setErrors] = useState({});
 
+  useEffect(() => {
+    const fetchUsersData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/usersData");
+        setUsersData(response.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUsersData();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === "checkbox" ? checked : value;
     setFormData({ ...formData, [name]: newValue });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
     if (!formData.username) newErrors.username = "Please enter your username";
     if (!formData.password) newErrors.password = "Please enter your password";
+
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      try {
-        const response = await axios.post("https://dummyjson.com/auth/login", {
-          username: formData.username,
-          password: formData.password,
-          role: formData.role, // Include role in the request
-          expiresInMins: 30, // optional, defaults to 60
-        });
+      // Find user with matching username and password
+      const user = usersData.find(
+        (user) =>
+          user.username === formData.username &&
+          user.password === formData.password &&
+          user.role === formData.role
+      );
 
-        const role = formData.role;
+      if (user) {
+        const role = user.role;
 
-        console.log("Received JSON data:", response.data);
-        console.log("Your role is " + formData.role);
+        console.log("Successfully logged in as:", user.username);
+        console.log("Your role is " + role);
 
-        updateUser(response.data); // Update user data in context
+        updateUser(user); // Update user data in context
+
         login(role); // Call the login function with the role
+
         navigate("/home"); // Navigate to the home page
-      } catch (error) {
-        console.error("Login error:", error);
-        // Handle error, perhaps by displaying a message to the user
+      } else {
+        // Display error if username or password is incorrect
+        setErrors({ invalidCredentials: "Invalid username or password" });
+        alert("Invalid username or password");
+        alert("Make sure you have selected correct role");
       }
     }
   };

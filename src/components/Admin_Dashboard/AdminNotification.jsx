@@ -9,6 +9,7 @@ const AdminNotification = () => {
   const [notification, setNotification] = useState({
     title: "",
     message: "",
+    role: "student", // Default role set to "student"
   });
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const AdminNotification = () => {
     try {
       await axios.post("http://localhost:3000/notifications", notification);
       alert("Notification saved successfully!");
-      setNotification({ title: "", message: "" });
+      setNotification({ title: "", message: "", role: "student" }); // Reset role after submission
       fetchNotifications();
     } catch (error) {
       console.error("Error saving notification: ", error);
@@ -82,31 +83,90 @@ const AdminNotification = () => {
             onChange={handleChange}
           ></textarea>
         </div>
+        <div className="mb-3">
+          <label htmlFor="roleSelect" className="form-label">
+            Role:
+          </label>
+          <select
+            className="form-select"
+            id="roleSelect"
+            name="role"
+            value={notification.role}
+            onChange={handleChange}
+          >
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+          </select>
+        </div>
         <div className="text-center mt-4">
           <button type="submit" className="btn my-btn2">
             Save Notification
           </button>
         </div>
       </form>
-      <div className="margin-top-bottom">
-        <h3 className="text-center m-4">Notifications</h3>
-        <div className="d-flex gap-4 flex-wrap align-content-center justify-content-around">
-          {notifications.map((item) => (
-            <Toast key={item.id} className="d-flex justify-content-around p-2">
-              <div>
-                <ToastHeader>{item.title}</ToastHeader>
-                <ToastBody>{item.message}</ToastBody>
-              </div>
-              <div>
-                <button
-                  className="btn btn-sm btn-danger me-2"
-                  onClick={() => handleDelete(item.id)}
+
+      {/* Notifications card  */}
+
+      <div className="col-md-10 col-lg-12 mx-auto">
+        {/* Notifications for student */}
+
+        <div className="margin-top-bottom">
+          <h3 className="text-center m-4">Student Notifications</h3>
+          <div className="row row-cols-1 row-cols-md-2 g-4">
+            {notifications
+              .filter((item) => item.role === "student")
+              .map((item) => (
+                <div
+                  key={item.id}
+                  className="col d-flex justify-content-around"
                 >
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </div>
-            </Toast>
-          ))}
+                  <Toast className="d-flex justify-content-evenly align-items-center p-2">
+                    <div>
+                      <ToastHeader icon="primary">{item.title}</ToastHeader>
+                      <ToastBody>{item.message}</ToastBody>
+                    </div>
+                    <div className="mb-4">
+                      <button
+                        className="btn btn-sm btn-danger me-2 mb-5"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
+                  </Toast>
+                </div>
+              ))}
+          </div>
+        </div>
+
+        {/* Notification for Faculty  */}
+        <div className="m-4">
+          <h3 className="text-center m-4">Faculty Notifications</h3>
+          <div className="row row-cols-1 row-cols-md-2 g-4">
+            {notifications
+              .filter((item) => item.role === "faculty")
+              .map((item) => (
+                <div
+                  key={item.id}
+                  className="col d-flex justify-content-around"
+                >
+                  <Toast className="d-flex justify-content-between align-items-center p-2">
+                    <div>
+                      <ToastHeader icon="info">{item.title}</ToastHeader>
+                      <ToastBody>{item.message}</ToastBody>
+                    </div>
+                    <div className="mb-4">
+                      <button
+                        className="btn btn-sm btn-danger me-2 mb-5"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
+                  </Toast>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

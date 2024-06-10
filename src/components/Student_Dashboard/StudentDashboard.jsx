@@ -4,8 +4,11 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "../Dashboard";
+import { useUser } from "../../context/UserContext";
 
 const StudentDashboard = () => {
+  const { userData } = useUser();
+
   const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
 
@@ -16,7 +19,10 @@ const StudentDashboard = () => {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get("http://localhost:3000/notifications");
-      setNotifications(response.data);
+      const filteredNotifications = response.data.filter(
+        (notification) => notification.role === userData.role
+      );
+      setNotifications(filteredNotifications);
     } catch (error) {
       console.error("Error fetching notifications: ", error);
     }
@@ -54,7 +60,7 @@ const StudentDashboard = () => {
       title: "My Courses",
       description: "View your enrolled courses and grades.",
       buttonText: "View Courses",
-      link: "/user_profile",
+      link: "/student_course",
     },
     {
       image:

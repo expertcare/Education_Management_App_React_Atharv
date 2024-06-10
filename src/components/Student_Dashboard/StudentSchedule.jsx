@@ -21,29 +21,31 @@ const StudentSchedule = () => {
   }, []);
 
   return (
-    <div className="container margin-top-bottom">
-      <h2 className="mb-4 text-center">Student Schedule</h2>
-      <p className="h5 m-4">
-        Hello, {userData.firstName} {userData.lastName}, here is your schedule
+    <div className="container margin-top-bottom text-center d-flex flex-column gap-4">
+      <h2>Student Schedule</h2>
+      <p className="fs-4 mt-4">
+        Hello {userData.fullName}, here is your schedule
       </p>
-      <table className="table table-striped table-bordered">
-        <thead>
-          <tr className="text-center">
-            <th>Time</th>
-            <th>Subject</th>
-            <th>Teacher</th>
-          </tr>
-        </thead>
-        <tbody>
-          {schedule.map((item) => (
-            <tr key={item.id} className="text-center">
-              <td>{item.time}</td>
-              <td>{item.subject}</td>
-              <td>{item.teacher}</td>
+      <div className=" col-lg-8 col-md-12 mx-auto">
+        <table className="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Subject</th>
+              <th>Teacher</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {schedule.map((item) => (
+              <tr key={item.id}>
+                <td>{item.time}</td>
+                <td>{item.subject}</td>
+                <td>{item.teacher}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
+import { useUser } from "../context/UserContext";
 
 const NotificationPopup = () => {
+  const { userData } = useUser();
+
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
@@ -12,7 +15,10 @@ const NotificationPopup = () => {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get("http://localhost:3000/notifications");
-      setNotifications(response.data);
+      const filteredNotifications = response.data.filter(
+        (notification) => notification.role === userData.role
+      );
+      setNotifications(filteredNotifications);
     } catch (error) {
       console.error("Error fetching notifications: ", error);
     }

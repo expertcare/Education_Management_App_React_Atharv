@@ -1,16 +1,23 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import NavProfile from "./NavProfile";
+import { useUser } from "../context/UserContext";
 
 const Header = ({ logout }) => {
+  const { userData } = useUser();
+
   const handleLogout = () => {
     // Call the logout function passed as a prop
     logout();
   };
+
+  // console.log("User data:", userData);
+
   return (
     <>
       {/* <!-- Header comment --> */}
       <header id="header-demo" className="header">
-        <nav className="navbar navbar-expand-sm bg-body-tertiary fixed-top">
+        <nav className="navbar navbar-expand-sm bg-body-tertiary bsb-navbar-3 fixed-top">
           <div className="container">
             <Link className="navbar-brand d-sm-none" to="/home">
               <img
@@ -30,6 +37,7 @@ const Header = ({ logout }) => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
+
             <div
               className="offcanvas offcanvas-end"
               tabIndex="-1"
@@ -48,7 +56,7 @@ const Header = ({ logout }) => {
                 ></button>
               </div>
               <div className="offcanvas-body">
-                <ul className="navbar-nav  d-flex gap-4">
+                <ul className="navbar-nav  d-flex gap-4 ">
                   <li className="nav-item me-3">
                     <a
                       className="nav-link"
@@ -99,17 +107,43 @@ const Header = ({ logout }) => {
                     >
                       Sign out
                     </Link>
+                    <button
+                      className="navbar-toggler border-0"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#bsbNavbar"
+                      aria-controls="bsbNavbar"
+                      aria-label="Toggle Navigation"
+                    >
+                      <i className="bi bi-three-dots"></i>
+                    </button>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="navbar-nav ms-auto header-btn d-none d-sm-flex">
+
+            <NavProfile logout={logout} />
+
+            {/* New code added  */}
+
+            {/* <button
+              class="navbar-toggler border-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#bsbNavbar"
+              aria-controls="bsbNavbar"
+              aria-label="Toggle Navigation"
+            >
+              <i class="bi bi-three-dots"></i>
+            </button> */}
+
+            {/* <div className="navbar-nav ms-auto header-btn d-none d-sm-flex">
               {" "}
-              {/* Hide on small screens */}
+              Hide on small screens
               <Link to="/signin" className="btn my-btn2" onClick={handleLogout}>
                 Sign out
               </Link>
-            </div>
+            </div> */}
           </div>
         </nav>
       </header>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WeatherDisplay from "./WeatherDisplay";
+import { Button, Spinner } from "reactstrap";
 
 const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -38,7 +39,12 @@ const WeatherApp = () => {
   return (
     <div className="container d-flex justify-content-center align-items-center flex-column">
       <h1 className="mb-5 mt-5">Weather App</h1>
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <Button color="primary" disabled>
+          <Spinner size="sm">Loading...</Spinner>
+          <span> Loading</span>
+        </Button>
+      )}
       {error && <p>{error}</p>}
       {weatherData && <WeatherDisplay data={weatherData} />}
     </div>

@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button,
+  Spinner,
+} from "reactstrap";
 
 const NewsApp = () => {
   const [news, setNews] = useState([]);
@@ -32,18 +39,17 @@ const NewsApp = () => {
   }, []); // Empty dependency array means this effect runs only once, when component mounts
 
   return (
-    <div className="m-4 p-4 container ">
+    <div className="container margin-top-bottom">
       <h1 className="text-center mt-4 mb-4">Latest News</h1>
       {loading ? (
-        <p>Loading...</p>
+        <Button color="primary" disabled>
+          <Spinner size="sm">Loading...</Spinner>
+          <span> Loading</span>
+        </Button>
       ) : (
-        <div>
+        <div className="col-md-10 mx-auto">
           {news.map((article, index) => (
-            <Card
-              body
-              className="my-2 mt-4 d-flex justify-content-center"
-              key={index}
-            >
+            <Card body className="my-2 mt-4 " key={index}>
               <CardTitle tag="h5">{article.title}</CardTitle>
               <CardText>{article.description}</CardText>
 

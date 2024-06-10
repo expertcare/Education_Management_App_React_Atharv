@@ -92,65 +92,196 @@
       "assignmentId": "7242",
       "file": "blob:http://localhost:5173/bcfd79fd-3503-4f78-8734-bda6ace8bdde",
       "userId": 1
+    },
+    {
+      "id": "cf07",
+      "assignmentId": "7242",
+      "file": "blob:http://localhost:5173/37f09b0c-bd89-4ad9-8d07-80873d371896",
+      "userId": "c5c1"
     }
   ],
   "notifications": [
     {
-      "id": "b229",
+      "id": "5ccc",
       "title": "Holiday",
-      "message": "Due to heavy rain on June 6, 2024, the college will be closed for 3 days."
+      "message": "Due to heavy rain on June 10, 2024, the college will be closed for 3 days.",
+      "role": "student"
     },
     {
-      "id": "28d5",
+      "id": "0bac",
       "title": "Final Year Result",
-      "message": "The Exam results of final year will be declared on 10th June 2024"
+      "message": "The Exam results of final year will be declared on 10th June 2024",
+      "role": "student"
+    },
+    {
+      "id": "6099",
+      "title": "Library Fees",
+      "message": "Pay your library fees on or before 15 June\n",
+      "role": "student"
+    },
+    {
+      "id": "00fc",
+      "title": "Important Meeting",
+      "message": "On 12th June, there will be a meeting in principal's office at 3pm sharp",
+      "role": "faculty"
+    },
+    {
+      "id": "82f1",
+      "title": "Bonus Salary",
+      "message": "All the faculty Members will receive bonus for their extraordinary performance",
+      "role": "faculty"
+    }
+  ],
+  "courses": [
+    {
+      "id": "fd59",
+      "name": "Data Structures and Algorithms",
+      "faculty": "Sargio Markina"
+    },
+    {
+      "id": "514c",
+      "name": "Computer Programming",
+      "faculty": "Raquel Mourio"
+    },
+    {
+      "id": "3945",
+      "name": "Machine Learning",
+      "faculty": "Olivia Willson"
+    },
+    {
+      "id": "988c",
+      "name": "Psychology",
+      "faculty": "Alicia Ceiara"
+    },
+    {
+      "id": "811a",
+      "name": "Computer Network",
+      "faculty": "Sargio Markina"
     }
   ],
   "usersData": [
     {
-      "username": "Admin",
-      "role": "admin",
+      "fullName": "Main Admin",
+      "email": "admin@gmail.com",
+      "gender": "male",
       "id": "c77f"
     },
     {
-      "username": "Emily",
+      "username": "emily",
+      "password": "emily",
       "role": "student",
+      "fullName": "Emily Johnson",
+      "email": "emily@gmail.com",
+      "gender": "female",
       "id": "c5c1"
     },
     {
-      "id": "d771",
-      "username": "Kminshell",
-      "role": "faculty"
+      "username": "atharv",
+      "password": "admin@123",
+      "role": "admin",
+      "fullName": "Atharv Mirajkar",
+      "email": "atharvm@walstartech.com",
+      "gender": "male",
+      "id": "7cb7"
     },
     {
-      "id": "7cb7",
-      "username": "Atharv",
-      "role": "admin"
+      "fullName": "Emma Watson new",
+      "email": "emma@gmail.com",
+      "gender": "female",
+      "id": "0bf7"
     },
     {
-      "username": "Sophia",
+      "username": "professor",
+      "password": "professor",
+      "role": "faculty",
+      "fullName": "Sargio Markina",
+      "email": "sargio@gmail.com",
+      "gender": "male",
+      "id": "9aac"
+    },
+    {
+      "username": "berlin",
+      "password": "berlin",
       "role": "student",
-      "id": "4a4d"
+      "fullName": "Andress de Fonollosa",
+      "email": "berlin@gmail.com",
+      "gender": "male",
+      "id": "3393"
     },
     {
-      "id": "0bf7",
-      "username": "Emma",
-      "role": "student"
+      "fullName": "Silene Oliveria Tokyo",
+      "email": "tokyo@gmail.com",
+      "gender": "female",
+      "id": "0c1f"
     },
     {
-      "id": "cae1",
-      "username": "Olivia",
-      "role": "faculty"
+      "id": "b0ac",
+      "username": "raquel",
+      "password": "raquel",
+      "role": "faculty",
+      "fullName": "Raquel Mourio",
+      "email": "raquel@gmail.com",
+      "gender": "female"
     },
     {
-      "username": "Alexa",
+      "username": "alicia",
+      "password": "alicia",
+      "role": "faculty",
+      "fullName": "Alicia Ceiara",
+      "email": "aliciaceiara@gmail.com",
+      "gender": "female",
+      "id": "def0"
+    },
+    {
+      "id": "8766",
+      "username": "olivia",
+      "password": "olivia",
+      "role": "faculty",
+      "fullName": "Olivia Willson",
+      "email": "oliviawilllson@gmail.com",
+      "gender": "female"
+    },
+    {
+      "id": "0a40",
+      "username": "tokyo",
+      "password": "tokyo",
       "role": "student",
-      "id": "9c3b"
+      "fullName": "Seliene Oliviara ",
+      "email": "tokyo@gmail.com",
+      "gender": "female"
     },
     {
-      "id": "ff5d",
-      "username": "atharv ",
-      "role": "student"
+      "fullName": "Emma Watson new",
+      "email": "emma@gmail.com",
+      "gender": "female",
+      "id": "1470"
+    },
+    {
+      "username": "admin",
+      "password": "admin@123",
+      "role": "admin",
+      "fullName": "New Admin",
+      "email": "admin@gmail.com",
+      "gender": "female",
+      "id": "9153"
+    },
+    {
+      "id": "15da",
+      "username": "emma",
+      "password": "emma",
+      "role": "student",
+      "fullName": "Emma Watson",
+      "email": "emma@gmail.com",
+      "gender": "female"
+    },
+    {
+      "id": "7483",
+      "username": "rio",
+      "password": "rio",
+      "role": "student",
+      "fullName": "Animal Cortes",
+      "email": "rayo@gmail.com",
+      "gender": "male"
     }
   ],
   "student_schedule": [
@@ -158,7 +289,7 @@
       "id": "5999",
       "time": "9:00 am - 11:00 am",
       "subject": "Data Structures and Algorithms",
-      "teacher": "Emma Miller"
+      "teacher": "Sargio Markina"
     },
     {
       "id": "cc53",
@@ -170,7 +301,7 @@
       "id": "1edb",
       "time": "11:30 am - 1:30 pm",
       "subject": "Computer Programming",
-      "teacher": "Olivia Willson"
+      "teacher": "Raquel Mourio"
     },
     {
       "id": "7e9a",
@@ -182,701 +313,143 @@
       "id": "5bc8",
       "time": "2:15 pm - 4:15 pm",
       "subject": "Machine Learning",
-      "teacher": "Kminshell"
+      "teacher": "Olivia Willson"
     },
     {
       "id": "e66c",
       "time": "4:15 pm - 5:00 pm",
       "subject": "Psychology",
-      "teacher": "Emily Johnson"
+      "teacher": "Alicia Ceiara"
     }
   ],
   "attendance": [
     {
-      "id": "59ce",
-      "date": "2024-06-03",
-      "users": [
+      "id": "70f5",
+      "date": "2024-06-10",
+      "students": [
         {
-          "id": 1,
+          "id": "c5c1",
           "attendance": "present"
         },
         {
-          "id": 2,
+          "id": "3393",
           "attendance": "absent"
         },
         {
-          "id": 3,
+          "id": "0a40",
           "attendance": "present"
         },
         {
-          "id": 4,
+          "id": "15da",
           "attendance": "absent"
         },
         {
-          "id": 5,
-          "attendance": "absent"
-        },
-        {
-          "id": 6,
-          "attendance": "present"
-        },
-        {
-          "id": 7,
-          "attendance": "present"
-        },
-        {
-          "id": 8,
-          "attendance": "absent"
-        },
-        {
-          "id": 9,
-          "attendance": "present"
-        },
-        {
-          "id": 10,
-          "attendance": "present"
-        },
-        {
-          "id": 11,
-          "attendance": "present"
-        },
-        {
-          "id": 12,
-          "attendance": "absent"
-        },
-        {
-          "id": 13,
-          "attendance": "present"
-        },
-        {
-          "id": 14,
-          "attendance": "absent"
-        },
-        {
-          "id": 15,
-          "attendance": "present"
-        },
-        {
-          "id": 16,
-          "attendance": "present"
-        },
-        {
-          "id": 17,
-          "attendance": "absent"
-        },
-        {
-          "id": 18,
-          "attendance": "present"
-        },
-        {
-          "id": 19,
-          "attendance": "absent"
-        },
-        {
-          "id": 20,
+          "id": "7483",
           "attendance": "present"
         }
       ]
     },
     {
-      "id": "2def",
-      "date": "2024-06-02",
-      "users": [
+      "id": "de89",
+      "date": "2024-06-10",
+      "students": [
         {
-          "id": 1,
+          "id": "c5c1",
           "attendance": "absent"
         },
         {
-          "id": 2,
-          "attendance": "absent"
-        },
-        {
-          "id": 3,
-          "attendance": "absent"
-        },
-        {
-          "id": 4,
-          "attendance": "absent"
-        },
-        {
-          "id": 5,
+          "id": "3393",
           "attendance": "present"
         },
         {
-          "id": 6,
+          "id": "0a40",
+          "attendance": "present"
+        },
+        {
+          "id": "15da",
+          "attendance": "present"
+        },
+        {
+          "id": "7483",
+          "attendance": "absent"
+        }
+      ]
+    },
+    {
+      "id": "1139",
+      "date": "2024-06-10",
+      "students": [
+        {
+          "id": "c5c1",
           "attendance": "absent"
         },
         {
-          "id": 7,
+          "id": "3393",
           "attendance": "present"
         },
         {
-          "id": 8,
+          "id": "0a40",
           "attendance": "absent"
         },
         {
-          "id": 9,
+          "id": "15da",
           "attendance": "present"
         },
         {
-          "id": 10,
-          "attendance": "present"
-        },
-        {
-          "id": 11,
+          "id": "7483",
           "attendance": "absent"
-        },
+        }
+      ]
+    },
+    {
+      "id": "8fa5",
+      "date": "2024-06-10",
+      "students": [
         {
-          "id": 12,
+          "id": "c5c1",
           "attendance": "present"
         },
         {
-          "id": 13,
+          "id": "3393",
           "attendance": "present"
         },
         {
-          "id": 14,
-          "attendance": "absent"
-        },
-        {
-          "id": 15,
+          "id": "0a40",
           "attendance": "present"
         },
         {
-          "id": 16,
-          "attendance": "absent"
-        },
-        {
-          "id": 17,
+          "id": "15da",
           "attendance": "present"
         },
         {
-          "id": 18,
-          "attendance": "present"
-        },
-        {
-          "id": 19,
-          "attendance": "absent"
-        },
-        {
-          "id": 20,
+          "id": "7483",
           "attendance": "present"
         }
       ]
     },
     {
-      "id": "e8d8",
-      "date": "2024-06-01",
-      "users": [
-        {
-          "id": 1,
-          "attendance": "absent"
-        },
-        {
-          "id": 2,
-          "attendance": "present"
-        },
-        {
-          "id": 3,
-          "attendance": "absent"
-        },
-        {
-          "id": 4,
-          "attendance": "present"
-        },
-        {
-          "id": 5,
-          "attendance": "absent"
-        },
-        {
-          "id": 6,
-          "attendance": "present"
-        },
-        {
-          "id": 7,
-          "attendance": "present"
-        },
-        {
-          "id": 8,
-          "attendance": "absent"
-        },
-        {
-          "id": 9,
-          "attendance": "present"
-        },
-        {
-          "id": 10,
-          "attendance": "present"
-        },
-        {
-          "id": 11,
-          "attendance": "present"
-        },
-        {
-          "id": 12,
-          "attendance": "absent"
-        },
-        {
-          "id": 13,
-          "attendance": "present"
-        },
-        {
-          "id": 14,
-          "attendance": "present"
-        },
-        {
-          "id": 15,
-          "attendance": "present"
-        },
-        {
-          "id": 16,
-          "attendance": "present"
-        },
-        {
-          "id": 17,
-          "attendance": "absent"
-        },
-        {
-          "id": 18,
-          "attendance": "present"
-        },
-        {
-          "id": 19,
-          "attendance": "present"
-        },
-        {
-          "id": 20,
-          "attendance": "present"
-        }
-      ]
-    },
-    {
-      "id": "570d",
-      "date": "2024-05-31",
-      "users": [
-        {
-          "id": 1,
-          "attendance": "present"
-        },
-        {
-          "id": 2,
-          "attendance": "absent"
-        },
-        {
-          "id": 3,
-          "attendance": "present"
-        },
-        {
-          "id": 4,
-          "attendance": "present"
-        },
-        {
-          "id": 5,
-          "attendance": "absent"
-        },
-        {
-          "id": 6,
-          "attendance": "present"
-        },
-        {
-          "id": 7,
-          "attendance": "present"
-        },
-        {
-          "id": 8,
-          "attendance": "present"
-        },
-        {
-          "id": 9,
-          "attendance": "present"
-        },
-        {
-          "id": 10,
-          "attendance": "present"
-        },
-        {
-          "id": 11,
-          "attendance": "present"
-        },
-        {
-          "id": 12,
-          "attendance": "present"
-        },
-        {
-          "id": 13,
-          "attendance": "present"
-        },
-        {
-          "id": 14,
-          "attendance": "present"
-        },
-        {
-          "id": 15,
-          "attendance": "present"
-        },
-        {
-          "id": 16,
-          "attendance": "present"
-        },
-        {
-          "id": 17,
-          "attendance": "absent"
-        },
-        {
-          "id": 18,
-          "attendance": "present"
-        },
-        {
-          "id": 19,
-          "attendance": "present"
-        },
-        {
-          "id": 20,
-          "attendance": "present"
-        }
-      ]
-    },
-    {
-      "id": "d34a",
-      "date": "2024-05-30",
-      "users": [
-        {
-          "id": 1,
-          "attendance": "absent"
-        },
-        {
-          "id": 2,
-          "attendance": "present"
-        },
-        {
-          "id": 3,
-          "attendance": "present"
-        },
-        {
-          "id": 4,
-          "attendance": "present"
-        },
-        {
-          "id": 5,
-          "attendance": "present"
-        },
-        {
-          "id": 6,
-          "attendance": "present"
-        },
-        {
-          "id": 7,
-          "attendance": "present"
-        },
-        {
-          "id": 8,
-          "attendance": "present"
-        },
-        {
-          "id": 9,
-          "attendance": "present"
-        },
-        {
-          "id": 10,
-          "attendance": "present"
-        },
-        {
-          "id": 11,
-          "attendance": "absent"
-        },
-        {
-          "id": 12,
-          "attendance": "present"
-        },
-        {
-          "id": 13,
-          "attendance": "present"
-        },
-        {
-          "id": 14,
-          "attendance": "present"
-        },
-        {
-          "id": 15,
-          "attendance": "present"
-        },
-        {
-          "id": 16,
-          "attendance": "present"
-        },
-        {
-          "id": 17,
-          "attendance": "present"
-        },
-        {
-          "id": 18,
-          "attendance": "present"
-        },
-        {
-          "id": 19,
-          "attendance": "present"
-        },
-        {
-          "id": 20,
-          "attendance": "present"
-        }
-      ]
-    },
-    {
-      "id": "e7bc",
+      "id": "329a",
       "date": "2024-06-04",
-      "users": [
+      "students": [
         {
-          "id": 1,
+          "id": "c5c1",
           "attendance": "present"
         },
         {
-          "id": 2,
-          "attendance": "absent"
-        },
-        {
-          "id": 3,
+          "id": "3393",
           "attendance": "present"
         },
         {
-          "id": 4,
-          "attendance": "absent"
-        },
-        {
-          "id": 5,
+          "id": "0a40",
           "attendance": "present"
         },
         {
-          "id": 6,
+          "id": "15da",
           "attendance": "present"
         },
         {
-          "id": 7,
-          "attendance": "absent"
-        },
-        {
-          "id": 8,
+          "id": "7483",
           "attendance": "present"
-        },
-        {
-          "id": 9,
-          "attendance": "present"
-        },
-        {
-          "id": 10,
-          "attendance": "present"
-        },
-        {
-          "id": 11,
-          "attendance": "absent"
-        },
-        {
-          "id": 12,
-          "attendance": "present"
-        },
-        {
-          "id": 13,
-          "attendance": "present"
-        },
-        {
-          "id": 14,
-          "attendance": "absent"
-        },
-        {
-          "id": 15,
-          "attendance": "present"
-        },
-        {
-          "id": 16,
-          "attendance": "present"
-        },
-        {
-          "id": 17,
-          "attendance": "present"
-        },
-        {
-          "id": 18,
-          "attendance": "present"
-        },
-        {
-          "id": 19,
-          "attendance": "absent"
-        },
-        {
-          "id": 20,
-          "attendance": "present"
-        }
-      ]
-    },
-    {
-      "id": "93f3",
-      "date": "2024-05-26",
-      "users": [
-        {
-          "id": 1,
-          "attendance": "present"
-        },
-        {
-          "id": 2,
-          "attendance": "absent"
-        },
-        {
-          "id": 3,
-          "attendance": "present"
-        },
-        {
-          "id": 4,
-          "attendance": "present"
-        },
-        {
-          "id": 5,
-          "attendance": "present"
-        },
-        {
-          "id": 6,
-          "attendance": "present"
-        },
-        {
-          "id": 7,
-          "attendance": "absent"
-        },
-        {
-          "id": 8,
-          "attendance": "present"
-        },
-        {
-          "id": 9,
-          "attendance": "present"
-        },
-        {
-          "id": 10,
-          "attendance": "absent"
-        },
-        {
-          "id": 11,
-          "attendance": "present"
-        },
-        {
-          "id": 12,
-          "attendance": "present"
-        },
-        {
-          "id": 13,
-          "attendance": "present"
-        },
-        {
-          "id": 14,
-          "attendance": "present"
-        },
-        {
-          "id": 15,
-          "attendance": "present"
-        },
-        {
-          "id": 16,
-          "attendance": "present"
-        },
-        {
-          "id": 17,
-          "attendance": "present"
-        },
-        {
-          "id": 18,
-          "attendance": "present"
-        },
-        {
-          "id": 19,
-          "attendance": "absent"
-        },
-        {
-          "id": 20,
-          "attendance": "present"
-        }
-      ]
-    },
-    {
-      "id": "8078",
-      "date": "2024-05-24",
-      "users": [
-        {
-          "id": 1,
-          "attendance": "present"
-        },
-        {
-          "id": 2,
-          "attendance": "absent"
-        },
-        {
-          "id": 3,
-          "attendance": "present"
-        },
-        {
-          "id": 4,
-          "attendance": "present"
-        },
-        {
-          "id": 5,
-          "attendance": "present"
-        },
-        {
-          "id": 6,
-          "attendance": "present"
-        },
-        {
-          "id": 7,
-          "attendance": "absent"
-        },
-        {
-          "id": 8,
-          "attendance": "present"
-        },
-        {
-          "id": 9,
-          "attendance": "present"
-        },
-        {
-          "id": 10,
-          "attendance": "present"
-        },
-        {
-          "id": 11,
-          "attendance": "present"
-        },
-        {
-          "id": 12,
-          "attendance": "absent"
-        },
-        {
-          "id": 13,
-          "attendance": "present"
-        },
-        {
-          "id": 14,
-          "attendance": "present"
-        },
-        {
-          "id": 15,
-          "attendance": "present"
-        },
-        {
-          "id": 16,
-          "attendance": "present"
-        },
-        {
-          "id": 17,
-          "attendance": "present"
-        },
-        {
-          "id": 18,
-          "attendance": "present"
-        },
-        {
-          "id": 19,
-          "attendance": "present"
-        },
-        {
-          "id": 20,
-          "attendance": "absent"
         }
       ]
     }

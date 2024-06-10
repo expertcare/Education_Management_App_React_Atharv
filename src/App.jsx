@@ -25,7 +25,7 @@ import NotFound from "./components/NotFound";
 import StudentDashboard from "./components/Student_Dashboard/StudentDashboard";
 import { UserProvider } from "./context/UserContext";
 import StudentProfile from "./components/Student_Dashboard/StudentProfile";
-import UserProfile from "./components/Student_Dashboard/UserProfile ";
+import UserProfile from "./components/Student_Dashboard/StudentCourses";
 import FacultyDashboard from "./components/Faculty_Dashboard/FacultyDashboard";
 import AdminDashboard from "./components/Admin_Dashboard/AdminDashboard";
 import FacultyAssignment from "./components/Faculty_Dashboard/FacultyAssignment";
@@ -40,6 +40,12 @@ import StudentSchedule from "./components/Student_Dashboard/StudentSchedule";
 import AdminNotification from "./components/Admin_Dashboard/AdminNotification";
 import "react-notifications/lib/notifications.css";
 import NotificationPopup from "./components/NotificationPopup";
+import SettingsPrivacyPage from "./components/SettingsPrivacyPage";
+import NavProfile from "./components/NavProfile";
+import ManageCourse from "./components/Admin_Dashboard/ManageCourse";
+import StudentCourses from "./components/Student_Dashboard/StudentCourses";
+import FacultyCourses from "./components/Faculty_Dashboard/FacultyCourses";
+import FacultySchedule from "./components/Faculty_Dashboard/FacultySchedule";
 
 // import CreateUser from "./components/Admin_Dashboard/CreateUser";
 
@@ -58,11 +64,11 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
 
   return (
     <>
-      {/* Render header only if not on auth page */}
-      {!isAuthPage && <Header logout={logout} />}
-      <Sidebar userRole={userRole} />
-
       <UserProvider>
+        {/* Render header only if not on auth page */}
+        {!isAuthPage && <Header logout={logout} />}
+        <Sidebar userRole={userRole} />
+
         <Routes>
           {isLoggedIn && (
             <>
@@ -74,7 +80,7 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     element={<StudentDashboard />}
                   />
                   <Route path="/student_profile" element={<StudentProfile />} />
-                  <Route path="/user_profile" element={<UserProfile />} />
+                  <Route path="/student_course" element={<StudentCourses />} />
                   <Route
                     path="/student_assignment"
                     element={<StudentAssignment />}
@@ -113,6 +119,13 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     path="/notifications"
                     element={<NotificationPopup />}
                   />
+                  <Route path="/faculty_courses" element={<FacultyCourses />} />
+                  <Route path="/faculty_profile" element={<StudentProfile />} />
+
+                  <Route
+                    path="/faculty_schedule"
+                    element={<FacultySchedule />}
+                  />
 
                   {/* Add more faculty-specific routes here */}
                 </>
@@ -137,6 +150,11 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     path="/admin/notifications"
                     element={<AdminNotification />}
                   />
+                  <Route
+                    path="/admin/manage_courses"
+                    element={<ManageCourse />}
+                  />
+                  <Route path="/admin_profile" element={<StudentProfile />} />
 
                   {/* <Route path="/admin/manage_users" element={<CreateUser />} /> */}
                   <Route path="/todo" element={<TodoApp />} />
@@ -159,11 +177,12 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/signup" element={<SignupForm />} />
+          <Route path="/settings" element={<SettingsPrivacyPage />} />
         </Routes>
-      </UserProvider>
 
-      {/* Render footer only if not on auth page */}
-      {!isAuthPage && <Footer />}
+        {/* Render footer only if not on auth page */}
+        {!isAuthPage && <Footer />}
+      </UserProvider>
     </>
   );
 };
