@@ -144,14 +144,6 @@ const NavProfile = ({ logout }) => {
               <a href="#" className="dropdown-item" aria-current="true">
                 <div className="row g-0 align-items-center">
                   <div className="col-3">
-                    {/* <img
-                      src="https://bootstrapbrain.com/demo/components/navbars/navbar-3/assets/img/profile/profile-img-1.jpg"
-                      width="55"
-                      height="55"
-                      className="img-fluid rounded-circle"
-                      alt="Luke Reeves"
-                    /> */}
-
                     {userData.gender === "female" ? (
                       <img
                         src="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?w=826&t=st=1717741900~exp=1717742500~hmac=0f0e81f21efdb176895d74daf6bff3101c651c4c70821ce5f7838879a1b0ea9c"

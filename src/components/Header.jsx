@@ -97,6 +97,7 @@ const Header = ({ logout }) => {
                       Contact
                     </Link>
                   </li>
+
                   <li className="nav-item fw-medium d-sm-none">
                     {" "}
                     {/* Only display on small screens */}

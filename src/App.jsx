@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { UserProvider } from "./context/UserContext";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,6 +7,9 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
+import "react-notifications/lib/notifications.css";
 import About from "./components/About";
 import ContactUs from "./components/ContactUs";
 import Dashboard from "./components/Dashboard";
@@ -19,11 +23,8 @@ import TodoApp from "./components/TodoApp/TodoApp";
 import UserData from "./components/UserCRUD/UserData";
 import WeatherApp from "./components/WeatherApp/WeatherApp";
 import Home from "./components/Home";
-import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
 import NotFound from "./components/NotFound";
 import StudentDashboard from "./components/Student_Dashboard/StudentDashboard";
-import { UserProvider } from "./context/UserContext";
 import StudentProfile from "./components/Student_Dashboard/StudentProfile";
 import UserProfile from "./components/Student_Dashboard/StudentCourses";
 import FacultyDashboard from "./components/Faculty_Dashboard/FacultyDashboard";
@@ -38,7 +39,6 @@ import ManageStudentSchedule from "./components/Admin_Dashboard/ManageStudentSch
 import ManageFacultySchedule from "./components/Admin_Dashboard/ManageFacultySchedule";
 import StudentSchedule from "./components/Student_Dashboard/StudentSchedule";
 import AdminNotification from "./components/Admin_Dashboard/AdminNotification";
-import "react-notifications/lib/notifications.css";
 import NotificationPopup from "./components/NotificationPopup";
 import SettingsPrivacyPage from "./components/SettingsPrivacyPage";
 import NavProfile from "./components/NavProfile";
@@ -46,6 +46,7 @@ import ManageCourse from "./components/Admin_Dashboard/ManageCourse";
 import StudentCourses from "./components/Student_Dashboard/StudentCourses";
 import FacultyCourses from "./components/Faculty_Dashboard/FacultyCourses";
 import FacultySchedule from "./components/Faculty_Dashboard/FacultySchedule";
+import ContactList from "./components/Admin_Dashboard/ContactList";
 
 // import CreateUser from "./components/Admin_Dashboard/CreateUser";
 
@@ -155,6 +156,7 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     element={<ManageCourse />}
                   />
                   <Route path="/admin_profile" element={<StudentProfile />} />
+                  <Route path="/admin/contact_list" element={<ContactList />} />
 
                   {/* <Route path="/admin/manage_users" element={<CreateUser />} /> */}
                   <Route path="/todo" element={<TodoApp />} />

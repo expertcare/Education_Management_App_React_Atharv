@@ -53,6 +53,14 @@ const AdminDashboard = () => {
       buttonText: "Manage Courses",
       link: "/admin/manage_courses",
     },
+    {
+      image:
+        "https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?w=740&t=st=1718080795~exp=1718081395~hmac=9af5375f574cc528b7a65a73d52346e72422701596154c7b569a90935faf4724",
+      title: "Contact Details",
+      description: "People who are trying to contact us",
+      buttonText: "View Details",
+      link: "/admin/contact_list",
+    },
     // Add more cards for other functionalities as needed
   ];
 

@@ -47,16 +47,10 @@
       "message": "I want product information"
     },
     {
-      "id": "4951",
-      "name": "Prathamesh",
-      "email": "arm@mai.com",
-      "message": "Hello 123"
-    },
-    {
-      "id": "7b5e",
-      "name": "Atharv Mirajkar",
-      "email": "test@g.com",
-      "message": "HEllo"
+      "id": "d5cd",
+      "name": "Atharv",
+      "email": "admin@gmail.com",
+      "message": "I want to know the information about your website"
     }
   ],
   "signupData": [
@@ -98,6 +92,12 @@
       "assignmentId": "7242",
       "file": "blob:http://localhost:5173/37f09b0c-bd89-4ad9-8d07-80873d371896",
       "userId": "c5c1"
+    },
+    {
+      "id": "5b36",
+      "assignmentId": "8df3",
+      "file": "blob:http://localhost:5173/a733fc12-0d42-4abd-a08d-fae9823748cd",
+      "userId": "3393"
     }
   ],
   "notifications": [
@@ -157,6 +157,11 @@
       "id": "811a",
       "name": "Computer Network",
       "faculty": "Sargio Markina"
+    },
+    {
+      "id": "2f9d",
+      "name": "Core Java",
+      "faculty": "Raquel Mourio"
     }
   ],
   "usersData": [
