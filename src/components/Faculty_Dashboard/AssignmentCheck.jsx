@@ -32,7 +32,7 @@ const AssignmentCheck = () => {
         </thead>
         <tbody>
           {assignments.map((assignment) => (
-            <tr key={assignment.id}>
+            <tr key={assignment._id}>
               {/* <td>{assignment.id}</td> */}
               <td>{assignment.assignmentId}</td>
 

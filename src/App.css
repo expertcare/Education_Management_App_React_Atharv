@@ -85,3 +85,19 @@ li {
     padding-bottom: 40px;
   }
 }
+
+.animated-text {
+  animation: moveUpDown 3s infinite; /* Apply the animation */
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -42,8 +42,8 @@ const FacultyCourses = () => {
           </thead>
           <tbody>
             {courses.map((course) => (
-              <tr key={course.id}>
-                <td>{course.id}</td>
+              <tr key={course._id}>
+                <td>{course._id.substring(course._id.length - 6)}</td>
                 <td>{course.name}</td>
                 <td>{course.faculty}</td>
               </tr>

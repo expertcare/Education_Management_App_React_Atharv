@@ -29,7 +29,7 @@ const NotificationPopup = () => {
       <h2 className="text-center mb-5">Notifications</h2>
       <div className="d-flex gap-4 flex-wrap  align-content-center justify-content-around">
         {notifications.map((notification) => (
-          <Toast key={notification.id} className="p-2">
+          <Toast key={notification._id} className="p-2">
             <ToastHeader icon="primary">{notification.title}</ToastHeader>
             <ToastBody>{notification.message}</ToastBody>
           </Toast>

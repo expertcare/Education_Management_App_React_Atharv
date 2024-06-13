@@ -3,10 +3,12 @@ import axios from "axios";
 import { Container, Table, Button, Modal, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const API_URL = "http://localhost:3000/courses";
 
-function App() {
+function ManageCourse() {
   const [courses, setCourses] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -36,8 +38,10 @@ function App() {
       setShowAddModal(false);
       setNewCourse({ name: "", faculty: "" });
       fetchData();
+      toast.success("Course added successfully");
     } catch (error) {
       console.error("Error adding course:", error);
+      toast.error("Error adding course");
     }
   };
 
@@ -45,8 +49,10 @@ function App() {
     try {
       await axios.delete(`${API_URL}/${id}`);
       fetchData();
+      toast.warn("Course deleted..");
     } catch (error) {
       console.error("Error deleting course:", error);
+      toast.error("Error deleting course");
     }
   };
 
@@ -56,8 +62,10 @@ function App() {
       setShowEditModal(false);
       setEditedCourse({ id: null, name: "", faculty: "" });
       fetchData();
+      toast("Course edited successfully");
     } catch (error) {
       console.error("Error editing course:", error);
+      toast.error("Error editing course");
     }
   };
 
@@ -77,48 +85,60 @@ function App() {
   };
 
   return (
-    <Container className="margin-top-bottom">
+    <Container className="margin-top-bottom text-center">
       <h1>Course Management</h1>
       <Button className="my-2" onClick={() => setShowAddModal(true)}>
         Add Course
       </Button>
-      <Table className="mt-4 text-center" striped bordered hover>
-        <thead>
-          <tr>
-            <th>Course Code</th>
-            <th>Course Name</th>
-            <th>Faculty</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {courses.map((course) => (
-            <tr key={course.id}>
-              <td>{course.id}</td>
-              <td>{course.name}</td>
-              <td>{course.faculty}</td>
-              <td>
-                <Button
-                  variant="primary"
-                  className="btn-sm px-3 m-1"
-                  onClick={() =>
-                    handleEditModalShow(course.id, course.name, course.faculty)
-                  }
-                >
-                  <FontAwesomeIcon icon={faEdit} />
-                </Button>{" "}
-                <Button
-                  variant="danger"
-                  className="btn-sm px-3 m-1"
-                  onClick={() => handleDeleteCourse(course.id)}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </Button>
-              </td>
+      <ToastContainer className="mt-5" />
+      {courses.length === 0 ? (
+        <p className="fs-4 m-5 animated-text">
+          Courses have not been assigned yet
+        </p>
+      ) : (
+        <Table className="mt-4 text-center" striped bordered hover>
+          <thead>
+            <tr>
+              <th>Course Code</th>
+              <th>Course Name</th>
+              <th>Faculty</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {courses.map((course) => (
+              <tr key={course._id}>
+                <td>{course._id.substring(course._id.length - 6)}</td>
+                {/* Get last 5 characters */}
+                <td>{course.name}</td>
+                <td>{course.faculty}</td>
+                <td>
+                  <Button
+                    variant="primary"
+                    className="btn-sm px-3 m-1"
+                    onClick={() =>
+                      handleEditModalShow(
+                        course._id,
+                        course.name,
+                        course.faculty
+                      )
+                    }
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                  </Button>{" "}
+                  <Button
+                    variant="danger"
+                    className="btn-sm px-3 m-1"
+                    onClick={() => handleDeleteCourse(course._id)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
 
       <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
         <Modal.Header closeButton>
@@ -159,7 +179,6 @@ function App() {
           </Button>
         </Modal.Footer>
       </Modal>
-
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Course</Modal.Title>
@@ -201,4 +220,4 @@ function App() {
   );
 }
 
-export default App;
+export default ManageCourse;

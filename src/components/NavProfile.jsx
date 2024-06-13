@@ -63,7 +63,7 @@ const NavProfile = ({ logout }) => {
             <div className="list-group list-group-flush">
               {notifications.map((notification) => (
                 <Link
-                  key={notification.id}
+                  key={notification._id}
                   to={`/notifications`}
                   className="list-group-item list-group-item-action"
                 >

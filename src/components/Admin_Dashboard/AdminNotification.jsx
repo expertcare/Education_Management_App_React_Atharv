@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
 
+const API_URL = "http://localhost:3000/notifications";
+
 const AdminNotification = () => {
   const [notifications, setNotifications] = useState([]);
   const [notification, setNotification] = useState({
@@ -18,7 +20,7 @@ const AdminNotification = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/notifications");
+      const response = await axios.get(API_URL);
       setNotifications(response.data);
     } catch (error) {
       console.error("Error fetching notifications: ", error);
@@ -33,7 +35,7 @@ const AdminNotification = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/notifications", notification);
+      await axios.post(API_URL, notification);
       alert("Notification saved successfully!");
       setNotification({ title: "", message: "", role: "student" }); // Reset role after submission
       fetchNotifications();
@@ -45,7 +47,7 @@ const AdminNotification = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/notifications/${id}`);
+      await axios.delete(`${API_URL}/${id}`);
       alert("Notification deleted successfully!");
       fetchNotifications();
     } catch (error) {
@@ -117,7 +119,7 @@ const AdminNotification = () => {
               .filter((item) => item.role === "student")
               .map((item) => (
                 <div
-                  key={item.id}
+                  key={item._id}
                   className="col d-flex justify-content-around"
                 >
                   <Toast className="d-flex justify-content-evenly align-items-center p-2">
@@ -128,7 +130,7 @@ const AdminNotification = () => {
                     <div className="mb-4">
                       <button
                         className="btn btn-sm btn-danger me-2 mb-5"
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => handleDelete(item._id)}
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
@@ -147,7 +149,7 @@ const AdminNotification = () => {
               .filter((item) => item.role === "faculty")
               .map((item) => (
                 <div
-                  key={item.id}
+                  key={item._id}
                   className="col d-flex justify-content-around"
                 >
                   <Toast className="d-flex justify-content-between align-items-center p-2">
@@ -158,7 +160,7 @@ const AdminNotification = () => {
                     <div className="mb-4">
                       <button
                         className="btn btn-sm btn-danger me-2 mb-5"
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => handleDelete(item._id)}
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>

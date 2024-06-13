@@ -64,7 +64,7 @@ const AssignmentList = () => {
       description: assignment.description,
       dueDate: assignment.dueDate,
     });
-    setEditingAssignmentId(assignment.id);
+    setEditingAssignmentId(assignment._id);
   };
 
   const handleDelete = (id) => {
@@ -175,7 +175,7 @@ const AssignmentList = () => {
           </thead>
           <tbody>
             {assignments.map((assignment) => (
-              <tr key={assignment.id} className="text-center">
+              <tr key={assignment._id} className="text-center">
                 <td>{assignment.section}</td>
                 <td>{assignment.title}</td>
                 <td>{assignment.description}</td>
@@ -189,7 +189,7 @@ const AssignmentList = () => {
                   </button>
                   <button
                     className="btn btn-danger btn-sm px-3 m-2"
-                    onClick={() => handleDelete(assignment.id)}
+                    onClick={() => handleDelete(assignment._id)}
                   >
                     Delete
                   </button>

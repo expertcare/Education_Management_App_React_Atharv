@@ -97,7 +97,7 @@ const FacultyAttendance = () => {
             <table className="table table-striped table-bordered">
               <thead>
                 <tr className="text-center">
-                  <th>Roll No.</th>
+                  <th>PRN No.</th>
                   <th>Name</th>
                   <th>Gender</th>
                   <th>Attendance</th>
@@ -106,7 +106,7 @@ const FacultyAttendance = () => {
               <tbody>
                 {students.map((student) => (
                   <tr key={student.id} className="text-center">
-                    <td>{student.id}</td>
+                    <td>{student.id.substring(student.id.length - 8)}</td>
                     <td>{student.fullName}</td>
                     <td>{student.gender}</td>
                     <td>

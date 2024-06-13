@@ -44,7 +44,7 @@ const FacultySchedule = () => {
           </thead>
           <tbody>
             {schedules.map((schedule) => (
-              <tr key={schedule.id}>
+              <tr key={schedule._id}>
                 <td>{schedule.time}</td>
                 <td>{schedule.subject}</td>
                 <td>{schedule.teacher}</td>

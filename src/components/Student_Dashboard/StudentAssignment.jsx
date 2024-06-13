@@ -97,7 +97,7 @@ const AssignmentList = () => {
           </thead>
           <tbody>
             {assignments.map((assignment) => (
-              <tr key={assignment.id} className="text-center">
+              <tr key={assignment._id} className="text-center">
                 <td>{assignment.section}</td>
                 <td>{assignment.title}</td>
                 <td>{assignment.description}</td>

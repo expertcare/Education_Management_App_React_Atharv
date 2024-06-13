@@ -3,6 +3,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
 
+const API_URL = "http://localhost:3000/student_schedule";
+
 const ManageStudentSchedule = () => {
   const [schedule, setSchedule] = useState([]);
   const [newScheduleItem, setNewScheduleItem] = useState({
@@ -26,9 +28,7 @@ const ManageStudentSchedule = () => {
 
   const fetchSchedule = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/student_schedule"
-      );
+      const response = await axios.get(API_URL);
       setSchedule(response.data);
     } catch (error) {
       console.error("Error fetching schedule: ", error);
@@ -37,10 +37,7 @@ const ManageStudentSchedule = () => {
 
   const addScheduleItem = async () => {
     try {
-      await axios.post(
-        "http://localhost:3000/student_schedule",
-        newScheduleItem
-      );
+      await axios.post(API_URL, newScheduleItem);
       fetchSchedule();
       setNewScheduleItem({ time: "", subject: "", teacher: "" });
     } catch (error) {
@@ -50,7 +47,7 @@ const ManageStudentSchedule = () => {
 
   const deleteScheduleItem = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/student_schedule/${id}`);
+      await axios.delete(`${API_URL}/${id}`);
       fetchSchedule();
     } catch (error) {
       console.error("Error deleting schedule item: ", error);
@@ -59,10 +56,7 @@ const ManageStudentSchedule = () => {
 
   const updateScheduleItem = async (id, updatedItem) => {
     try {
-      await axios.put(
-        `http://localhost:3000/student_schedule/${id}`,
-        updatedItem
-      );
+      await axios.put(`${API_URL}/${id}`, updatedItem);
       fetchSchedule();
       setIsEditing(null);
     } catch (error) {
@@ -158,7 +152,7 @@ const ManageStudentSchedule = () => {
           </thead>
           <tbody>
             {schedule.map((item, index) => (
-              <tr key={item.id} className="text-center">
+              <tr key={item._id} className="text-center">
                 <td>{item.time}</td>
                 <td>
                   {isEditing === index ? (
@@ -193,7 +187,7 @@ const ManageStudentSchedule = () => {
                     <button
                       className="btn btn-success btn-sm px-3"
                       onClick={() =>
-                        updateScheduleItem(item.id, schedule[index])
+                        updateScheduleItem(item._id, schedule[index])
                       }
                     >
                       <FontAwesomeIcon icon={faSave} />
@@ -208,7 +202,7 @@ const ManageStudentSchedule = () => {
                   )}
                   <button
                     className="btn btn-danger mx-2 btn-sm px-3 m-1"
-                    onClick={() => deleteScheduleItem(item.id)}
+                    onClick={() => deleteScheduleItem(item._id)}
                   >
                     <FontAwesomeIcon icon={faTrash} />
                   </button>

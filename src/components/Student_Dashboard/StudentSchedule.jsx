@@ -37,7 +37,7 @@ const StudentSchedule = () => {
           </thead>
           <tbody>
             {schedule.map((item) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
                 <td>{item.time}</td>
                 <td>{item.subject}</td>
                 <td>{item.teacher}</td>
