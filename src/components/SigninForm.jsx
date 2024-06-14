@@ -61,6 +61,7 @@ const SigninSection = ({ login }) => {
         updateUser(user); // Update user data in context
 
         login(role); // Call the login function with the role
+        console.log(user);
 
         navigate("/home"); // Navigate to the home page
       } else {

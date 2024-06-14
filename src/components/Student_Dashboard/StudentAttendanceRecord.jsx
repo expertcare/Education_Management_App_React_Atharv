@@ -32,44 +32,59 @@ const StudentAttendanceRecord = () => {
     return <div>Loading...</div>;
   }
 
-  // Filter attendance records for the current user
-  const userAttendance = attendanceData.filter(
-    (record) =>
-      record.students &&
-      record.students.some((student) => student.id === userData.id)
-  );
+  // Group attendance records by date
+  const groupedAttendance = {};
+  attendanceData.forEach((record) => {
+    const date = record.date;
+    if (!groupedAttendance[date]) {
+      groupedAttendance[date] = [];
+    }
+    groupedAttendance[date].push(record);
+  });
 
   return (
-    <div className="container margin-top-bottom">
+    <div className="container margin-top-bottom col-lg-8">
       <h2 className="text-center">Attendance Record</h2>
-      <p className="h5 m-4">
+      <p className="fs-4 my-4 text-center">
         Hello {userData.fullName}, Your ID of student is{" "}
         {userData.id.substring(userData.id.length - 8)}
       </p>
-      <div className="table-responsive">
-        <table className="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Student ID</th>
-              <th>Date</th>
-              <th>Attendance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userAttendance.map((record) =>
-              record.students
-                .filter((student) => student.id === userData.id)
-                .map((student) => (
-                  <tr key={`${record.id}-${student.id}`}>
-                    <td>{student.id}</td>
-                    <td>{record.date}</td>
-                    <td>{student.attendance}</td>
-                  </tr>
-                ))
-            )}
-          </tbody>
-        </table>
-      </div>
+      {Object.keys(groupedAttendance).map((date) => (
+        <div key={date}>
+          <h2 className="fs-5 my-3">Date: {date}</h2>
+          <div className="table-responsive">
+            <table className="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Date</th>
+                  <th>Attendance</th>
+                  <th>Time</th>
+                  <th>Subject</th>
+                  <th>Faculty</th>
+                </tr>
+              </thead>
+              <tbody>
+                {groupedAttendance[date].map((record) =>
+                  record.students
+                    .filter((student) => student.id === userData.id)
+                    .map((student) => (
+                      <tr key={`${record.id}-${student.id}`}>
+                        <td>{student.id.substring(student.id.length - 8)}</td>
+                        <td>{record.date}</td>
+                        <td>{student.attendance}</td>
+                        {/* Display time and subject */}
+                        <td>{record.schedules[0].time}</td>
+                        <td>{record.schedules[0].subject}</td>
+                        <td>{record.schedules[0].teacher}</td>
+                      </tr>
+                    ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

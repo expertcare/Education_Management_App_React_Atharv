@@ -98,6 +98,24 @@
       "assignmentId": "8df3",
       "file": "blob:http://localhost:5173/a733fc12-0d42-4abd-a08d-fae9823748cd",
       "userId": "3393"
+    },
+    {
+      "id": "1b6c",
+      "assignmentId": "7242",
+      "file": "blob:http://localhost:5173/d04f7bb3-ed20-4fe1-9600-e1209a30710a",
+      "userId": "66697c42eed8d1fb47255e07"
+    },
+    {
+      "id": "bdc6",
+      "assignmentId": "7242",
+      "file": "blob:http://localhost:5173/ccc8dc74-2eda-4ac8-8a46-cbcaf50b1849",
+      "userId": "66697c42eed8d1fb47255e07"
+    },
+    {
+      "id": "de45",
+      "assignmentId": "8df3",
+      "file": "blob:http://localhost:5173/256e1481-145e-4e66-b978-2adcc5aebf9c",
+      "userId": "66697d46eed8d1fb47255e1b"
     }
   ],
   "notifications": [
@@ -329,60 +347,15 @@
   ],
   "attendance": [
     {
-      "id": "70f5",
-      "date": "2024-06-10",
-      "students": [
+      "id": "2322",
+      "date": "2024-06-13",
+      "schedules": [
         {
-          "id": "c5c1",
-          "attendance": "present"
-        },
-        {
-          "id": "3393",
-          "attendance": "absent"
-        },
-        {
-          "id": "0a40",
-          "attendance": "present"
-        },
-        {
-          "id": "15da",
-          "attendance": "absent"
-        },
-        {
-          "id": "7483",
-          "attendance": "present"
+          "time": "11:30 am - 1:30 pm",
+          "subject": "Computer Programming",
+          "teacher": "Raquel Mourio"
         }
-      ]
-    },
-    {
-      "id": "de89",
-      "date": "2024-06-10",
-      "students": [
-        {
-          "id": "c5c1",
-          "attendance": "absent"
-        },
-        {
-          "id": "3393",
-          "attendance": "present"
-        },
-        {
-          "id": "0a40",
-          "attendance": "present"
-        },
-        {
-          "id": "15da",
-          "attendance": "present"
-        },
-        {
-          "id": "7483",
-          "attendance": "absent"
-        }
-      ]
-    },
-    {
-      "id": "1139",
-      "date": "2024-06-10",
+      ],
       "students": [
         {
           "id": "c5c1",
@@ -407,8 +380,147 @@
       ]
     },
     {
-      "id": "8fa5",
-      "date": "2024-06-10",
+      "id": "8ebf",
+      "date": "2024-06-13",
+      "schedules": [
+        {
+          "time": "9:00 am - 11:00 am",
+          "subject": "Data Structures and Algorithms",
+          "teacher": "Sargio Markina"
+        }
+      ],
+      "students": [
+        {
+          "id": "c5c1",
+          "attendance": "absent"
+        },
+        {
+          "id": "3393",
+          "attendance": "present"
+        },
+        {
+          "id": "0a40",
+          "attendance": "present"
+        },
+        {
+          "id": "15da",
+          "attendance": "present"
+        },
+        {
+          "id": "7483",
+          "attendance": "absent"
+        }
+      ]
+    },
+    {
+      "id": "82ce",
+      "date": "2024-06-13",
+      "schedules": [
+        {
+          "time": "4:15 pm - 5:00 pm",
+          "subject": "Psychology",
+          "teacher": "Alicia Ceiara"
+        }
+      ],
+      "students": [
+        {
+          "id": "c5c1",
+          "attendance": "present"
+        },
+        {
+          "id": "3393",
+          "attendance": "absent"
+        },
+        {
+          "id": "0a40",
+          "attendance": "absent"
+        },
+        {
+          "id": "15da",
+          "attendance": "present"
+        },
+        {
+          "id": "7483",
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "8e40",
+      "date": "2024-06-12",
+      "schedules": [
+        {
+          "time": "11:30 am - 1:30 pm",
+          "subject": "Computer Programming",
+          "teacher": "Raquel Mourio"
+        }
+      ],
+      "students": [
+        {
+          "id": "c5c1",
+          "attendance": "absent"
+        },
+        {
+          "id": "3393",
+          "attendance": "present"
+        },
+        {
+          "id": "0a40",
+          "attendance": "absent"
+        },
+        {
+          "id": "15da",
+          "attendance": "present"
+        },
+        {
+          "id": "7483",
+          "attendance": "absent"
+        }
+      ]
+    },
+    {
+      "id": "23e1",
+      "date": "2024-06-12",
+      "schedules": [
+        {
+          "time": "4:15 pm - 5:00 pm",
+          "subject": "Psychology",
+          "teacher": "Alicia Ceiara"
+        }
+      ],
+      "students": [
+        {
+          "id": "c5c1",
+          "attendance": "present"
+        },
+        {
+          "id": "3393",
+          "attendance": "absent"
+        },
+        {
+          "id": "0a40",
+          "attendance": "present"
+        },
+        {
+          "id": "15da",
+          "attendance": "absent"
+        },
+        {
+          "id": "7483",
+          "attendance": "present"
+        }
+      ]
+    },
+    {
+      "id": "c811",
+      "date": "2024-06-12",
+      "schedules": [
+        {
+          "time": "9:00 am - 11:00 am",
+          "subject": "Data Structures and Algorithms",
+          "teacher": "Sargio Markina"
+        }
+      ],
       "students": [
         {
           "id": "c5c1",
@@ -433,8 +545,48 @@
       ]
     },
     {
-      "id": "329a",
-      "date": "2024-06-04",
+      "id": "29ca",
+      "date": "2024-06-11",
+      "schedules": [
+        {
+          "time": "9:00 am - 11:00 am",
+          "subject": "Data Structures and Algorithms",
+          "teacher": "Sargio Markina"
+        }
+      ],
+      "students": [
+        {
+          "id": "c5c1",
+          "attendance": "present"
+        },
+        {
+          "id": "3393",
+          "attendance": "present"
+        },
+        {
+          "id": "0a40",
+          "attendance": "absent"
+        },
+        {
+          "id": "15da",
+          "attendance": "present"
+        },
+        {
+          "id": "7483",
+          "attendance": "absent"
+        }
+      ]
+    },
+    {
+      "id": "bd17",
+      "date": "2024-06-14",
+      "schedules": [
+        {
+          "time": "9:00 am - 11:00 am",
+          "subject": "Data Structures and Algorithms",
+          "teacher": "Sargio Markina"
+        }
+      ],
       "students": [
         {
           "id": "c5c1",

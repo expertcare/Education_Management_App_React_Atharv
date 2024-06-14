@@ -5,11 +5,13 @@ import { useUser } from "../../context/UserContext";
 const AssignmentList = () => {
   const [assignments, setAssignments] = useState([]);
   const [submissionFiles, setSubmissionFiles] = useState({});
+  const [submissions, setSubmissions] = useState([]); // New state for storing submissions
 
   const { userData } = useUser();
 
   useEffect(() => {
     fetchAssignments();
+    fetchSubmissions(); // Call the function to fetch submissions when the component mounts
   }, []);
 
   const fetchAssignments = () => {
@@ -20,6 +22,17 @@ const AssignmentList = () => {
       })
       .catch((error) => {
         console.error("Error fetching assignments:", error);
+      });
+  };
+
+  const fetchSubmissions = () => {
+    axios
+      .get("http://localhost:3000/submissions")
+      .then((response) => {
+        setSubmissions(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching submissions:", error);
       });
   };
 
@@ -51,6 +64,7 @@ const AssignmentList = () => {
       studentId: studentId,
       file: file,
       userId: userData.id,
+      userName: userData.fullName,
     };
 
     axios
@@ -60,7 +74,7 @@ const AssignmentList = () => {
 
         // Update the assignments state to reflect the submission
         const updatedAssignments = assignments.map((assignment) => {
-          if (assignment.id === assignmentId) {
+          if (assignment._id === assignmentId) {
             return {
               ...assignment,
               submitted: true,
@@ -109,7 +123,7 @@ const AssignmentList = () => {
 
                     <button className="btn my-btn2 btn-sm px-2">
                       <a
-                        href={submissionFiles[assignment.id]}
+                        href={submissionFiles[assignment._id]}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -125,12 +139,12 @@ const AssignmentList = () => {
                     <div>
                       <input
                         type="file"
-                        onChange={(e) => handleFileChange(e, assignment.id)}
+                        onChange={(e) => handleFileChange(e, assignment._id)}
                       />
                       <button
                         type="button"
                         className="btn btn-success btn-sm px-4 m-2"
-                        onClick={() => handleSubmission(assignment.id)}
+                        onClick={() => handleSubmission(assignment._id)}
                       >
                         Submit
                       </button>

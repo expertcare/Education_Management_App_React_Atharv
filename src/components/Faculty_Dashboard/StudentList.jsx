@@ -1,12 +1,37 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
+import { useUser } from "../../context/UserContext";
 
 const FacultyAttendance = () => {
   const [students, setStudents] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [showPopup, setShowPopup] = useState(false); // State to manage the visibility of the pop-up
   const [attendanceSubmitted, setAttendanceSubmitted] = useState(false); // State to track whether attendance has been submitted
+
+  const { userData } = useUser();
+
+  const [schedules, setschedules] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/student_schedule"
+        );
+        const filteredschedules = response.data.filter(
+          (schedule) => schedule.teacher === userData.fullName
+        );
+        setschedules(filteredschedules);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, [userData.fullName]); // Add userData.fullName to the dependency array
 
   useEffect(() => {
     // Set today's date as default selected date
@@ -54,6 +79,11 @@ const FacultyAttendance = () => {
     // Prepare the data to be sent to the server
     const attendanceData = {
       date: selectedDate,
+      schedules: schedules.map((schedule) => ({
+        time: schedule.time,
+        subject: schedule.subject,
+        teacher: schedule.teacher,
+      })),
       students: students.map((student) => ({
         id: student.id,
         attendance: student.attendance,
@@ -91,6 +121,19 @@ const FacultyAttendance = () => {
               value={selectedDate}
               onChange={handleDateChange}
             />
+          </div>
+
+          <div className="mb-4">
+            {schedules.map((schedule) => (
+              <div
+                key={schedule._id}
+                className="d-flex flex-wrap justify-content-around border p-3 "
+              >
+                <p className="m-1 fw-bold">Time : {schedule.time}</p>
+                <p className="m-1 fw-bold">Subject : {schedule.subject}</p>
+                <p className="m-1 fw-bold">Teacher : {schedule.teacher}</p>
+              </div>
+            ))}
           </div>
 
           <div className="table-responsive">

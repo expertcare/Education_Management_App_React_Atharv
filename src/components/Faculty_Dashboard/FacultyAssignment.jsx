@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AssignmentCheck from "./AssignmentCheck";
+import { useUser } from "../../context/UserContext";
 
-const AssignmentList = () => {
+const FacultyAssignment = () => {
+  const { userData } = useUser;
   const [assignments, setAssignments] = useState([]);
   const [formData, setFormData] = useState({
     section: "",
@@ -97,8 +99,8 @@ const AssignmentList = () => {
   };
 
   return (
-    <div className="container margin-top-bottom">
-      <h2 className="mb-4">Add/Edit Assignments</h2>
+    <div className="container margin-top-bottom col-lg-8">
+      <h2 className="mb-4 display-6">Add/Edit Assignments</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="section">Section:</label>
@@ -161,7 +163,7 @@ const AssignmentList = () => {
           </button>
         )}
       </form>
-      <h2 className="mt-4 mb-4">Current Assignments</h2>
+      <h2 className="mt-4 mb-4 display-6">Current Assignments</h2>
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
           <thead>
@@ -200,9 +202,9 @@ const AssignmentList = () => {
         </table>
       </div>
 
-      <AssignmentCheck />
+      <AssignmentCheck assignments={assignments} />
     </div>
   );
 };
 
-export default AssignmentList;
+export default FacultyAssignment;
