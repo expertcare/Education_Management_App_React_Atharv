@@ -45,12 +45,14 @@ const SigninSection = ({ login }) => {
 
     if (Object.keys(newErrors).length === 0) {
       // Find user with matching username and password
-      const user = usersData.find(
-        (user) =>
-          user.username === formData.username &&
-          user.password === formData.password &&
-          user.role === formData.role
-      );
+      const user =
+        usersData.length > 0 &&
+        usersData.find(
+          (user) =>
+            user.username === formData.username &&
+            user.password === formData.password &&
+            user.role === formData.role
+        );
 
       if (user) {
         const role = user.role;
