@@ -6,7 +6,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_URL = "http://localhost:3000/courses";
+const API_URL = "/api/courses";
 
 function ManageCourse() {
   const [courses, setCourses] = useState([]);

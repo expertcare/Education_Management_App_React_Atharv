@@ -20,7 +20,7 @@ const FacultyAssignment = () => {
 
   const fetchAssignments = () => {
     axios
-      .get("http://localhost:3000/assignments")
+      .get("/api/assignments")
       .then((response) => {
         setAssignments(response.data);
       })
@@ -34,10 +34,7 @@ const FacultyAssignment = () => {
     if (editingAssignmentId) {
       // Update existing assignment
       axios
-        .put(
-          `http://localhost:3000/assignments/${editingAssignmentId}`,
-          formData
-        )
+        .put(`/api/assignments/${editingAssignmentId}`, formData)
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -48,7 +45,7 @@ const FacultyAssignment = () => {
     } else {
       // Add new assignment
       axios
-        .post("http://localhost:3000/assignments", formData)
+        .post("/api/assignments", formData)
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -71,7 +68,7 @@ const FacultyAssignment = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:3000/assignments/${id}`)
+      .delete(`/api/assignments/${id}`)
       .then(() => {
         fetchAssignments();
         resetForm();

@@ -11,7 +11,7 @@ const FacultyCourses = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/courses");
+        const response = await axios.get("/api/courses");
         const filteredCourses = response.data.filter(
           (course) => course.faculty === userData.fullName
         );

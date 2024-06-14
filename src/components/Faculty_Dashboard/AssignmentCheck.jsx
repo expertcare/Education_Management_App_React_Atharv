@@ -7,7 +7,7 @@ const AssignmentCheck = ({ assignments }) => {
   useEffect(() => {
     // Fetch data from JSON server using Axios
     axios
-      .get("http://localhost:3000/submissions")
+      .get("/api/submissions")
       .then((response) => {
         // Upon successful response, update the state with the fetched data
         setSubmissions(response.data);

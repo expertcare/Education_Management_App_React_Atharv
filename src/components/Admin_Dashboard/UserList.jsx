@@ -23,7 +23,7 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/usersData");
+      const response = await axios.get("/api/usersData");
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -32,7 +32,7 @@ const UserList = () => {
 
   const createUser = async () => {
     try {
-      await axios.post("http://localhost:3000/usersData", {
+      await axios.post("/api/usersData", {
         username,
         password,
         role,
@@ -55,7 +55,7 @@ const UserList = () => {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/usersData/${id}`);
+      await axios.delete(`/api/usersData/${id}`);
       fetchUsers();
       alert("User deleted successfully!");
     } catch (error) {
@@ -65,7 +65,7 @@ const UserList = () => {
 
   const updateUser = async () => {
     try {
-      await axios.put(`http://localhost:3000/usersData/${editUserId}`, {
+      await axios.put(`/api/usersData/${editUserId}`, {
         username: editUsername,
         password: editPassword,
         role: editRole,

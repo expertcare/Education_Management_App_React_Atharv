@@ -11,9 +11,7 @@ const FacultySchedule = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/student_schedule"
-        );
+        const response = await axios.get("/api/student_schedule");
         const filteredschedules = response.data.filter(
           (schedule) => schedule.teacher === userData.fullName
         );

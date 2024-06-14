@@ -11,7 +11,7 @@ const StudentAttendanceRecord = () => {
     const fetchAttendanceData = async () => {
       try {
         console.log("Fetching attendance data...");
-        const response = await axios.get("http://localhost:3000/attendance");
+        const response = await axios.get("/api/attendance");
         console.log("Response:", response.data);
         const data = response.data;
 

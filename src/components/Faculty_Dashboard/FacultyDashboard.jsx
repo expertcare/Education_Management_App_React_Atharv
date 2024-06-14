@@ -19,7 +19,7 @@ const FacultyDashboard = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/notifications");
+      const response = await axios.get("/api/notifications");
       const filteredNotifications = response.data.filter(
         (notification) => notification.role === userData.role
       );

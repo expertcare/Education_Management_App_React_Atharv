@@ -20,7 +20,7 @@ class UserData extends Component {
 
   fetchUserData = () => {
     axios
-      .get("http://localhost:3000/users")
+      .get("/api/users")
       .then((response) => {
         this.setState({ userData: response.data });
       })
@@ -39,7 +39,7 @@ class UserData extends Component {
       if (editIndex === null) {
         const newUser = { name, gender, address, contact };
         axios
-          .post("http://localhost:3000/users", newUser)
+          .post("/api/users", newUser)
           .then((response) => {
             this.setState((prevState) => ({
               userData: [...prevState.userData, response.data],
@@ -55,7 +55,7 @@ class UserData extends Component {
       } else {
         const updatedUser = { id: editIndex, name, gender, address, contact };
         axios
-          .put(`http://localhost:3000/users/${editIndex}`, updatedUser)
+          .put(`/api/users/${editIndex}`, updatedUser)
           .then(() => {
             const updatedData = [...this.state.userData];
             const index = updatedData.findIndex(
@@ -93,7 +93,7 @@ class UserData extends Component {
 
   handleDeleteUser = (userId) => {
     axios
-      .delete(`http://localhost:3000/users/${userId}`)
+      .delete(`/api/users/${userId}`)
       .then(() => {
         const updatedUserData = this.state.userData.filter(
           (user) => user.id !== userId

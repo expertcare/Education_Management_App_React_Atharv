@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
 
-const API_URL = "http://localhost:3000/notifications";
+const API_URL = "/api/notifications";
 
 const AdminNotification = () => {
   const [notifications, setNotifications] = useState([]);

@@ -9,7 +9,7 @@ const StudentCourses = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/courses")
+      .get("/api/courses")
       .then((response) => {
         setCourses(response.data);
       })

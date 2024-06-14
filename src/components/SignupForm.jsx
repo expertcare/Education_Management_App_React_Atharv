@@ -74,10 +74,7 @@ const SignupSection = () => {
 
     try {
       // Make a POST request to your JSON server endpoint using Axios
-      const response = await axios.post(
-        "http://localhost:3000/signupData",
-        formData
-      );
+      const response = await axios.post("/api/signupData", formData);
 
       // Display message with submitted name
       setSubmittedName(formData.name);

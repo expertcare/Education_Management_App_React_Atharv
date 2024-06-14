@@ -9,9 +9,7 @@ const StudentSchedule = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/student_schedule"
-        );
+        const response = await axios.get("/api/student_schedule");
         setSchedule(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

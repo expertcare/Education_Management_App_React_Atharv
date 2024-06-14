@@ -3,7 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const API_URL = "http://localhost:3000/student_schedule";
+const API_URL = "/api/student_schedule";
 
 const ManageStudentSchedule = () => {
   const [schedule, setSchedule] = useState([]);

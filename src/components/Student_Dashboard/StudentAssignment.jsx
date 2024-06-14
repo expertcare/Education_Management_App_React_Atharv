@@ -16,7 +16,7 @@ const AssignmentList = () => {
 
   const fetchAssignments = () => {
     axios
-      .get("http://localhost:3000/assignments")
+      .get("/api/assignments")
       .then((response) => {
         setAssignments(response.data);
       })
@@ -27,7 +27,7 @@ const AssignmentList = () => {
 
   const fetchSubmissions = () => {
     axios
-      .get("http://localhost:3000/submissions")
+      .get("/api/submissions")
       .then((response) => {
         setSubmissions(response.data);
       })
@@ -68,7 +68,7 @@ const AssignmentList = () => {
     };
 
     axios
-      .post("http://localhost:3000/submissions", submissionData)
+      .post("/api/submissions", submissionData)
       .then(() => {
         alert("Submission successful!");
 

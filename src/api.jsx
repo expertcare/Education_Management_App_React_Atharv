@@ -1,7 +1,7 @@
 // api.js
 import axios from "axios";
 
-const API_URL = "http://localhost:3000"; // Replace with your JSON Server URL
+const API_URL = "/api"; // Replace with your JSON Server URL
 
 export const getUsers = async () => {
   const response = await axios.get(`${API_URL}/usersData`);
