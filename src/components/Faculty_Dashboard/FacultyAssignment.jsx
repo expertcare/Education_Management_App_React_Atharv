@@ -20,7 +20,9 @@ const FacultyAssignment = () => {
 
   const fetchAssignments = () => {
     axios
-      .get("/api/assignments")
+      .get(
+        "https://education-management-server-ruby.vercel.app/api/assignments"
+      )
       .then((response) => {
         setAssignments(response.data);
       })
@@ -34,7 +36,10 @@ const FacultyAssignment = () => {
     if (editingAssignmentId) {
       // Update existing assignment
       axios
-        .put(`/api/assignments/${editingAssignmentId}`, formData)
+        .put(
+          `https://education-management-server-ruby.vercel.app/api/assignments/${editingAssignmentId}`,
+          formData
+        )
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -45,7 +50,10 @@ const FacultyAssignment = () => {
     } else {
       // Add new assignment
       axios
-        .post("/api/assignments", formData)
+        .post(
+          "https://education-management-server-ruby.vercel.app/api/assignments",
+          formData
+        )
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -68,7 +76,9 @@ const FacultyAssignment = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`/api/assignments/${id}`)
+      .delete(
+        `https://education-management-server-ruby.vercel.app/api/assignments/${id}`
+      )
       .then(() => {
         fetchAssignments();
         resetForm();

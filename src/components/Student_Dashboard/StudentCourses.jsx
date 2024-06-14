@@ -9,7 +9,7 @@ const StudentCourses = () => {
 
   useEffect(() => {
     axios
-      .get("/api/courses")
+      .get("https://education-management-server-ruby.vercel.app/api/courses")
       .then((response) => {
         setCourses(response.data);
       })
