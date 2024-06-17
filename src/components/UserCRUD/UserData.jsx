@@ -58,7 +58,10 @@ class UserData extends Component {
       } else {
         const updatedUser = { id: editIndex, name, gender, address, contact };
         axios
-          .put("https://education-management-server-ruby.vercel.app/api/users/${editIndex}`, updatedUser)
+          .put(
+            `https://education-management-server-ruby.vercel.app/api/users/${editIndex}`,
+            updatedUser
+          )
           .then(() => {
             const updatedData = [...this.state.userData];
             const index = updatedData.findIndex(
@@ -96,7 +99,9 @@ class UserData extends Component {
 
   handleDeleteUser = (userId) => {
     axios
-      .delete("https://education-management-server-ruby.vercel.app/api/users/${userId}`)
+      .delete(
+        `https://education-management-server-ruby.vercel.app/api/users/${userId}`
+      )
       .then(() => {
         const updatedUserData = this.state.userData.filter(
           (user) => user.id !== userId
