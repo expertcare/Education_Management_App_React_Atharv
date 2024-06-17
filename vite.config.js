@@ -9,9 +9,9 @@ export default defineConfig({
         target: "https://education-management-server-ruby.vercel.app",
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, "/api"),
-        rewrites: [{ source: "/(.*)", destination: "/" }],
       },
 
+      rewrites: [{ source: "/(.*)", destination: "/" }],
       // "/api": " https://education-management-server.onrender.com",
 
       // "/api": "http://localhost:3000",
