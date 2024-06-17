@@ -17,9 +17,7 @@ const NavProfile = ({ logout }) => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/notifications"
-      );
+      const response = await axios.get("/api/notifications");
       const filteredNotifications = response.data.filter(
         (notification) => notification.role === userData.role
       );

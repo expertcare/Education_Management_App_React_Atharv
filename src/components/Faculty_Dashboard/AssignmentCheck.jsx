@@ -7,9 +7,7 @@ const AssignmentCheck = ({ assignments }) => {
   useEffect(() => {
     // Fetch data from JSON server using Axios
     axios
-      .get(
-        "https://education-management-server-ruby.vercel.app/api/submissions"
-      )
+      .get("/api/submissions")
       .then((response) => {
         // Upon successful response, update the state with the fetched data
         setSubmissions(response.data);

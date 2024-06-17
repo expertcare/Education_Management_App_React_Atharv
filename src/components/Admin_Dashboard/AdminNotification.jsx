@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
 
-const API_URL =
-  "https://education-management-server-ruby.vercel.app/api/notifications";
+const API_URL = "/api/notifications";
 
 const AdminNotification = () => {
   const [notifications, setNotifications] = useState([]);

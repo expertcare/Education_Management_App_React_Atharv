@@ -15,10 +15,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://education-management-server-ruby.vercel.app/api/contacts",
-        formData
-      );
+      await axios.post("/api/contacts", formData);
       alert("Form submitted successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {

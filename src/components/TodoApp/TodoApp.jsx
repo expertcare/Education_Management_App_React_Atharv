@@ -10,7 +10,7 @@ function TodoApp() {
   const [editingItem, setEditingItem] = useState(null);
 
   useEffect(() => {
-    fetch("https://education-management-server-ruby.vercel.app/api/todoItems")
+    fetch("/api/todoItems")
       .then((response) => response.json())
       .then((data) => setTodoItems(data))
       .catch((error) => console.error("Error fetching todo items:", error));
@@ -19,7 +19,7 @@ function TodoApp() {
   // Function to handle adding a new todo item
 
   const handleNewItem = (itemName, itemDueDate) => {
-    fetch("https://education-management-server-ruby.vercel.app/api/todoItems", {
+    fetch("/api/todoItems", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,12 +36,9 @@ function TodoApp() {
 
   // Function to handle deleting a todo item
   const handleDeleteItem = (todoItemId) => {
-    fetch(
-      `https://education-management-server-ruby.vercel.app/api/todoItems/${todoItemId}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`/api/todoItems/${todoItemId}`, {
+      method: "DELETE",
+    })
       .then(() => {
         const newTodoItems = todoItems.filter((item) => item.id !== todoItemId);
         setTodoItems(newTodoItems);
@@ -59,16 +56,13 @@ function TodoApp() {
 
   // Function to handle saving the edited todo item
   const handleSaveEdit = (todoItemId, newName, newDueDate) => {
-    fetch(
-      `https://education-management-server-ruby.vercel.app/api/todoItems/${todoItemId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: newName, dueDate: newDueDate }),
-      }
-    )
+    fetch(`/api/todoItems/${todoItemId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: newName, dueDate: newDueDate }),
+    })
       .then((response) => response.json())
       .then((updatedTodoItem) => {
         const updatedTodoItems = todoItems.map((item) =>

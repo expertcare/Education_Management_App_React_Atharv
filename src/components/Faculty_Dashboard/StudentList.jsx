@@ -17,9 +17,7 @@ const FacultyAttendance = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/student_schedule"
-        );
+        const response = await axios.get("/api/student_schedule");
         const filteredschedules = response.data.filter(
           (schedule) => schedule.teacher === userData.fullName
         );
@@ -39,7 +37,7 @@ const FacultyAttendance = () => {
     setSelectedDate(today);
 
     axios
-      .get("https://education-management-server-ruby.vercel.app/api/usersData")
+      .get("/api/usersData")
       .then((response) => {
         // Filter users to get only students data
         const studentUsers = response.data.filter(
@@ -92,10 +90,7 @@ const FacultyAttendance = () => {
 
     // Send the attendance data to the server
     axios
-      .post(
-        "https://education-management-server-ruby.vercel.app/api/attendance",
-        attendanceData
-      )
+      .post("/api/attendance", attendanceData)
       .then((response) => {
         console.log("Attendance submitted successfully:", response.data);
         // Show the pop-up message when attendance is successfully added

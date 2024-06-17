@@ -11,9 +11,7 @@ const StudentAttendanceRecord = () => {
     const fetchAttendanceData = async () => {
       try {
         console.log("Fetching attendance data...");
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/attendance"
-        );
+        const response = await axios.get("/api/attendance");
         console.log("Response:", response.data);
         const data = response.data;
 
