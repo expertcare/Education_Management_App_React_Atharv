@@ -99,8 +99,8 @@ const FacultyAssignment = () => {
   };
 
   return (
-    <div className="container margin-top-bottom col-lg-8">
-      <h2 className="mb-4 display-6">Add/Edit Assignments</h2>
+    <div className="container margin-top-bottom col-lg-8 ">
+      <h2 className="m-5 display-6 text-center">Add/Edit Assignments</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="section">Section:</label>
@@ -149,7 +149,7 @@ const FacultyAssignment = () => {
             required
           />
         </div>
-        <button type="submit" className="btn my-btn2 mt-2 ">
+        <button type="submit" className="btn my-btn2 mt-2 text-center">
           {editingAssignmentId ? "Update" : "Submit"}
         </button>
         {editingAssignmentId && (
@@ -163,11 +163,11 @@ const FacultyAssignment = () => {
           </button>
         )}
       </form>
-      <h2 className="mt-4 mb-4 display-6">Current Assignments</h2>
+      <h2 className="m-5 display-6 text-center">Current Assignments</h2>
       <div className="table-responsive">
-        <table className="table table-striped table-bordered">
+        <table className="table table-striped table-bordered text-center">
           <thead>
-            <tr className="text-center">
+            <tr>
               <th>Section</th>
               <th>Title</th>
               <th>Description</th>
@@ -177,7 +177,7 @@ const FacultyAssignment = () => {
           </thead>
           <tbody>
             {assignments.map((assignment) => (
-              <tr key={assignment._id} className="text-center">
+              <tr key={assignment._id}>
                 <td>{assignment.section}</td>
                 <td>{assignment.title}</td>
                 <td>{assignment.description}</td>

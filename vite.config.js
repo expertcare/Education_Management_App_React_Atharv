@@ -8,15 +8,13 @@ export default defineConfig({
       "/api": {
         target: "https://education-management-server-ruby.vercel.app",
         changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api/, "/api"),
+        rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
 
       // "/api": " https://education-management-server.onrender.com",
 
       // "/api": "http://localhost:3000",
     },
-
-    // rewrites: [{ source: "/(.*)", destination: "/" }],
   },
 
   plugins: [react()],

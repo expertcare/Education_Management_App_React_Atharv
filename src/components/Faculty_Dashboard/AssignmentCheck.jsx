@@ -19,75 +19,83 @@ const AssignmentCheck = ({ assignments }) => {
       });
   }, []); // Empty dependency array to ensure useEffect runs only once on component mount
 
-  // Group assignments by assignment ID
-  const groupedAssignments = submissions.reduce((acc, assignment) => {
-    const { assignmentId } = assignment;
+  // Group submissions by assignment ID
+  const groupedAssignments = submissions.reduce((acc, submission) => {
+    const { assignmentId } = submission;
     if (!acc[assignmentId]) {
       acc[assignmentId] = [];
     }
-    acc[assignmentId].push(assignment);
+    acc[assignmentId].push(submission);
     return acc;
   }, {});
 
   return (
     <div>
-      <h2 className="mt-5 mb-4 display-6">Assignment Submissions</h2>
+      <h2 className="m-5 display-6 text-center">Assignment Submissions</h2>
 
       {/* Render separate tables for each assignment ID */}
-      {Object.keys(groupedAssignments).map((assignmentId) => (
-        <div key={assignmentId}>
-          {/* <h3 className="fs-5">Assignment ID: {assignmentId}</h3> */}
+      {assignments.map((assignment) => {
+        const assignmentId = assignment._id;
 
-          {/* Display assignment title if matched */}
-          {assignments.map((assignment) => {
-            if (assignment._id === assignmentId) {
-              return (
-                <div key={assignment._id}>
-                  <p className="fs-4 mt-4">
-                    Assignment: {assignment.section} - {assignment.title}
-                  </p>
-                </div>
-              );
-            }
-            return null;
-          })}
+        // Check if there are submissions for this assignment
+        const assignmentSubmissions = groupedAssignments[assignmentId] || [];
+        if (assignmentSubmissions.length === 0) {
+          return (
+            <div key={assignmentId}>
+              <p className="fs-4 mt-4">
+                Assignment: {assignment.section} - {assignment.title}
+              </p>
+              <p className="fs-5 m-5 text-center animated-text">
+                No one has submitted this assignment yet.
+              </p>
+            </div>
+          );
+        }
 
-          <table className="table table-striped table-bordered text-center">
-            <thead>
-              <tr>
-                <th>User ID</th>
-                <th>Student Name</th>
-                <th>File</th>
-              </tr>
-            </thead>
-            <tbody>
-              {groupedAssignments[assignmentId].map((assignment) => (
-                <tr key={assignment._id}>
-                  <td>
-                    {assignment.userId.substring(assignment.userId.length - 8)}
-                  </td>
-                  <td>{assignment.userName}</td>
-                  <td>
-                    <button className="btn my-btn2 btn-sm">
-                      <a
-                        href={assignment.file}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          textDecoration: "none",
-                          color: "white",
-                        }}
-                      >
-                        View
-                      </a>
-                    </button>
-                  </td>
+        return (
+          <div key={assignmentId}>
+            <p className="fs-4 mt-4">
+              Assignment: {assignment.section} - {assignment.title}
+            </p>
+            <table className="table table-striped table-bordered text-center">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Student Name</th>
+                  <th>File</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ))}
+              </thead>
+              <tbody>
+                {assignmentSubmissions.map((submission) => (
+                  <tr key={submission._id}>
+                    <td>
+                      {submission.userId.substring(
+                        submission.userId.length - 8
+                      )}
+                    </td>
+                    <td>{submission.userName}</td>
+                    <td>
+                      <button className="btn my-btn2 btn-sm">
+                        <a
+                          href={submission.file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                        >
+                          View
+                        </a>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      })}
     </div>
   );
 };
