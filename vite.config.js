@@ -11,11 +11,12 @@ export default defineConfig({
         // rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
 
-      rewrites: [{ source: "/(.*)", destination: "/" }],
       // "/api": " https://education-management-server.onrender.com",
 
       // "/api": "http://localhost:3000",
     },
+
+    rewrites: [{ source: "/(.*)", destination: "/" }],
   },
 
   plugins: [react()],
