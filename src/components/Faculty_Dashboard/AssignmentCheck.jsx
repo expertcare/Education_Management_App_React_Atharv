@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useUser } from "../../context/UserContext";
 
 const AssignmentCheck = ({ assignments }) => {
   const [submissions, setSubmissions] = useState([]);
+
+  const { userData } = useUser();
 
   useEffect(() => {
     // Fetch data from JSON server using Axios
@@ -19,6 +22,11 @@ const AssignmentCheck = ({ assignments }) => {
       });
   }, []); // Empty dependency array to ensure useEffect runs only once on component mount
 
+  // Filter submissions based on assignments that match current userData.id
+  const filteredAssignments = assignments.filter(
+    (assignment) => assignment.userId === userData.id
+  );
+
   // Group submissions by assignment ID
   const groupedAssignments = submissions.reduce((acc, submission) => {
     const { assignmentId } = submission;
@@ -34,7 +42,7 @@ const AssignmentCheck = ({ assignments }) => {
       <h2 className="m-5 display-6 text-center">Assignment Submissions</h2>
 
       {/* Render separate tables for each assignment ID */}
-      {assignments.map((assignment) => {
+      {filteredAssignments.map((assignment) => {
         const assignmentId = assignment._id;
 
         // Check if there are submissions for this assignment

@@ -13,7 +13,7 @@ export default defineConfig({
 
       // "/api": " https://education-management-server.onrender.com",
 
-      // "/api": "http://localhost:3000",
+      // "/api": "https://education-management-server-ruby.vercel.app",
     },
   },
 

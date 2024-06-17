@@ -7,13 +7,14 @@ const API_URL =
   "https://education-management-server-ruby.vercel.app/api/assignments";
 
 const FacultyAssignment = () => {
-  const { userData } = useUser;
+  const { userData } = useUser(); // Note the parentheses to invoke useUser hook
   const [assignments, setAssignments] = useState([]);
   const [formData, setFormData] = useState({
     section: "",
     title: "",
     description: "",
     dueDate: "",
+    userId: userData.id, // Add userId to formData
   });
   const [editingAssignmentId, setEditingAssignmentId] = useState(null);
 
@@ -23,7 +24,11 @@ const FacultyAssignment = () => {
 
   const fetchAssignments = () => {
     axios
-      .get(API_URL)
+      .get(API_URL, {
+        params: {
+          userId: userData.id,
+        },
+      })
       .then((response) => {
         setAssignments(response.data);
       })
@@ -37,7 +42,10 @@ const FacultyAssignment = () => {
     if (editingAssignmentId) {
       // Update existing assignment
       axios
-        .put(`${API_URL}/${editingAssignmentId}`, formData)
+        .put(`${API_URL}/${editingAssignmentId}`, {
+          ...formData,
+          userId: userData.id,
+        })
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -48,7 +56,7 @@ const FacultyAssignment = () => {
     } else {
       // Add new assignment
       axios
-        .post(API_URL, formData)
+        .post(API_URL, { ...formData, userId: userData.id })
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -65,13 +73,16 @@ const FacultyAssignment = () => {
       title: assignment.title,
       description: assignment.description,
       dueDate: assignment.dueDate,
+      userId: userData.id,
     });
     setEditingAssignmentId(assignment._id);
   };
 
   const handleDelete = (id) => {
     axios
-      .delete(`${API_URL}/${id}`)
+      .delete(`${API_URL}/${id}`, {
+        data: { userId: userData.id },
+      })
       .then(() => {
         fetchAssignments();
         resetForm();
@@ -94,9 +105,15 @@ const FacultyAssignment = () => {
       title: "",
       description: "",
       dueDate: "",
+      userId: userData.id,
     });
     setEditingAssignmentId(null);
   };
+
+  // Filter assignments based on userId
+  const filteredAssignments = assignments.filter(
+    (assignment) => assignment.userId === userData.id
+  );
 
   return (
     <div className="container margin-top-bottom col-lg-8 ">
@@ -176,7 +193,7 @@ const FacultyAssignment = () => {
             </tr>
           </thead>
           <tbody>
-            {assignments.map((assignment) => (
+            {filteredAssignments.map((assignment) => (
               <tr key={assignment._id}>
                 <td>{assignment.section}</td>
                 <td>{assignment.title}</td>
