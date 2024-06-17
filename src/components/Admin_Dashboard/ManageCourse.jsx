@@ -6,7 +6,8 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_URL = "/api/courses";
+const API_URL =
+  "https://education-management-server-ruby.vercel.app/api/courses";
 
 function ManageCourse() {
   const [courses, setCourses] = useState([]);

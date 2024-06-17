@@ -20,7 +20,7 @@ class UserData extends Component {
 
   fetchUserData = () => {
     axios
-      .get("/api/users")
+      .get("https://education-management-server-ruby.vercel.app/api/users")
       .then((response) => {
         this.setState({ userData: response.data });
       })
@@ -39,7 +39,10 @@ class UserData extends Component {
       if (editIndex === null) {
         const newUser = { name, gender, address, contact };
         axios
-          .post("/api/users", newUser)
+          .post(
+            "https://education-management-server-ruby.vercel.app/api/users",
+            newUser
+          )
           .then((response) => {
             this.setState((prevState) => ({
               userData: [...prevState.userData, response.data],

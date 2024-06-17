@@ -11,7 +11,9 @@ const FacultySchedule = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/student_schedule");
+        const response = await axios.get(
+          "https://education-management-server-ruby.vercel.app/api/student_schedule"
+        );
         const filteredschedules = response.data.filter(
           (schedule) => schedule.teacher === userData.fullName
         );

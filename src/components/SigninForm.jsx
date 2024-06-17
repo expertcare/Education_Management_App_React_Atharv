@@ -19,7 +19,9 @@ const SigninSection = ({ login }) => {
   useEffect(() => {
     const fetchUsersData = async () => {
       try {
-        const response = await axios.get("/api/usersData");
+        const response = await axios.get(
+          "https://education-management-server-ruby.vercel.app/api/usersData"
+        );
         setUsersData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);

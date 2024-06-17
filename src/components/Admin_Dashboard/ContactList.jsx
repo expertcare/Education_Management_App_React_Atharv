@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_URL = "/api/contacts";
+const API_URL =
+  "https://education-management-server-ruby.vercel.app/api/contacts";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState([]);

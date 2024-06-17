@@ -20,7 +20,9 @@ const FacultyAssignment = () => {
 
   const fetchAssignments = () => {
     axios
-      .get("/api/assignments")
+      .get(
+        "https://education-management-server-ruby.vercel.app/api/assignments"
+      )
       .then((response) => {
         setAssignments(response.data);
       })
@@ -45,7 +47,10 @@ const FacultyAssignment = () => {
     } else {
       // Add new assignment
       axios
-        .post("/api/assignments", formData)
+        .post(
+          "https://education-management-server-ruby.vercel.app/api/assignments",
+          formData
+        )
         .then(() => {
           fetchAssignments();
           resetForm();

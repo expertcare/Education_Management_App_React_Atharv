@@ -10,7 +10,7 @@ function TodoApp() {
   const [editingItem, setEditingItem] = useState(null);
 
   useEffect(() => {
-    fetch("/api/todoItems")
+    fetch("https://education-management-server-ruby.vercel.app/api/todoItems")
       .then((response) => response.json())
       .then((data) => setTodoItems(data))
       .catch((error) => console.error("Error fetching todo items:", error));
@@ -19,7 +19,7 @@ function TodoApp() {
   // Function to handle adding a new todo item
 
   const handleNewItem = (itemName, itemDueDate) => {
-    fetch("/api/todoItems", {
+    fetch("https://education-management-server-ruby.vercel.app/api/todoItems", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

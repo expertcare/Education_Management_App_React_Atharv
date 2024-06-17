@@ -3,7 +3,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const API_URL = "/api/student_schedule";
+const API_URL =
+  "https://education-management-server-ruby.vercel.app/api/student_schedule";
 
 const ManageStudentSchedule = () => {
   const [schedule, setSchedule] = useState([]);

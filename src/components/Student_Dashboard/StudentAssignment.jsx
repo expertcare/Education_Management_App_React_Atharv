@@ -16,7 +16,9 @@ const AssignmentList = () => {
 
   const fetchAssignments = () => {
     axios
-      .get("/api/assignments")
+      .get(
+        "https://education-management-server-ruby.vercel.app/api/assignments"
+      )
       .then((response) => {
         setAssignments(response.data);
       })
@@ -27,7 +29,9 @@ const AssignmentList = () => {
 
   const fetchSubmissions = () => {
     axios
-      .get("/api/submissions")
+      .get(
+        "https://education-management-server-ruby.vercel.app/api/submissions"
+      )
       .then((response) => {
         setSubmissions(response.data);
       })
@@ -68,7 +72,10 @@ const AssignmentList = () => {
     };
 
     axios
-      .post("/api/submissions", submissionData)
+      .post(
+        "https://education-management-server-ruby.vercel.app/api/submissions",
+        submissionData
+      )
       .then(() => {
         alert("Submission successful!");
 

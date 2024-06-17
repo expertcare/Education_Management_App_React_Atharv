@@ -9,7 +9,9 @@ const StudentSchedule = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/student_schedule");
+        const response = await axios.get(
+          "https://education-management-server-ruby.vercel.app/api/student_schedule"
+        );
         setSchedule(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

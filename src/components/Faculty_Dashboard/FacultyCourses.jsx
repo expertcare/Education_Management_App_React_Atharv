@@ -11,7 +11,9 @@ const FacultyCourses = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/courses");
+        const response = await axios.get(
+          "https://education-management-server-ruby.vercel.app/api/courses"
+        );
         const filteredCourses = response.data.filter(
           (course) => course.faculty === userData.fullName
         );
