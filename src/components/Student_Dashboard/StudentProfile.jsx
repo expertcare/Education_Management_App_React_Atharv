@@ -28,7 +28,7 @@ const StudentProfile = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `/api/usersData/${userData.id}`,
+        "https://education-management-server-ruby.vercel.app/api/usersData/${userData.id}`,
         { ...userData, ...updatedUserData } // Merge updated fields with existing user data
       );
       console.log("User data updated:", response.data);

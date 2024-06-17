@@ -3,6 +3,9 @@ import axios from "axios";
 import AssignmentCheck from "./AssignmentCheck";
 import { useUser } from "../../context/UserContext";
 
+const API_URL =
+  "https://education-management-server-ruby.vercel.app/api/assignments";
+
 const FacultyAssignment = () => {
   const { userData } = useUser;
   const [assignments, setAssignments] = useState([]);
@@ -20,9 +23,7 @@ const FacultyAssignment = () => {
 
   const fetchAssignments = () => {
     axios
-      .get(
-        "https://education-management-server-ruby.vercel.app/api/assignments"
-      )
+      .get(API_URL)
       .then((response) => {
         setAssignments(response.data);
       })
@@ -36,7 +37,7 @@ const FacultyAssignment = () => {
     if (editingAssignmentId) {
       // Update existing assignment
       axios
-        .put(`/api/assignments/${editingAssignmentId}`, formData)
+        .put(`${API_URL}/${editingAssignmentId}`, formData)
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -47,10 +48,7 @@ const FacultyAssignment = () => {
     } else {
       // Add new assignment
       axios
-        .post(
-          "https://education-management-server-ruby.vercel.app/api/assignments",
-          formData
-        )
+        .post(API_URL, formData)
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -73,7 +71,7 @@ const FacultyAssignment = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`/api/assignments/${id}`)
+      .delete(`${API_URL}/${id}`)
       .then(() => {
         fetchAssignments();
         resetForm();

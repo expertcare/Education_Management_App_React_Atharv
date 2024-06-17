@@ -60,7 +60,9 @@ const UserList = () => {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`/api/usersData/${id}`);
+      await axios.delete(
+        `https://education-management-server-ruby.vercel.app/api/usersData/${id}`
+      );
       fetchUsers();
       alert("User deleted successfully!");
     } catch (error) {
@@ -70,14 +72,17 @@ const UserList = () => {
 
   const updateUser = async () => {
     try {
-      await axios.put(`/api/usersData/${editUserId}`, {
-        username: editUsername,
-        password: editPassword,
-        role: editRole,
-        fullName: editFullName,
-        email: editEmail,
-        gender: editGender,
-      });
+      await axios.put(
+        `https://education-management-server-ruby.vercel.app/api/usersData/${editUserId}`,
+        {
+          username: editUsername,
+          password: editPassword,
+          role: editRole,
+          fullName: editFullName,
+          email: editEmail,
+          gender: editGender,
+        }
+      );
       setEditUserId(null);
       fetchUsers();
       alert("User updated successfully!");

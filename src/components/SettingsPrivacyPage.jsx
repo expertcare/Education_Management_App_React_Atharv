@@ -26,7 +26,7 @@ const SettingsPrivacyPage = () => {
 
     try {
       // Make a PUT request to update the user data including the new password
-      const response = await axios.put(`/api/usersData/${userData.id}`, {
+      const response = await axios.put("https://education-management-server-ruby.vercel.app/api/usersData/${userData.id}`, {
         ...userData,
         password: newPassword, // Include the new password in the updated user data
       });
