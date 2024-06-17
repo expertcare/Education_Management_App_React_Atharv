@@ -16,7 +16,7 @@ export default defineConfig({
       // "/api": "http://localhost:3000",
     },
 
-    rewrites: [{ source: "/(.*)", destination: "/" }],
+    // rewrites: [{ source: "/(.*)", destination: "/" }],
   },
 
   plugins: [react()],
