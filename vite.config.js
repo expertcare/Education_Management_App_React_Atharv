@@ -5,7 +5,11 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   server: {
     proxy: {
-      "/api": "https://education-management-server-ruby.vercel.app",
+      "/api": {
+        target: "https://education-management-server-ruby.vercel.app",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "/api"),
+      },
 
       // "/api": " https://education-management-server.onrender.com",
 
