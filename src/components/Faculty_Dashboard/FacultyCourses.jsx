@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button, Spinner } from "reactstrap";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
 
@@ -28,11 +29,16 @@ const FacultyCourses = () => {
   }, [userData.fullName]); // Add userData.fullName to the dependency array
 
   return (
-    <div className="container margin-top-bottom">
+    <div className="container margin-top-bottom col-lg-7">
       <h2 className="text-center mb-4">Faculty Courses</h2>
       <h3 className="my-4 fs-5">Hello {userData.fullName}, Your Courses</h3>
       {loading ? (
-        <p>Loading...</p>
+        <div className="text-center margin-top-bottom">
+          <Button color="primary" disabled>
+            <Spinner size="sm">Loading...</Spinner>
+            <span> Loading</span>
+          </Button>
+        </div>
       ) : (
         <table className="table table-striped table-bordered">
           <thead>

@@ -6,7 +6,7 @@ const Dashboard = ({ title, cards }) => {
   return (
     <>
       <div className="container margin-top-bottom">
-        <h1 className="text-center">{title}</h1>
+        <h1 className="text-center display-6">{title}</h1>
         <div className="d-flex justify-content-around flex-wrap mt-5 mb-5">
           {cards.map((card, index) => (
             <Card

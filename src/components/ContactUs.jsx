@@ -80,7 +80,12 @@ const ContactUs = () => {
               paddingInline: "40px",
             }}
           >
-            <div className="card">
+            <div
+              className="card"
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.4)",
+              }}
+            >
               <div className="card-body p-4">
                 <h2 className="card-title mb-4">Send Message</h2>
                 <form onSubmit={handleSubmit}>

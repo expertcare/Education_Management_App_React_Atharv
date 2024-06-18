@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Toast, ToastBody, ToastHeader } from "reactstrap";
+import { Toast, ToastBody, ToastHeader, Button, Spinner } from "reactstrap";
 import { useUser } from "../context/UserContext";
 
 const NotificationPopup = () => {
   const { userData } = useUser();
 
   const [notifications, setNotifications] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchNotifications();
@@ -21,10 +23,23 @@ const NotificationPopup = () => {
         (notification) => notification.role === userData.role
       );
       setNotifications(filteredNotifications);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching notifications: ", error);
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="text-center margin-top-bottom">
+        <Button color="primary" disabled>
+          <Spinner size="sm">Loading...</Spinner>
+          <span> Loading</span>
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="container margin-top-bottom">

@@ -55,7 +55,7 @@ const Header = ({ logout }) => {
                   aria-label="Close"
                 ></button>
               </div>
-              <div className="offcanvas-body">
+              <div className="offcanvas-body mt-1">
                 <ul className="navbar-nav  d-flex gap-4 ">
                   <li className="nav-item me-3">
                     <a
@@ -70,7 +70,7 @@ const Header = ({ logout }) => {
                   </li>
                   <li className="nav-item" data-bs-dismiss="offcanvas">
                     <Link
-                      className="nav-link active fw-medium"
+                      className="nav-link fw-medium"
                       aria-current="page"
                       to="/home"
                     >

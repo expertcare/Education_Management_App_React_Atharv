@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Button, Spinner } from "reactstrap";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
 
 const StudentSchedule = () => {
   const { userData } = useUser();
   const [schedule, setSchedule] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,12 +15,25 @@ const StudentSchedule = () => {
           "https://education-management-server-ruby.vercel.app/api/student_schedule"
         );
         setSchedule(response.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center margin-top-bottom">
+        <Button color="primary" disabled>
+          <Spinner size="sm">Loading...</Spinner>
+          <span> Loading</span>
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="container margin-top-bottom text-center d-flex flex-column gap-4">

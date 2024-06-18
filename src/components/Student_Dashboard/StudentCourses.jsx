@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Button, Spinner } from "reactstrap";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
 
 const StudentCourses = () => {
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { userData } = useUser();
 
@@ -12,11 +14,24 @@ const StudentCourses = () => {
       .get("https://education-management-server-ruby.vercel.app/api/courses")
       .then((response) => {
         setCourses(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        setLoading(false);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center margin-top-bottom">
+        <Button color="primary" disabled>
+          <Spinner size="sm">Loading...</Spinner>
+          <span> Loading</span>
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="container margin-top-bottom text-center d-flex flex-column gap-4">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Spinner } from "reactstrap";
 import { Modal, Button } from "react-bootstrap";
 import { useUser } from "../../context/UserContext";
 
@@ -51,6 +52,7 @@ const FacultyAttendance = () => {
           attendance: "present", // You can change this default value if needed
         }));
         setStudents(studentsWithAttendance);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching student data:", error);
@@ -139,39 +141,49 @@ const FacultyAttendance = () => {
             ))}
           </div>
 
-          <div className="table-responsive">
-            <table className="table table-striped table-bordered">
-              <thead>
-                <tr className="text-center">
-                  <th>PRN No.</th>
-                  <th>Name</th>
-                  <th>Gender</th>
-                  <th>Attendance</th>
-                </tr>
-              </thead>
-              <tbody>
-                {students.map((student) => (
-                  <tr key={student.id} className="text-center">
-                    <td>{student.id.substring(student.id.length - 8)}</td>
-                    <td>{student.fullName}</td>
-                    <td>{student.gender}</td>
-                    <td>
-                      {/* Render dropdown menu or checkbox for attendance */}
-                      <select
-                        value={student.attendance}
-                        onChange={(e) =>
-                          handleAttendanceChange(student.id, e.target.value)
-                        }
-                      >
-                        <option value="present">Present</option>
-                        <option value="absent">Absent</option>
-                      </select>
-                    </td>
+          {loading ? (
+            <div className="text-center margin-top-bottom">
+              <Button color="primary" disabled>
+                <Spinner size="sm">Loading...</Spinner>
+                <span> Loading</span>
+              </Button>
+            </div>
+          ) : (
+            <div className="table-responsive">
+              <table className="table table-striped table-bordered">
+                <thead>
+                  <tr className="text-center">
+                    <th>PRN No.</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Attendance</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {students.map((student) => (
+                    <tr key={student.id} className="text-center">
+                      <td>{student.id.substring(student.id.length - 8)}</td>
+                      <td>{student.fullName}</td>
+                      <td>{student.gender}</td>
+                      <td>
+                        {/* Render dropdown menu or checkbox for attendance */}
+                        <select
+                          value={student.attendance}
+                          onChange={(e) =>
+                            handleAttendanceChange(student.id, e.target.value)
+                          }
+                        >
+                          <option value="present">Present</option>
+                          <option value="absent">Absent</option>
+                        </select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
           <div className="text-center">
             <button className="btn my-btn m-4" onClick={handleSubmitAttendance}>
               Submit Attendance

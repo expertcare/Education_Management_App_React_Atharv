@@ -135,9 +135,9 @@ const NavProfile = ({ logout }) => {
           </a>
           <ul className="dropdown-menu dropdown-menu-md-end bsb-dropdown-animation bsb-fadeIn">
             <li>
-              <h6 className="dropdown-header fs-7 text-center">
+              <p className="dropdown-header  text-center">
                 Welcome, {userData.fullName} ({userData.username})
-              </h6>
+              </p>
             </li>
             <li>
               <hr className="dropdown-divider" />

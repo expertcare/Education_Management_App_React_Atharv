@@ -47,7 +47,7 @@ const About = () => {
               <Row className="justify-content-xl-center">
                 <Col xl="10">
                   <h2 className="mb-3">Why Choose Us?</h2>
-                  <p className="lead fs-4 mb-3 mb-xl-5">
+                  <p className="lead fs-5 mb-3 mb-xl-5">
                     With years of experience and deep industry knowledge, we
                     have a proven track record of success and are constantly
                     pushing ourselves to stay ahead of the curve.

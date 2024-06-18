@@ -50,9 +50,10 @@ const AssignmentCheck = ({ assignments }) => {
         if (assignmentSubmissions.length === 0) {
           return (
             <div key={assignmentId}>
-              <p className="fs-4 mt-4">
+              <p className="fs-5 mt-4">
                 Assignment: {assignment.section} - {assignment.title}
               </p>
+
               <p className="fs-5 m-5 text-center animated-text">
                 No one has submitted this assignment yet.
               </p>
@@ -62,7 +63,7 @@ const AssignmentCheck = ({ assignments }) => {
 
         return (
           <div key={assignmentId}>
-            <p className="fs-4 mt-4">
+            <p className="fs-5 mt-4">
               Assignment: {assignment.section} - {assignment.title}
             </p>
             <table className="table table-striped table-bordered text-center">

@@ -180,45 +180,51 @@ const FacultyAssignment = () => {
           </button>
         )}
       </form>
+      {/* Current Assignments */}
       <h2 className="m-5 display-6 text-center">Current Assignments</h2>
-      <div className="table-responsive">
-        <table className="table table-striped table-bordered text-center">
-          <thead>
-            <tr>
-              <th>Section</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Due Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredAssignments.map((assignment) => (
-              <tr key={assignment._id}>
-                <td>{assignment.section}</td>
-                <td>{assignment.title}</td>
-                <td>{assignment.description}</td>
-                <td>{assignment.dueDate}</td>
-                <td>
-                  <button
-                    className="btn btn-primary btn-sm px-4 m-2"
-                    onClick={() => handleEdit(assignment)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-danger btn-sm px-3 m-2"
-                    onClick={() => handleDelete(assignment._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+      {filteredAssignments.length === 0 ? (
+        <p className="fs-5 m-5 text-center animated-text margin-top-bottom">
+          Add your Assignments
+        </p>
+      ) : (
+        <div className="table-responsive">
+          <table className="table table-striped table-bordered text-center">
+            <thead>
+              <tr>
+                <th>Section</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
+            </thead>
+            <tbody>
+              {filteredAssignments.map((assignment) => (
+                <tr key={assignment._id}>
+                  <td>{assignment.section}</td>
+                  <td>{assignment.title}</td>
+                  <td>{assignment.description}</td>
+                  <td>{assignment.dueDate}</td>
+                  <td>
+                    <button
+                      className="btn btn-primary btn-sm px-4 m-2"
+                      onClick={() => handleEdit(assignment)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger btn-sm px-3 m-2"
+                      onClick={() => handleDelete(assignment._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       <AssignmentCheck assignments={assignments} />
     </div>
   );

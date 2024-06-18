@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
+import { Button, Spinner } from "reactstrap";
 
 const AssignmentList = () => {
   const [assignments, setAssignments] = useState([]);
   const [submissionFiles, setSubmissionFiles] = useState({});
   const [submissions, setSubmissions] = useState([]); // New state for storing submissions
+  const [loading, setLoading] = useState(true);
 
   const { userData } = useUser();
 
@@ -21,9 +23,11 @@ const AssignmentList = () => {
       )
       .then((response) => {
         setAssignments(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching assignments:", error);
+        setLoading(false);
       });
   };
 
@@ -39,6 +43,17 @@ const AssignmentList = () => {
         console.error("Error fetching submissions:", error);
       });
   };
+
+  if (loading) {
+    return (
+      <div className="text-center margin-top-bottom">
+        <Button color="primary" disabled>
+          <Spinner size="sm">Loading...</Spinner>
+          <span> Loading</span>
+        </Button>
+      </div>
+    );
+  }
 
   const handleFileChange = (e, assignmentId) => {
     console.log("Files:", e.target.files);

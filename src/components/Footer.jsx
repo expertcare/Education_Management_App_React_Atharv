@@ -45,11 +45,13 @@ const Footer = () => {
             {/* Grid column */}
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
               {/* Content */}
-              <h6 className="text-uppercase fw-bold mb-4">Company name</h6>
+              <h6 className="text-uppercase fw-bold mb-4">
+                Education Management App
+              </h6>
               <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit.
+                Our education management app streamlines administrative tasks
+                for educational institutions, offering features such as student
+                enrollment, attendance tracking, and many more.
               </p>
             </div>
             {/* Grid column */}
