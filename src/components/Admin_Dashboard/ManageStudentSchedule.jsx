@@ -24,7 +24,8 @@ const ManageStudentSchedule = () => {
     "11:00 am - 11:30 am",
     "11:30 am - 1:30 pm",
     "1:30 pm - 2:15 pm",
-    "2:15 pm - 4:15 pm",
+    "2:15 pm - 3:15 pm",
+    "3:15 pm - 4:15 pm",
     "4:15 pm - 5:00 pm",
   ];
 
@@ -91,16 +92,24 @@ const ManageStudentSchedule = () => {
   };
 
   const handleSubjectChange = (selectedSubject) => {
-    const selectedCourse = courses.find(
-      (course) => course.name === selectedSubject
-    );
-    if (selectedCourse) {
-      setTeachers([selectedCourse.faculty]);
+    if (selectedSubject === "Break") {
       setNewScheduleItem({
         ...newScheduleItem,
-        subject: selectedCourse.name,
-        teacher: selectedCourse.faculty,
+        subject: selectedSubject,
+        teacher: "--", // Clear teacher when "Break" is selected
       });
+    } else {
+      const selectedCourse = courses.find(
+        (course) => course.name === selectedSubject
+      );
+      if (selectedCourse) {
+        setTeachers([selectedCourse.faculty]);
+        setNewScheduleItem({
+          ...newScheduleItem,
+          subject: selectedCourse.name,
+          teacher: selectedCourse.faculty,
+        });
+      }
     }
   };
 
@@ -154,6 +163,7 @@ const ManageStudentSchedule = () => {
               {course.name}
             </option>
           ))}
+          <option value="Break">Break</option> {/* Add "Break" option here */}
         </select>
       </div>
       <div className="mb-3">
@@ -167,6 +177,8 @@ const ManageStudentSchedule = () => {
           onChange={(e) =>
             setNewScheduleItem({ ...newScheduleItem, teacher: e.target.value })
           }
+          disabled={newScheduleItem.subject === "Break"}
+          // Disable teacher input when "Break" is selected
         >
           <option value="">Select Teacher</option>
           {teachers.map((teacher, index) => (
