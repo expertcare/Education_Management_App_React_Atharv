@@ -56,24 +56,31 @@ const AssignmentList = () => {
   }
 
   const handleFileChange = (e, assignmentId) => {
-    console.log("Files:", e.target.files);
     const file = e.target.files[0];
 
-    // Create a URL for the file object
-    const fileUrl = URL.createObjectURL(file);
+    if (!file) return;
 
-    // Set the file URL in the submissionFiles state
-    setSubmissionFiles({
-      ...submissionFiles,
-      [assignmentId]: fileUrl,
-    });
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      const base64File = reader.result.split(",")[1]; // Extract base64 data
+      setSubmissionFiles({
+        ...submissionFiles,
+        [assignmentId]: base64File,
+      });
+    };
+
+    reader.onerror = () => {
+      console.error("Error reading the file");
+      // Handle error if needed
+    };
   };
 
   const handleSubmission = (assignmentId, studentId) => {
-    const file = submissionFiles[assignmentId];
-    console.log("File object:", file); //  check the file object
+    const base64File = submissionFiles[assignmentId];
 
-    if (!file) {
+    if (!base64File) {
       alert("No file selected for submission");
       return;
     }
@@ -81,7 +88,7 @@ const AssignmentList = () => {
     const submissionData = {
       assignmentId: assignmentId,
       studentId: studentId,
-      file: file,
+      file: base64File, // Use base64 data here
       userId: userData.id,
       userName: userData.fullName,
     };
@@ -93,8 +100,6 @@ const AssignmentList = () => {
       )
       .then(() => {
         alert("Submission successful!");
-
-        // Update the assignments state to reflect the submission
         const updatedAssignments = assignments.map((assignment) => {
           if (assignment._id === assignmentId) {
             return {
@@ -145,7 +150,9 @@ const AssignmentList = () => {
 
                     <button className="btn my-btn2 btn-sm px-2">
                       <a
-                        href={submissionFiles[assignment._id]}
+                        href={`data:image/jpeg;base64,${
+                          submissionFiles[assignment._id]
+                        }`}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{

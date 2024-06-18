@@ -4,7 +4,6 @@ import { useUser } from "../../context/UserContext";
 
 const AssignmentCheck = ({ assignments }) => {
   const [submissions, setSubmissions] = useState([]);
-
   const { userData } = useUser();
 
   useEffect(() => {
@@ -27,16 +26,6 @@ const AssignmentCheck = ({ assignments }) => {
     (assignment) => assignment.userId === userData.id
   );
 
-  // Group submissions by assignment ID
-  const groupedAssignments = submissions.reduce((acc, submission) => {
-    const { assignmentId } = submission;
-    if (!acc[assignmentId]) {
-      acc[assignmentId] = [];
-    }
-    acc[assignmentId].push(submission);
-    return acc;
-  }, {});
-
   return (
     <div>
       <h2 className="m-5 display-6 text-center">Assignment Submissions</h2>
@@ -45,8 +34,11 @@ const AssignmentCheck = ({ assignments }) => {
       {filteredAssignments.map((assignment) => {
         const assignmentId = assignment._id;
 
-        // Check if there are submissions for this assignment
-        const assignmentSubmissions = groupedAssignments[assignmentId] || [];
+        // Filter submissions for this specific assignment
+        const assignmentSubmissions = submissions.filter(
+          (submission) => submission.assignmentId === assignmentId
+        );
+
         if (assignmentSubmissions.length === 0) {
           return (
             <div key={assignmentId}>
@@ -86,7 +78,7 @@ const AssignmentCheck = ({ assignments }) => {
                     <td>
                       <button className="btn my-btn2 btn-sm">
                         <a
-                          href={submission.file}
+                          href={`data:image/jpeg;base64,${submission.file}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,6 +19,7 @@ const ManageStudentSchedule = () => {
   const [isEditing, setIsEditing] = useState(null);
   const [courses, setCourses] = useState([]);
   const [teachers, setTeachers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const timeSlots = [
     "9:00 am - 11:00 am",
@@ -47,6 +49,7 @@ const ManageStudentSchedule = () => {
     try {
       const response = await axios.get(SCHEDULE_URL);
       setSchedule(response.data);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching schedule: ", error);
     }
@@ -194,78 +197,87 @@ const ManageStudentSchedule = () => {
         </button>
       </div>
 
-      <div className="table-responsive mt-5">
-        <table className="table table-bordered">
-          <thead>
-            <tr className="text-center">
-              <th>Time</th>
-              <th>Subject</th>
-              <th>Teacher</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {schedule.map((item, index) => (
-              <tr key={item._id} className="text-center">
-                <td>{item.time}</td>
-                <td>
-                  {isEditing === index ? (
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={item.subject}
-                      onChange={(e) =>
-                        handleChange(index, "subject", e.target.value)
-                      }
-                    />
-                  ) : (
-                    item.subject
-                  )}
-                </td>
-                <td>
-                  {isEditing === index ? (
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={item.teacher}
-                      onChange={(e) =>
-                        handleChange(index, "teacher", e.target.value)
-                      }
-                    />
-                  ) : (
-                    item.teacher
-                  )}
-                </td>
-                <td>
-                  {isEditing === index ? (
-                    <button
-                      className="btn btn-success btn-sm px-3"
-                      onClick={() =>
-                        updateScheduleItem(item._id, schedule[index])
-                      }
-                    >
-                      <FontAwesomeIcon icon={faSave} />
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-primary btn-sm px-3 m-1"
-                      onClick={() => handleEdit(index)}
-                    >
-                      <FontAwesomeIcon icon={faEdit} />
-                    </button>
-                  )}
-                  <button
-                    className="btn btn-danger mx-2 btn-sm px-3 m-1"
-                    onClick={() => deleteScheduleItem(item._id)}
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
-                  </button>
-                </td>
+      {loading ? (
+        <div className="text-center margin-top-bottom">
+          <Button color="primary" disabled>
+            <Spinner size="sm">Loading...</Spinner>
+            <span> Loading</span>
+          </Button>
+        </div>
+      ) : (
+        <div className="table-responsive mt-5">
+          <table className="table table-bordered">
+            <thead>
+              <tr className="text-center">
+                <th>Time</th>
+                <th>Subject</th>
+                <th>Teacher</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {schedule.map((item, index) => (
+                <tr key={item._id} className="text-center">
+                  <td>{item.time}</td>
+                  <td>
+                    {isEditing === index ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={item.subject}
+                        onChange={(e) =>
+                          handleChange(index, "subject", e.target.value)
+                        }
+                      />
+                    ) : (
+                      item.subject
+                    )}
+                  </td>
+                  <td>
+                    {isEditing === index ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={item.teacher}
+                        onChange={(e) =>
+                          handleChange(index, "teacher", e.target.value)
+                        }
+                      />
+                    ) : (
+                      item.teacher
+                    )}
+                  </td>
+                  <td>
+                    {isEditing === index ? (
+                      <button
+                        className="btn btn-success btn-sm px-3"
+                        onClick={() =>
+                          updateScheduleItem(item._id, schedule[index])
+                        }
+                      >
+                        <FontAwesomeIcon icon={faSave} />
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-primary btn-sm px-3 m-1"
+                        onClick={() => handleEdit(index)}
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                    )}
+                    <button
+                      className="btn btn-danger mx-2 btn-sm px-3 m-1"
+                      onClick={() => deleteScheduleItem(item._id)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
