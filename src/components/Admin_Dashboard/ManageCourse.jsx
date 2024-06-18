@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const API_URL =
   "https://education-management-server-ruby.vercel.app/api/courses";
+const USERS_API_URL =
+  "https://education-management-server-ruby.vercel.app/api/usersData";
 
 function ManageCourse() {
   const [courses, setCourses] = useState([]);
@@ -19,9 +21,11 @@ function ManageCourse() {
     faculty: "",
   });
   const [newCourse, setNewCourse] = useState({ name: "", faculty: "" });
+  const [facultyList, setFacultyList] = useState([]);
 
   useEffect(() => {
     fetchData();
+    fetchFacultyData();
   }, []);
 
   const fetchData = async () => {
@@ -30,6 +34,19 @@ function ManageCourse() {
       setCourses(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
+    }
+  };
+
+  const fetchFacultyData = async () => {
+    try {
+      const response = await axios.get(USERS_API_URL);
+      const facultyData = response.data.filter(
+        (user) => user.role === "faculty"
+      );
+      const facultyNames = facultyData.map((user) => user.fullName);
+      setFacultyList(facultyNames);
+    } catch (error) {
+      console.error("Error fetching faculty data:", error);
     }
   };
 
@@ -50,7 +67,7 @@ function ManageCourse() {
     try {
       await axios.delete(`${API_URL}/${id}`);
       fetchData();
-      toast.warn("Course deleted..");
+      toast.warn("Course deleted");
     } catch (error) {
       console.error("Error deleting course:", error);
       toast.error("Error deleting course");
@@ -110,7 +127,6 @@ function ManageCourse() {
             {courses.map((course) => (
               <tr key={course._id}>
                 <td>{course._id.substring(course._id.length - 6)}</td>
-                {/* Get last 5 characters */}
                 <td>{course.name}</td>
                 <td>{course.faculty}</td>
                 <td>
@@ -161,13 +177,19 @@ function ManageCourse() {
             <Form.Group controlId="formFaculty">
               <Form.Label>Faculty</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter faculty name"
+                as="select"
                 name="faculty"
                 value={newCourse.faculty}
                 onChange={handleInputChange}
                 required
-              />
+              >
+                <option value="">Select Faculty</option>
+                {facultyList.map((faculty, index) => (
+                  <option key={index} value={faculty}>
+                    {faculty}
+                  </option>
+                ))}
+              </Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -180,6 +202,7 @@ function ManageCourse() {
           </Button>
         </Modal.Footer>
       </Modal>
+
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Course</Modal.Title>
@@ -199,12 +222,18 @@ function ManageCourse() {
             <Form.Group controlId="formEditFaculty">
               <Form.Label>Faculty</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter faculty name"
+                as="select"
                 name="faculty"
                 value={editedCourse.faculty}
                 onChange={handleEditInputChange}
-              />
+              >
+                <option value="">Select Faculty</option>
+                {facultyList.map((faculty, index) => (
+                  <option key={index} value={faculty}>
+                    {faculty}
+                  </option>
+                ))}
+              </Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>

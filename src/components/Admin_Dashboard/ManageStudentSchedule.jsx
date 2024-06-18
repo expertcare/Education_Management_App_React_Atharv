@@ -3,7 +3,9 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const API_URL =
+const COURSES_URL =
+  "https://education-management-server-ruby.vercel.app/api/courses";
+const SCHEDULE_URL =
   "https://education-management-server-ruby.vercel.app/api/student_schedule";
 
 const ManageStudentSchedule = () => {
@@ -14,6 +16,9 @@ const ManageStudentSchedule = () => {
     teacher: "",
   });
   const [isEditing, setIsEditing] = useState(null);
+  const [courses, setCourses] = useState([]);
+  const [teachers, setTeachers] = useState([]);
+
   const timeSlots = [
     "9:00 am - 11:00 am",
     "11:00 am - 11:30 am",
@@ -24,12 +29,22 @@ const ManageStudentSchedule = () => {
   ];
 
   useEffect(() => {
+    fetchCourses();
     fetchSchedule();
   }, []);
 
+  const fetchCourses = async () => {
+    try {
+      const response = await axios.get(COURSES_URL);
+      setCourses(response.data);
+    } catch (error) {
+      console.error("Error fetching courses: ", error);
+    }
+  };
+
   const fetchSchedule = async () => {
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(SCHEDULE_URL);
       setSchedule(response.data);
     } catch (error) {
       console.error("Error fetching schedule: ", error);
@@ -38,7 +53,7 @@ const ManageStudentSchedule = () => {
 
   const addScheduleItem = async () => {
     try {
-      await axios.post(API_URL, newScheduleItem);
+      await axios.post(SCHEDULE_URL, newScheduleItem);
       fetchSchedule();
       setNewScheduleItem({ time: "", subject: "", teacher: "" });
     } catch (error) {
@@ -48,7 +63,7 @@ const ManageStudentSchedule = () => {
 
   const deleteScheduleItem = async (id) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(`${SCHEDULE_URL}/${id}`);
       fetchSchedule();
     } catch (error) {
       console.error("Error deleting schedule item: ", error);
@@ -57,7 +72,7 @@ const ManageStudentSchedule = () => {
 
   const updateScheduleItem = async (id, updatedItem) => {
     try {
-      await axios.put(`${API_URL}/${id}`, updatedItem);
+      await axios.put(`${SCHEDULE_URL}/${id}`, updatedItem);
       fetchSchedule();
       setIsEditing(null);
     } catch (error) {
@@ -73,6 +88,20 @@ const ManageStudentSchedule = () => {
     const updatedSchedule = [...schedule];
     updatedSchedule[index][field] = value;
     setSchedule(updatedSchedule);
+  };
+
+  const handleSubjectChange = (selectedSubject) => {
+    const selectedCourse = courses.find(
+      (course) => course.name === selectedSubject
+    );
+    if (selectedCourse) {
+      setTeachers([selectedCourse.faculty]);
+      setNewScheduleItem({
+        ...newScheduleItem,
+        subject: selectedCourse.name,
+        teacher: selectedCourse.faculty,
+      });
+    }
   };
 
   return (
@@ -111,29 +140,41 @@ const ManageStudentSchedule = () => {
         <label htmlFor="subjectInput" className="form-label">
           Subject:
         </label>
-        <input
-          type="text"
-          className="form-control"
+        <select
+          className="form-select"
           id="subjectInput"
           value={newScheduleItem.subject}
-          onChange={(e) =>
-            setNewScheduleItem({ ...newScheduleItem, subject: e.target.value })
-          }
-        />
+          onChange={(e) => {
+            handleSubjectChange(e.target.value);
+          }}
+        >
+          <option value="">Select Subject</option>
+          {courses.map((course) => (
+            <option key={course._id} value={course.name}>
+              {course.name}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="mb-3">
         <label htmlFor="teacherInput" className="form-label">
           Teacher:
         </label>
-        <input
-          type="text"
-          className="form-control"
+        <select
+          className="form-select"
           id="teacherInput"
           value={newScheduleItem.teacher}
           onChange={(e) =>
             setNewScheduleItem({ ...newScheduleItem, teacher: e.target.value })
           }
-        />
+        >
+          <option value="">Select Teacher</option>
+          {teachers.map((teacher, index) => (
+            <option key={index} value={teacher}>
+              {teacher}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="text-center">
         <button className="btn my-btn2 mb-3" onClick={addScheduleItem}>
