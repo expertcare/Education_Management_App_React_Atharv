@@ -23,6 +23,12 @@ const AssignmentCheck = ({ assignments }) => {
       });
   };
 
+  // Function to convert UTC date string to IST format
+  const convertToIST = (utcDateString) => {
+    const date = new Date(utcDateString);
+    return date.toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+  };
+
   // Filter submissions based on assignments that match current userData.id
   const filteredAssignments = assignments.filter(
     (assignment) => assignment.userId === userData.id
@@ -65,6 +71,7 @@ const AssignmentCheck = ({ assignments }) => {
                 <tr>
                   <th>User ID</th>
                   <th>Student Name</th>
+                  <th>Date Submitted</th>
                   <th>File</th>
                 </tr>
               </thead>
@@ -77,6 +84,8 @@ const AssignmentCheck = ({ assignments }) => {
                       )}
                     </td>
                     <td>{submission.userName}</td>
+                    <td>{convertToIST(submission.submissionDate)}</td>
+                    {/* Display formatted date */}
                     <td>
                       <button className="btn my-btn2 btn-sm">
                         <a
