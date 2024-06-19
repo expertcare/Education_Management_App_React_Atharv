@@ -58,14 +58,16 @@ const AssignmentList = () => {
     formData.append("userName", userData.fullName);
 
     try {
-      await axios.post(
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const response = await axios.post(
         "https://education-management-server-ruby.vercel.app/api/submissions",
         formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        config
       );
 
       alert("Submission successful!");
@@ -138,7 +140,8 @@ const AssignmentList = () => {
                       <input
                         type="file"
                         onChange={(e) => handleFileChange(e, assignment._id)}
-                        accept=".pdf"
+                        accept=".pdf, .png, .jpg, .jpeg"
+                        multiple={false}
                       />
                       <button
                         type="button"

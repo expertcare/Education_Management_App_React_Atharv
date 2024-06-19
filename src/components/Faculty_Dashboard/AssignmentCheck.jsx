@@ -80,7 +80,7 @@ const AssignmentCheck = ({ assignments }) => {
                     <td>
                       <button className="btn my-btn2 btn-sm">
                         <a
-                          href={`https://education-management-server-ruby.vercel.app/${submission.file}`}
+                          href={submission.fileUrl} // Use fileUrl instead of constructing the URL
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
