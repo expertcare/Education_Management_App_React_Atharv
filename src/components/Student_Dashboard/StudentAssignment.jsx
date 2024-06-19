@@ -5,110 +5,54 @@ import { Button, Spinner } from "reactstrap";
 
 const AssignmentList = () => {
   const [assignments, setAssignments] = useState([]);
-  const [submissionFiles, setSubmissionFiles] = useState({});
-  const [submissions, setSubmissions] = useState([]); // New state for storing submissions
   const [loading, setLoading] = useState(true);
-
   const { userData } = useUser();
 
   useEffect(() => {
     fetchAssignments();
-    fetchSubmissions(); // Call the function to fetch submissions when the component mounts
   }, []);
 
-  const fetchAssignments = () => {
-    axios
-      .get(
+  const fetchAssignments = async () => {
+    try {
+      const response = await axios.get(
         "https://education-management-server-ruby.vercel.app/api/assignments"
-      )
-      .then((response) => {
-        setAssignments(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching assignments:", error);
-        setLoading(false);
-      });
+      );
+      setAssignments(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching assignments:", error);
+      setLoading(false);
+    }
   };
-
-  const fetchSubmissions = () => {
-    axios
-      .get(
-        "https://education-management-server-ruby.vercel.app/api/submissions"
-      )
-      .then((response) => {
-        setSubmissions(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching submissions:", error);
-      });
-  };
-
-  if (loading) {
-    return (
-      <div className="text-center margin-top-bottom">
-        <Button color="primary" disabled>
-          <Spinner size="sm">Loading...</Spinner>
-          <span> Loading</span>
-        </Button>
-      </div>
-    );
-  }
 
   const handleFileChange = (e, assignmentId) => {
     const file = e.target.files[0];
 
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      const base64File = reader.result.split(",")[1]; // Extract base64 data
-      setSubmissionFiles({
-        ...submissionFiles,
-        [assignmentId]: base64File,
-      });
-    };
-
-    reader.onerror = () => {
-      console.error("Error reading the file");
-      // Handle error if needed
-    };
-  };
-
-  const handleSubmission = (assignmentId, studentId) => {
-    const base64File = submissionFiles[assignmentId];
-
-    if (!base64File) {
-      alert("No file selected for submission");
-      return;
-    }
-
-    const submissionData = {
-      assignmentId: assignmentId,
-      studentId: studentId,
-      file: base64File, // Use base64 data here
-      userId: userData.id,
-      userName: userData.fullName,
-    };
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("assignmentId", assignmentId);
+    formData.append("userId", userData.id);
+    formData.append("userName", userData.fullName);
 
     axios
       .post(
         "https://education-management-server-ruby.vercel.app/api/submissions",
-        submissionData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       )
       .then(() => {
         alert("Submission successful!");
-        const updatedAssignments = assignments.map((assignment) => {
-          if (assignment._id === assignmentId) {
-            return {
-              ...assignment,
-              submitted: true,
-            };
-          }
-          return assignment;
-        });
+        const updatedAssignments = assignments.map((assignment) =>
+          assignment._id === assignmentId
+            ? { ...assignment, submitted: true }
+            : assignment
+        );
         setAssignments(updatedAssignments);
       })
       .catch((error) => {
@@ -120,9 +64,19 @@ const AssignmentList = () => {
       });
   };
 
+  if (loading) {
+    return (
+      <div className="text-center margin-top-bottom">
+        <Button color="primary" disabled>
+          <Spinner size="sm" /> Loading...
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div className="container margin-top-bottom">
-      <h1 className=" mb-4 text-center">Submit your assignments</h1>
+      <h1 className="mb-4 text-center">Submit your assignments</h1>
       <h2 className="mt-5 mb-4 text-center">Current Assignments</h2>
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
@@ -146,13 +100,9 @@ const AssignmentList = () => {
                 <td>{assignment.submitted ? "Yes" : "No"}</td>
                 <td>
                   {assignment.submitted ? (
-                    // If assignment is submitted, display the submitted file
-
                     <button className="btn my-btn2 btn-sm px-2">
                       <a
-                        href={`data:image/jpeg;base64,${
-                          submissionFiles[assignment._id]
-                        }`}
+                        href={`https://education-management-server-ruby.vercel.app/api/submissions/${assignment._id}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -164,16 +114,16 @@ const AssignmentList = () => {
                       </a>
                     </button>
                   ) : (
-                    // If assignment is not submitted, display file input and submission button
                     <div>
                       <input
                         type="file"
                         onChange={(e) => handleFileChange(e, assignment._id)}
+                        accept=".pdf"
                       />
                       <button
                         type="button"
                         className="btn btn-success btn-sm px-4 m-2"
-                        onClick={() => handleSubmission(assignment._id)}
+                        onClick={() => handleFileChange(assignment._id)}
                       >
                         Submit
                       </button>

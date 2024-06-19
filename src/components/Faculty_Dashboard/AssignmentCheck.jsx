@@ -7,19 +7,21 @@ const AssignmentCheck = ({ assignments }) => {
   const { userData } = useUser();
 
   useEffect(() => {
-    // Fetch data from JSON server using Axios
+    fetchSubmissions();
+  }, []); // Empty dependency array to run once on component mount
+
+  const fetchSubmissions = () => {
     axios
       .get(
         "https://education-management-server-ruby.vercel.app/api/submissions"
       )
       .then((response) => {
-        // Upon successful response, update the state with the fetched data
         setSubmissions(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching submissions:", error);
       });
-  }, []); // Empty dependency array to ensure useEffect runs only once on component mount
+  };
 
   // Filter submissions based on assignments that match current userData.id
   const filteredAssignments = assignments.filter(
@@ -78,7 +80,7 @@ const AssignmentCheck = ({ assignments }) => {
                     <td>
                       <button className="btn my-btn2 btn-sm">
                         <a
-                          href={`data:image/jpeg;base64,${submission.file}`}
+                          href={`https://education-management-server-ruby.vercel.app/api/submissions/${submission._id}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
