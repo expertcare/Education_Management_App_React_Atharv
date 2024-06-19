@@ -30,14 +30,35 @@ const AssignmentList = () => {
 
     if (!file) return;
 
+    // Update the state with the selected file for the corresponding assignmentId
+    setAssignments((prevAssignments) => {
+      return prevAssignments.map((assignment) => {
+        if (assignment._id === assignmentId) {
+          return { ...assignment, file: file };
+        }
+        return assignment;
+      });
+    });
+  };
+
+  const handleFileSubmit = async (assignmentId) => {
+    const assignment = assignments.find(
+      (assignment) => assignment._id === assignmentId
+    );
+
+    if (!assignment || !assignment.file) {
+      alert("Please select a file to submit.");
+      return;
+    }
+
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", assignment.file);
     formData.append("assignmentId", assignmentId);
     formData.append("userId", userData.id);
     formData.append("userName", userData.fullName);
 
-    axios
-      .post(
+    try {
+      await axios.post(
         "https://education-management-server-ruby.vercel.app/api/submissions",
         formData,
         {
@@ -45,23 +66,22 @@ const AssignmentList = () => {
             "Content-Type": "multipart/form-data",
           },
         }
-      )
-      .then(() => {
-        alert("Submission successful!");
-        const updatedAssignments = assignments.map((assignment) =>
-          assignment._id === assignmentId
-            ? { ...assignment, submitted: true }
-            : assignment
-        );
-        setAssignments(updatedAssignments);
-      })
-      .catch((error) => {
-        console.error("Error submitting assignment:", error);
-        if (error.response) {
-          console.log("Error response:", error.response.data);
-        }
-        alert("Error submitting assignment. Please try again.");
-      });
+      );
+
+      alert("Submission successful!");
+      const updatedAssignments = assignments.map((assignment) =>
+        assignment._id === assignmentId
+          ? { ...assignment, submitted: true }
+          : assignment
+      );
+      setAssignments(updatedAssignments);
+    } catch (error) {
+      console.error("Error submitting assignment:", error);
+      if (error.response) {
+        console.log("Error response:", error.response.data);
+      }
+      alert("Error submitting assignment. Please try again.");
+    }
   };
 
   if (loading) {
@@ -123,7 +143,7 @@ const AssignmentList = () => {
                       <button
                         type="button"
                         className="btn btn-success btn-sm px-4 m-2"
-                        onClick={() => handleFileChange(assignment._id)}
+                        onClick={() => handleFileSubmit(assignment._id)}
                       >
                         Submit
                       </button>
