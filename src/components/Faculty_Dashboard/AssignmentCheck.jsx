@@ -80,7 +80,7 @@ const AssignmentCheck = ({ assignments }) => {
                     <td>
                       <button className="btn my-btn2 btn-sm">
                         <a
-                          href={`https://education-management-server-ruby.vercel.app/api/submissions/${submission._id}`}
+                          href={`https://education-management-server-ruby.vercel.app/${submission.file}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
