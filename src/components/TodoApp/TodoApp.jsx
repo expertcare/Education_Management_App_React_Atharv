@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import AppName from "./AppName";
 import AddTodo from "./AddTodo";
 import TodoItems from "./TodoItems";
@@ -10,47 +11,52 @@ function TodoApp() {
   const [editingItem, setEditingItem] = useState(null);
 
   useEffect(() => {
-    fetch("https://education-management-server-ruby.vercel.app/api/todoItems")
-      .then((response) => response.json())
-      .then((data) => setTodoItems(data))
-      .catch((error) => console.error("Error fetching todo items:", error));
+    fetchTodoItems();
   }, []);
 
-  // Function to handle adding a new todo item
+  // Function to fetch all todo items
+  const fetchTodoItems = async () => {
+    try {
+      const response = await axios.get(
+        "https://education-management-server-ruby.vercel.app/api/todoItems"
+      );
+      setTodoItems(response.data);
+    } catch (error) {
+      console.error("Error fetching todo items:", error);
+    }
+  };
 
-  const handleNewItem = (itemName, itemDueDate) => {
-    fetch("https://education-management-server-ruby.vercel.app/api/todoItems", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: itemName, dueDate: itemDueDate }),
-    })
-      .then((response) => response.json())
-      .then((newTodoItem) => {
-        setTodoItems([...todoItems, newTodoItem]);
-        console.log(`New Item Added: ${itemName} Date:${itemDueDate}`);
-      })
-      .catch((error) => console.error("Error adding new todo item:", error));
+  // Function to handle adding a new todo item
+  const handleNewItem = async (itemName, itemDueDate) => {
+    try {
+      const response = await axios.post(
+        "https://education-management-server-ruby.vercel.app/api/todoItems",
+        {
+          name: itemName,
+          dueDate: itemDueDate,
+        }
+      );
+      setTodoItems([...todoItems, response.data]);
+      console.log(`New Item Added: ${itemName} Date:${itemDueDate}`);
+    } catch (error) {
+      console.error("Error adding new todo item:", error);
+    }
   };
 
   // Function to handle deleting a todo item
-  const handleDeleteItem = (todoItemId) => {
-    fetch(
-      `https://education-management-server-ruby.vercel.app/api/todoItems/${todoItemId}`,
-      {
-        method: "DELETE",
-      }
-    )
-      .then(() => {
-        const newTodoItems = todoItems.filter((item) => item.id !== todoItemId);
-        setTodoItems(newTodoItems);
-      })
-      .catch((error) => console.error("Error deleting todo item:", error));
+  const handleDeleteItem = async (todoItemId) => {
+    try {
+      await axios.delete(
+        `https://education-management-server-ruby.vercel.app/api/todoItems/${todoItemId}`
+      );
+      const newTodoItems = todoItems.filter((item) => item.id !== todoItemId);
+      setTodoItems(newTodoItems);
+    } catch (error) {
+      console.error("Error deleting todo item:", error);
+    }
   };
 
   // Function to handle editing a todo item
-
   const handleEditItem = (todoItemId) => {
     // Finding the todo item to edit
     const itemToEdit = todoItems.find((item) => item.id === todoItemId);
@@ -58,30 +64,27 @@ function TodoApp() {
   };
 
   // Function to handle saving the edited todo item
-  const handleSaveEdit = (todoItemId, newName, newDueDate) => {
-    fetch(
-      `https://education-management-server-ruby.vercel.app/api/todoItems/${todoItemId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: newName, dueDate: newDueDate }),
-      }
-    )
-      .then((response) => response.json())
-      .then((updatedTodoItem) => {
-        const updatedTodoItems = todoItems.map((item) =>
-          item.id === todoItemId ? updatedTodoItem : item
-        );
-        setTodoItems(updatedTodoItems);
-        setEditingItem(null);
-      })
-      .catch((error) => console.error("Error saving edited todo item:", error));
+  const handleSaveEdit = async (todoItemId, newName, newDueDate) => {
+    try {
+      const response = await axios.put(
+        `https://education-management-server-ruby.vercel.app/api/todoItems/${todoItemId}`,
+        {
+          name: newName,
+          dueDate: newDueDate,
+        }
+      );
+      const updatedTodoItem = response.data;
+      const updatedTodoItems = todoItems.map((item) =>
+        item.id === todoItemId ? updatedTodoItem : item
+      );
+      setTodoItems(updatedTodoItems);
+      setEditingItem(null);
+    } catch (error) {
+      console.error("Error saving edited todo item:", error);
+    }
   };
 
   // Function to handle canceling edit mode
-
   const handleCancelEdit = () => {
     setEditingItem(null);
     console.log("Canceling edit mode");

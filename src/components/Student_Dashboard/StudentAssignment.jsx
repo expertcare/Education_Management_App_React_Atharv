@@ -110,6 +110,8 @@ const AssignmentList = () => {
               <th>Due Date</th>
               <th>Submitted</th>
               <th>Action</th>
+              <th>Grade</th>
+              <th>Graded By</th>
             </tr>
           </thead>
           <tbody>
@@ -153,6 +155,8 @@ const AssignmentList = () => {
                     </div>
                   )}
                 </td>
+                <td></td>
+                <td></td>
               </tr>
             ))}
           </tbody>
