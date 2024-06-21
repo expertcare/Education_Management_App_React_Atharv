@@ -4,7 +4,6 @@ import { useUser } from "../../context/UserContext";
 
 const AssignmentCheck = ({ assignments }) => {
   const [submissions, setSubmissions] = useState([]);
-  const [gradeInputs, setGradeInputs] = useState({}); // State to hold grades for each submission
   const { userData } = useUser();
 
   useEffect(() => {
@@ -17,13 +16,27 @@ const AssignmentCheck = ({ assignments }) => {
         "https://education-management-server-ruby.vercel.app/api/submissions"
       )
       .then((response) => {
-        setSubmissions(response.data);
-        // Initialize gradeInputs state with default grades for each submission
-        const initialGradeInputs = {};
-        response.data.forEach((submission) => {
-          initialGradeInputs[submission._id] = "";
-        });
-        setGradeInputs(initialGradeInputs);
+        const fetchedSubmissions = response.data;
+
+        // Fetch grades for each submission
+        axios
+          .get("https://education-management-server-ruby.vercel.app/api/grades")
+          .then((gradesResponse) => {
+            const gradesMap = {};
+            gradesResponse.data.forEach((grade) => {
+              gradesMap[grade.submissionId] = grade.grade;
+            });
+
+            // Merge grades into submissions
+            const submissionsWithGrades = fetchedSubmissions.map(
+              (submission) => ({
+                ...submission,
+                grade: gradesMap[submission._id] || "--", // Set grade or default to "--" if not graded
+              })
+            );
+
+            setSubmissions(submissionsWithGrades);
+          });
       })
       .catch((error) => {
         console.error("Error fetching submissions:", error);
@@ -32,16 +45,27 @@ const AssignmentCheck = ({ assignments }) => {
 
   const handleGradeChange = (event, submissionId) => {
     const { value } = event.target;
-    setGradeInputs({
-      ...gradeInputs,
-      [submissionId]: value,
-    });
+    setSubmissions((prevSubmissions) =>
+      prevSubmissions.map((submission) =>
+        submission._id === submissionId
+          ? { ...submission, selectedGrade: value }
+          : submission
+      )
+    );
   };
 
   const handleAddGrade = (submissionId) => {
+    const selectedSubmission = submissions.find(
+      (submission) => submission._id === submissionId
+    );
+    if (!selectedSubmission || !selectedSubmission.selectedGrade) {
+      alert("Please select a grade before submitting.");
+      return;
+    }
+
     const gradeData = {
       submissionId: submissionId,
-      grade: gradeInputs[submissionId],
+      grade: selectedSubmission.selectedGrade,
       gradedBy: userData.fullName,
     };
 
@@ -50,13 +74,20 @@ const AssignmentCheck = ({ assignments }) => {
         "https://education-management-server-ruby.vercel.app/api/grades",
         gradeData
       )
-      .then((response) => {
+      .then(() => {
         fetchSubmissions(); // Refresh submissions after adding grade
-        // Optionally, clear the grade input after submission
-        // setGradeInputs({
-        //   ...gradeInputs,
-        //   [submissionId]: "",
-        // });
+        // Optionally, clear the selected grade after submission
+        setSubmissions((prevSubmissions) =>
+          prevSubmissions.map((submission) =>
+            submission._id === submissionId
+              ? {
+                  ...submission,
+                  grade: selectedSubmission.selectedGrade,
+                  selectedGrade: null,
+                }
+              : submission
+          )
+        );
       })
       .catch((error) => {
         console.error("Error adding grade:", error);
@@ -138,26 +169,32 @@ const AssignmentCheck = ({ assignments }) => {
                         </button>
                       </td>
                       <td>
-                        <select
-                          className="m-1"
-                          value={gradeInputs[submission._id]}
-                          onChange={(event) =>
-                            handleGradeChange(event, submission._id)
-                          }
-                        >
-                          <option value="">Select Grade</option>
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                          <option value="D">D</option>
-                          <option value="F">F</option>
-                        </select>
-                        <button
-                          className="btn btn-sm btn-primary ms-2 m-1"
-                          onClick={() => handleAddGrade(submission._id)}
-                        >
-                          Add Grade
-                        </button>
+                        {submission.grade === "--" ? (
+                          <div>
+                            <select
+                              className="m-1"
+                              value={submission.selectedGrade || ""}
+                              onChange={(event) =>
+                                handleGradeChange(event, submission._id)
+                              }
+                            >
+                              <option value="">Select Grade</option>
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                              <option value="C">C</option>
+                              <option value="D">D</option>
+                              <option value="F">F</option>
+                            </select>
+                            <button
+                              className="btn btn-sm btn-primary ms-2 m-1"
+                              onClick={() => handleAddGrade(submission._id)}
+                            >
+                              Add Grade
+                            </button>
+                          </div>
+                        ) : (
+                          <span>{submission.grade}</span>
+                        )}
                       </td>
                     </tr>
                   ))}

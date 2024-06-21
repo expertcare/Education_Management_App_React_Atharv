@@ -14,13 +14,44 @@ const AssignmentList = () => {
 
   const fetchAssignments = async () => {
     try {
-      const response = await axios.get(
+      const assignmentsResponse = await axios.get(
         "https://education-management-server-ruby.vercel.app/api/assignments"
       );
-      setAssignments(response.data);
+      const submissionsResponse = await axios.get(
+        "https://education-management-server-ruby.vercel.app/api/submissions"
+      );
+      const gradesResponse = await axios.get(
+        "https://education-management-server-ruby.vercel.app/api/grades"
+      );
+
+      // Combine assignments with submission status and grades
+      const assignmentsWithStatus = assignmentsResponse.data.map(
+        (assignment) => {
+          const submission = submissionsResponse.data.find(
+            (submission) =>
+              submission.assignmentId === assignment._id &&
+              submission.userId === userData.id
+          );
+          const grade = gradesResponse.data.find(
+            (grade) =>
+              grade.submissionId === (submission ? submission._id : null)
+          );
+          return {
+            ...assignment,
+            submitted: !!submission, // Check if submission exists for the current user
+
+            fileUrl: submission ? submission.fileUrl : null, // Get file URL from submission
+            grade: grade ? grade.grade : "--",
+            gradedAt: grade ? grade.gradedAt : "--",
+            gradedBy: grade ? grade.gradedBy : "--",
+          };
+        }
+      );
+
+      setAssignments(assignmentsWithStatus);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching assignments:", error);
+      console.error("Error fetching data:", error);
       setLoading(false);
     }
   };
@@ -111,6 +142,7 @@ const AssignmentList = () => {
               <th>Submitted</th>
               <th>Action</th>
               <th>Grade</th>
+              <th>Graded At</th>
               <th>Graded By</th>
             </tr>
           </thead>
@@ -120,13 +152,13 @@ const AssignmentList = () => {
                 <td>{assignment.section}</td>
                 <td>{assignment.title}</td>
                 <td>{assignment.description}</td>
-                <td>{assignment.dueDate}</td>
+                <td>{new Date(assignment.dueDate).toLocaleDateString()}</td>
                 <td>{assignment.submitted ? "Yes" : "No"}</td>
                 <td>
                   {assignment.submitted ? (
                     <button className="btn my-btn2 btn-sm px-2">
                       <a
-                        href={`https://education-management-server-ruby.vercel.app/api/submissions/${assignment._id}`}
+                        href={assignment.fileUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -155,8 +187,17 @@ const AssignmentList = () => {
                     </div>
                   )}
                 </td>
-                <td></td>
-                <td></td>
+                <td>{assignment.grade}</td>
+                <td>
+                  {assignment.gradedAt !== "--"
+                    ? new Date(assignment.gradedAt).toLocaleString("en-US", {
+                        timeZone: "Asia/Kolkata",
+                        hour12: true,
+                      })
+                    : "--"}
+                </td>
+
+                <td>{assignment.gradedBy}</td>
               </tr>
             ))}
           </tbody>
