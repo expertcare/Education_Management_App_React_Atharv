@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import NavProfile from "./NavProfile";
 import { useUser } from "../context/UserContext";
+import Sidebar from "./Sidebar";
 
 const Header = ({ logout }) => {
   const { userData } = useUser();

@@ -66,6 +66,11 @@ const Footer = () => {
                 </Link>
               </p>
               <p>
+                <Link to="/weather" className="text-reset">
+                  Kolhapur Weather
+                </Link>
+              </p>
+              <p>
                 <Link to="/news" className="text-reset">
                   News App
                 </Link>
@@ -73,11 +78,6 @@ const Footer = () => {
               <p>
                 <Link to="/users-data" className="text-reset">
                   Users CRUD Demo
-                </Link>
-              </p>
-              <p>
-                <Link to="/weather" className="text-reset">
-                  Kolhapur Weather
                 </Link>
               </p>
             </div>

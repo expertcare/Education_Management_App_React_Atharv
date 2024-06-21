@@ -62,7 +62,7 @@ const StudentDashboard = () => {
       title: "My Courses",
       description: "View your enrolled courses and grades.",
       buttonText: "View Courses",
-      link: "/student_course",
+      link: "/student_courses",
     },
     {
       image:
@@ -78,7 +78,7 @@ const StudentDashboard = () => {
       title: "Attendance",
       description: "Check your attendance record.",
       buttonText: "Check Attendance",
-      link: "/student_attendance_record",
+      link: "/student_attendance",
     },
     {
       image:

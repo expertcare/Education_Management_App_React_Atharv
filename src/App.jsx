@@ -68,7 +68,7 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
       <UserProvider>
         {/* Render header only if not on auth page */}
         {!isAuthPage && <Header logout={logout} />}
-        <Sidebar userRole={userRole} />
+        {isLoggedIn && <Sidebar logout={logout} userRole={userRole} />}
 
         <Routes>
           {isLoggedIn && (
@@ -81,13 +81,13 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     element={<StudentDashboard />}
                   />
                   <Route path="/student_profile" element={<StudentProfile />} />
-                  <Route path="/student_course" element={<StudentCourses />} />
+                  <Route path="/student_courses" element={<StudentCourses />} />
                   <Route
                     path="/student_assignment"
                     element={<StudentAssignment />}
                   />
                   <Route
-                    path="/student_attendance_record"
+                    path="/student_attendance"
                     element={<StudentAttendanceRecord />}
                   />
                   <Route
@@ -109,11 +109,11 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     element={<FacultyDashboard />}
                   />
                   <Route
-                    path="/faculty_assignments"
+                    path="/faculty_assignment"
                     element={<FacultyAssignment />}
                   />
                   <Route
-                    path="/manage_attendance"
+                    path="/faculty_attendance"
                     element={<FacultyAttendance />}
                   />
                   <Route
@@ -159,10 +159,8 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                   <Route path="/admin/contact_list" element={<ContactList />} />
 
                   {/* <Route path="/admin/manage_users" element={<CreateUser />} /> */}
-                  <Route path="/todo" element={<TodoApp />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/news" element={<NewsApp />} />
-                  <Route path="/weather" element={<WeatherApp />} />
                   <Route path="/users-data" element={<UserData />} />
                   {/* Add more admin-specific routes here */}
                 </>
@@ -180,6 +178,8 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/settings" element={<SettingsPrivacyPage />} />
+          <Route path="/todo" element={<TodoApp />} />
+          <Route path="/weather" element={<WeatherApp />} />
         </Routes>
 
         {/* Render footer only if not on auth page */}

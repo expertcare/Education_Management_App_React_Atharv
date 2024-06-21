@@ -94,12 +94,12 @@ const SigninSection = ({ login }) => {
                       className="img-fluid"
                       alt="Sample image"
                     />
-                    <Link to="/signup" className="text-center mt-4">
+                    {/* <Link to="/signup" className="text-center mt-4">
                       Create an account
-                    </Link>
+                    </Link> */}
                   </div>
                   <div className="col-md-10  col-lg-6 col-xl-6 order-1 order-lg-2">
-                    <p className="h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
+                    <h1 className="fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</h1>
                     <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
                       {/* Role selection */}
                       <div className="d-flex gap-4">
@@ -218,7 +218,7 @@ const SigninSection = ({ login }) => {
                       </div>
                     </form>
                     {/* Social login buttons */}
-                    <div className="d-flex">
+                    {/* <div className="d-flex">
                       <p className="mx-1 mx-md-4 mt-4">or login with</p>
                       <ul className="socials d-flex mt-4 gap-3">
                         <li>
@@ -237,7 +237,7 @@ const SigninSection = ({ login }) => {
                           </a>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

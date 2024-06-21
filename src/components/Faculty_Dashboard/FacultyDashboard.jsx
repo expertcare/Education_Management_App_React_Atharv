@@ -79,7 +79,7 @@ const FacultyDashboard = () => {
       title: "Attendance",
       description: "Manage attendance records for your courses.",
       buttonText: "Manage Attendance",
-      link: "/manage_attendance",
+      link: "/faculty_attendance",
     },
     {
       image:
@@ -87,7 +87,7 @@ const FacultyDashboard = () => {
       title: "Assignments",
       description: "View and manage assignments for your courses.",
       buttonText: "Manage Assignments",
-      link: "/faculty_assignments",
+      link: "/faculty_assignment",
     },
     {
       image:
