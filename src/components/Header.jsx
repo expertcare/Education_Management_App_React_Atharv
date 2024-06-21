@@ -109,7 +109,8 @@ const Header = ({ logout }) => {
                     >
                       Sign out
                     </Link>
-                    <button
+                    {/* this is button to open nav profile in mobile  */}
+                    {/* <button
                       className="navbar-toggler border-0"
                       type="button"
                       data-bs-toggle="collapse"
@@ -118,7 +119,7 @@ const Header = ({ logout }) => {
                       aria-label="Toggle Navigation"
                     >
                       <i className="bi bi-three-dots"></i>
-                    </button>
+                    </button> */}
                   </li>
                 </ul>
               </div>

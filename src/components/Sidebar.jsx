@@ -126,13 +126,11 @@ const Sidebar = ({ userRole, logout }) => {
 
             {userRole === "student" || userRole === "faculty" ? (
               <>
-                <li className="nav-item border-bottom border-top mt-3 py-1">
-                  <Link
-                    className="nav-link p-3"
-                    to={profileLink}
-                    data-bs-dismiss="collapse"
-                    // data-bs-dismiss="offcanvas"
-                  >
+                <li
+                  className="nav-item border-bottom border-top mt-3 py-1 "
+                  data-bs-dismiss="offcanvas"
+                >
+                  <Link className="nav-link p-3" to={profileLink}>
                     <div className="d-flex align-items-center gap-4">
                       <div className="nav-link-icon text-primary">
                         <i className="fa-solid fa-user-circle fa-lg"></i>{" "}
@@ -143,12 +141,11 @@ const Sidebar = ({ userRole, logout }) => {
                   </Link>
                 </li>
                 {/* Example 2 */}
-                <li className="nav-item border-bottom py-1">
-                  <Link
-                    className="nav-link p-3"
-                    to={coursesLink}
-                    data-bs-dismiss="collapse"
-                  >
+                <li
+                  className="nav-item border-bottom py-1"
+                  data-bs-dismiss="offcanvas"
+                >
+                  <Link className="nav-link p-3" to={coursesLink}>
                     <div className="d-flex align-items-center gap-4">
                       <div className="nav-link-icon text-success">
                         <i className="fa-solid fa-book fa-lg"></i>{" "}
@@ -159,12 +156,11 @@ const Sidebar = ({ userRole, logout }) => {
                   </Link>
                 </li>
                 {/* Example 3 */}
-                <li className="nav-item border-bottom py-1">
-                  <Link
-                    className="nav-link p-3"
-                    to={scheduleLink}
-                    data-bs-dismiss="collapse"
-                  >
+                <li
+                  className="nav-item border-bottom py-1"
+                  data-bs-dismiss="offcanvas"
+                >
+                  <Link className="nav-link p-3" to={scheduleLink}>
                     <div className="d-flex align-items-center gap-4">
                       <div className="nav-link-icon text-warning">
                         <i className="fa-solid fa-calendar-alt fa-lg"></i>{" "}
@@ -175,12 +171,11 @@ const Sidebar = ({ userRole, logout }) => {
                   </Link>
                 </li>
                 {/* Example 4 */}
-                <li className="nav-item border-bottom py-1">
-                  <Link
-                    className="nav-link p-3"
-                    to={attendanceLink}
-                    data-bs-dismiss="collapse"
-                  >
+                <li
+                  className="nav-item border-bottom py-1"
+                  data-bs-dismiss="offcanvas"
+                >
+                  <Link className="nav-link p-3" to={attendanceLink}>
                     <div className="d-flex align-items-center gap-4">
                       <div className="nav-link-icon text-info">
                         <i className="fa-solid fa-check-circle fa-lg"></i>{" "}
@@ -191,12 +186,11 @@ const Sidebar = ({ userRole, logout }) => {
                   </Link>
                 </li>
                 {/* Example 5 */}
-                <li className="nav-item border-bottom py-1">
-                  <Link
-                    className="nav-link p-3"
-                    to={assignmentLink}
-                    data-bs-dismiss="collapse"
-                  >
+                <li
+                  className="nav-item border-bottom py-1"
+                  data-bs-dismiss="offcanvas"
+                >
+                  <Link className="nav-link p-3" to={assignmentLink}>
                     <div className="d-flex align-items-center gap-4">
                       <div className="nav-link-icon text-danger">
                         <i className="fa-solid fa-file-alt fa-lg"></i>{" "}
@@ -207,12 +201,11 @@ const Sidebar = ({ userRole, logout }) => {
                   </Link>
                 </li>
                 {/* Example 6 */}
-                <li className="nav-item border-bottom py-1">
-                  <Link
-                    className="nav-link p-3"
-                    to="/notifications"
-                    data-bs-dismiss="collapse"
-                  >
+                <li
+                  className="nav-item border-bottom py-1"
+                  data-bs-dismiss="offcanvas"
+                >
+                  <Link className="nav-link p-3" to="/notifications">
                     <div className="d-flex align-items-center gap-4">
                       <div className="nav-link-icon text-primary">
                         <i className="fa-solid fa-bell fa-lg"></i>{" "}
@@ -229,16 +222,14 @@ const Sidebar = ({ userRole, logout }) => {
               /* Admin links for sideBard */
               userRole === "admin" && (
                 <>
-                  <li className="nav-item border-bottom border-top mt-3 py-1">
-                    <Link
-                      className="nav-link p-3"
-                      to={profileLink}
-                      data-bs-dismiss="collapse"
-                      // data-bs-dismiss="offcanvas"
-                    >
+                  <li
+                    className="nav-item border-bottom border-top mt-3 py-1"
+                    data-bs-dismiss="offcanvas"
+                  >
+                    <Link className="nav-link p-3" to="/admin_profile">
                       <div className="d-flex align-items-center gap-4">
                         <div className="nav-link-icon text-primary">
-                          <i className="fa-solid fa-user-circle fa-lg"></i>{" "}
+                          <i className="fas fa-user-circle fa-lg"></i>{" "}
                           {/* Icon for My Profile */}
                         </div>
                         <span className="nav-link-text fw-bold">
@@ -248,55 +239,52 @@ const Sidebar = ({ userRole, logout }) => {
                     </Link>
                   </li>
 
-                  {/* Manage Courses  */}
-                  <li className="nav-item border-bottom py-1">
-                    <Link
-                      className="nav-link p-3"
-                      to="/admin/manage_courses"
-                      data-bs-dismiss="collapse"
-                    >
+                  {/* My Courses */}
+                  <li
+                    className="nav-item border-bottom py-1"
+                    data-bs-dismiss="offcanvas"
+                  >
+                    <Link className="nav-link p-3" to="/admin/manage_courses">
                       <div className="d-flex align-items-center gap-4">
                         <div className="nav-link-icon text-success">
-                          <i className="fa-solid fa-book fa-lg"></i>{" "}
+                          <i className="fas fa-book fa-lg"></i>{" "}
                           {/* Icon for My Courses */}
                         </div>
                         <span className="nav-link-text fw-bold">
-                          My Courses
+                          Manage Courses
                         </span>
                       </div>
                     </Link>
                   </li>
 
-                  {/* Manage Notifications  */}
-                  <li className="nav-item border-bottom py-1">
-                    <Link
-                      className="nav-link p-3"
-                      to="/admin/notifications"
-                      data-bs-dismiss="collapse"
-                    >
+                  {/* Manage Notifications */}
+                  <li
+                    className="nav-item border-bottom py-1"
+                    data-bs-dismiss="offcanvas"
+                  >
+                    <Link className="nav-link p-3" to="/admin/notifications">
                       <div className="d-flex align-items-center gap-4">
-                        <div className="nav-link-icon text-primary">
-                          <i className="fa-solid fa-bell fa-lg"></i>{" "}
-                          {/* Icon for Notification */}
+                        <div className="nav-link-icon text-warning">
+                          <i className="fas fa-bell fa-lg"></i>{" "}
+                          {/* Icon for Notifications */}
                         </div>
                         <span className="nav-link-text fw-bold">
-                          Manage Notification
+                          Manage Notifications
                         </span>
                       </div>
                     </Link>
                   </li>
 
                   {/* Manage Schedules */}
-                  <li className="nav-item border-bottom py-1">
-                    <Link
-                      className="nav-link p-3"
-                      to="/admin/student_schedule"
-                      data-bs-dismiss="collapse"
-                    >
+                  <li
+                    className="nav-item border-bottom py-1"
+                    data-bs-dismiss="offcanvas"
+                  >
+                    <Link className="nav-link p-3" to="/admin/student_schedule">
                       <div className="d-flex align-items-center gap-4">
-                        <div className="nav-link-icon text-warning">
-                          <i className="fa-solid fa-calendar-alt fa-lg"></i>{" "}
-                          {/* Icon for My Schedule */}
+                        <div className="nav-link-icon text-info">
+                          <i className="fas fa-calendar-alt fa-lg"></i>{" "}
+                          {/* Icon for Manage Schedule */}
                         </div>
                         <span className="nav-link-text fw-bold">
                           Manage Schedule
@@ -305,17 +293,16 @@ const Sidebar = ({ userRole, logout }) => {
                     </Link>
                   </li>
 
-                  {/* Manage users  */}
-                  <li className="nav-item border-bottom py-1">
-                    <Link
-                      className="nav-link p-3"
-                      to="/admin/user_list"
-                      data-bs-dismiss="collapse"
-                    >
+                  {/* Manage Users */}
+                  <li
+                    className="nav-item border-bottom py-1"
+                    data-bs-dismiss="offcanvas"
+                  >
+                    <Link className="nav-link p-3" to="/admin/user_list">
                       <div className="d-flex align-items-center gap-4">
                         <div className="nav-link-icon text-primary">
-                          <i className="fa-solid fa-users fa-lg"></i>{" "}
-                          {/* Modified Icon for Manage Users */}
+                          <i className="fas fa-users fa-lg"></i>{" "}
+                          {/* Icon for Manage Users */}
                         </div>
                         <span className="nav-link-text fw-bold">
                           Manage Users
@@ -324,20 +311,19 @@ const Sidebar = ({ userRole, logout }) => {
                     </Link>
                   </li>
 
-                  {/* Manage Contacts  */}
-                  <li className="nav-item border-bottom py-1">
-                    <Link
-                      className="nav-link p-3"
-                      to="/admin/contact_list"
-                      data-bs-dismiss="collapse"
-                    >
+                  {/* Manage Contacts */}
+                  <li
+                    className="nav-item border-bottom py-1"
+                    data-bs-dismiss="offcanvas"
+                  >
+                    <Link className="nav-link p-3" to="/admin/contact_list">
                       <div className="d-flex align-items-center gap-4">
-                        <div className="nav-link-icon text-success">
-                          <i className="fa-solid fa-address-book fa-lg"></i>{" "}
-                          {/* Modified Icon for Manage Contacts */}
+                        <div className="nav-link-icon text-danger">
+                          <i className="fas fa-address-book fa-lg"></i>{" "}
+                          {/* Icon for Manage Contacts */}
                         </div>
                         <span className="nav-link-text fw-bold">
-                          Manage Contacts
+                          Contact Details
                         </span>
                       </div>
                     </Link>
@@ -438,7 +424,7 @@ const Sidebar = ({ userRole, logout }) => {
               </a>
               <div className="collapse" id="authExamples">
                 <ul className="nav flex-column ms-4">
-                  <li className="nav-item">
+                  <li className="nav-item" data-bs-dismiss="offcanvas">
                     <Link
                       className="nav-link link-secondary"
                       aria-current="page"
