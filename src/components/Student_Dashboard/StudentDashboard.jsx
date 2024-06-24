@@ -98,7 +98,7 @@ const StudentDashboard = () => {
     },
     {
       image:
-        "https://img.freepik.com/free-vector/online-certification-with-smartphone_23-2148571385.jpg?t=st=1717146570~exp=1717150170~hmac=028407c7036005de45c351e19134fe539af38b2fc6aa025611145e89006511ec&w=740",
+        "https://img.freepik.com/free-vector/college-entrance-exam-concept-illustration_114360-13742.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1719100800&semt=sph",
       title: "Exams",
       description: "Check and attempt your upcoming exams.",
       buttonText: "View Notifications",

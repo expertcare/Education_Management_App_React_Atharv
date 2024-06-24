@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/education_logo.png";
 
 const Sidebar = ({ userRole, logout }) => {
   const profileLink = `/${userRole}_profile`;
@@ -26,7 +27,7 @@ const Sidebar = ({ userRole, logout }) => {
         <div className="offcanvas-header" data-bs-dismiss="offcanvas">
           <Link className="sidebar-brand text-decoration-none" to="/home">
             <img
-              src="src\assets\education_logo.png"
+              src={logo}
               // width="195"
               height="70"
             />

@@ -91,7 +91,7 @@ const FacultyDashboard = () => {
     },
     {
       image:
-        "https://img.freepik.com/free-vector/businessman-holding-pencil-big-complete-checklist-with-tick-marks_1150-35019.jpg?t=st=1717146454~exp=1717150054~hmac=ef35e130b0ed9283c9c13af8625d385ca84c09436f51c054baa3d31cf1e961b9&w=740",
+        "https://img.freepik.com/free-vector/college-entrance-exam-concept-illustration_114360-13742.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1719100800&semt=sph",
       title: "Exams",
       description: "Schedule your Exam and add Question",
       buttonText: "Schedule Exams",
