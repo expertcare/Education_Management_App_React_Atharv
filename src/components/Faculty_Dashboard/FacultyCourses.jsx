@@ -29,7 +29,7 @@ const FacultyCourses = () => {
   }, [userData.fullName]); // Add userData.fullName to the dependency array
 
   return (
-    <div className="container margin-top-bottom col-lg-7">
+    <div className="container col-lg-7 margin-top-bottom">
       <h2 className="text-center mb-4">Faculty Courses</h2>
       <h3 className="my-4 fs-5">Hello {userData.fullName}, Your Courses</h3>
       {loading ? (

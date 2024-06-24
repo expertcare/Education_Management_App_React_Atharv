@@ -41,8 +41,11 @@ const StudentProfile = () => {
   };
 
   return (
-    <div className="container margin-top-bottom">
-      <h2 className="text-center mb-4">{capitalizedRole} Profile</h2>
+    <div
+      className="container min-vh-100 d-flex flex-column"
+      style={{ marginTop: "250px" }}
+    >
+      <h2 className="text-center mb-4 display-6">{capitalizedRole} Profile</h2>
       {userData && (
         <div className="row justify-content-center">
           <div className="col-lg-5 col-md-8 col-sm-12 m-4">

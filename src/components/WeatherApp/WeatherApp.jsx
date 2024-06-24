@@ -37,8 +37,8 @@ const WeatherApp = () => {
   }, []);
 
   return (
-    <div className="container d-flex justify-content-center align-items-center flex-column">
-      <h1 className="mb-5 mt-5">Weather App</h1>
+    <div className="container d-flex justify-content-center align-items-center flex-column min-vh-100">
+      <h1 className="mb-5">Weather App</h1>
       {loading && (
         <Button color="primary" disabled>
           <Spinner size="sm">Loading...</Spinner>

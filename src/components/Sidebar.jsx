@@ -7,6 +7,7 @@ const Sidebar = ({ userRole, logout }) => {
   const scheduleLink = `/${userRole}_schedule`;
   const attendanceLink = `/${userRole}_attendance`;
   const assignmentLink = `/${userRole}_assignment`;
+  const examLink = `/${userRole}_exams`;
 
   const handleLogout = () => {
     // Call the logout function passed as a prop
@@ -23,13 +24,13 @@ const Sidebar = ({ userRole, logout }) => {
         data-bs-backdrop="false"
       >
         <div className="offcanvas-header" data-bs-dismiss="offcanvas">
-          <Link className="sidebar-brand" to="/home">
+          <Link className="sidebar-brand text-decoration-none" to="/home">
             <img
-              src="https://rajrajhans.com/static/99e4a225dd2b10d50d9f3002d228ff6b/c1b63/post-13-2.png"
-              alt="BootstrapBrain Logo"
-              width="175"
-              height="65"
+              src="src\assets\education_logo.png"
+              // width="195"
+              height="70"
             />
+            {/* <h1 className="fs-4">Education Managemnet</h1> */}
           </Link>
           <button
             type="button"
@@ -53,10 +54,12 @@ const Sidebar = ({ userRole, logout }) => {
                 aria-expanded="true"
                 aria-controls="dashboardExamples"
               >
-                <div className="nav-link-icon text-primary">
-                  <i className="fa-solid fa-house"></i>
+                <div className="d-flex align-items-center gap-4 py-2">
+                  <div className="nav-link-icon text-primary">
+                    <i className="fa-solid fa-house"></i>
+                  </div>
+                  <span className="nav-link-text fw-bold">Dashboards</span>
                 </div>
-                <span className="nav-link-text fw-bold">Dashboards</span>
               </a>
               <div className="collapse show" id="dashboardExamples">
                 <ul className="nav flex-column ms-4">
@@ -69,10 +72,14 @@ const Sidebar = ({ userRole, logout }) => {
                           aria-current="page"
                           to="/admin_dashboard"
                         >
-                          <div className="nav-link-icon text-primary-emphasis">
-                            <i className="fa-solid fa-user-tie"></i>
+                          <div className="d-flex align-items-center gap-4 py-2">
+                            <div className="nav-link-icon text-primary-emphasis">
+                              <i className="fa-solid fa-user-tie"></i>
+                            </div>
+                            <span className="nav-link-text">
+                              Admin Dashboard
+                            </span>
                           </div>
-                          <span className="nav-link-text">Admin Dashboard</span>
                         </Link>
                       </li>
                       <li className="nav-item" data-bs-dismiss="offcanvas">
@@ -81,12 +88,14 @@ const Sidebar = ({ userRole, logout }) => {
                           aria-current="page"
                           to="/developer_dashboard"
                         >
-                          <div className="nav-link-icon text-primary-emphasis">
-                            <i className="fa-solid fa-user-tie"></i>
+                          <div className="d-flex align-items-center gap-4 py-2">
+                            <div className="nav-link-icon text-primary-emphasis">
+                              <i className="fa-solid fa-user-tie"></i>
+                            </div>
+                            <span className="nav-link-text">
+                              Developer Dashboard
+                            </span>
                           </div>
-                          <span className="nav-link-text">
-                            Developer Dashboard
-                          </span>
                         </Link>
                       </li>
                     </>
@@ -97,10 +106,14 @@ const Sidebar = ({ userRole, logout }) => {
                         aria-current="page"
                         to="/faculty_dashboard"
                       >
-                        <div className="nav-link-icon text-danger-emphasis">
-                          <i className="fa-solid fa-chalkboard-user"></i>
+                        <div className="d-flex align-items-center gap-4 py-2">
+                          <div className="nav-link-icon text-danger-emphasis">
+                            <i className="fa-solid fa-chalkboard-user"></i>
+                          </div>
+                          <span className="nav-link-text">
+                            Faculty Dashboard
+                          </span>
                         </div>
-                        <span className="nav-link-text">Faculty Dashboard</span>
                       </Link>
                     </li>
                   ) : userRole === "student" ? (
@@ -110,10 +123,14 @@ const Sidebar = ({ userRole, logout }) => {
                         aria-current="page"
                         to="/student_dashboard"
                       >
-                        <div className="nav-link-icon text-info-emphasis">
-                          <i className="fa-solid fa-graduation-cap"></i>
+                        <div className="d-flex align-items-center gap-4 py-2">
+                          <div className="nav-link-icon text-info-emphasis">
+                            <i className="fa-solid fa-graduation-cap"></i>
+                          </div>
+                          <span className="nav-link-text">
+                            Student Dashboard
+                          </span>
                         </div>
-                        <span className="nav-link-text">Student Dashboard</span>
                       </Link>
                     </li>
                   ) : null}
@@ -170,6 +187,23 @@ const Sidebar = ({ userRole, logout }) => {
                     </div>
                   </Link>
                 </li>
+
+                {/* Exams */}
+                <li
+                  className="nav-item border-bottom py-1"
+                  data-bs-dismiss="offcanvas"
+                >
+                  <Link className="nav-link p-3" to={examLink}>
+                    <div className="d-flex align-items-center gap-4">
+                      <div className="nav-link-icon text-warning">
+                        <i className="fa-solid fa-book-open fa-lg"></i>{" "}
+                        {/* Icon for Exam */}
+                      </div>
+                      <span className="nav-link-text fw-bold">Exam</span>
+                    </div>
+                  </Link>
+                </li>
+
                 {/* Example 4 */}
                 <li
                   className="nav-item border-bottom py-1"
@@ -346,10 +380,12 @@ const Sidebar = ({ userRole, logout }) => {
                 aria-expanded="false"
                 aria-controls="pageExamples"
               >
-                <div className="nav-link-icon text-danger">
-                  <i className="fa-regular fa-folder"></i>
+                <div className="d-flex align-items-center gap-4 py-2">
+                  <div className="nav-link-icon text-danger">
+                    <i className="fa-regular fa-folder"></i>
+                  </div>
+                  <span className="nav-link-text fw-bold">Projects</span>
                 </div>
-                <span className="nav-link-text fw-bold">Projects</span>
               </a>
               <div className="collapse" id="pageExamples">
                 <ul className="nav flex-column ms-4">
@@ -359,10 +395,12 @@ const Sidebar = ({ userRole, logout }) => {
                       aria-current="page"
                       to="/todo"
                     >
-                      <div className="nav-link-icon text-success">
-                        <i className="fa-solid fa-calendar-check"></i>
+                      <div className="d-flex align-items-center gap-4 py-2">
+                        <div className="nav-link-icon text-success">
+                          <i className="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <span className="nav-link-text">To Do App</span>
                       </div>
-                      <span className="nav-link-text">To Do App</span>
                     </Link>
                   </li>
 
@@ -372,10 +410,12 @@ const Sidebar = ({ userRole, logout }) => {
                       aria-current="page"
                       to="/weather"
                     >
-                      <div className="nav-link-icon text-primary">
-                        <i className="fa-solid fa-cloud"></i>
+                      <div className="d-flex align-items-center gap-4 py-2">
+                        <div className="nav-link-icon text-primary">
+                          <i className="fa-solid fa-cloud"></i>
+                        </div>
+                        <span className="nav-link-text">Kolhapur Weather</span>
                       </div>
-                      <span className="nav-link-text">Kolhapur Weather</span>
                     </Link>
                   </li>
 
@@ -385,10 +425,12 @@ const Sidebar = ({ userRole, logout }) => {
                       aria-current="page"
                       to="/news"
                     >
-                      <div className="nav-link-icon text-danger-emphasis">
-                        <i className="fa-solid fa-newspaper"></i>
+                      <div className="d-flex align-items-center gap-4 py-2">
+                        <div className="nav-link-icon text-danger-emphasis">
+                          <i className="fa-solid fa-newspaper"></i>
+                        </div>
+                        <span className="nav-link-text">News App</span>
                       </div>
-                      <span className="nav-link-text">News App</span>
                     </Link>
                   </li>
 
@@ -398,10 +440,12 @@ const Sidebar = ({ userRole, logout }) => {
                       aria-current="page"
                       to="/users-data"
                     >
-                      <div className="nav-link-icon text-danger-emphasis">
-                        <i className="fa-solid fa-users"></i>
+                      <div className="d-flex align-items-center gap-4 py-2">
+                        <div className="nav-link-icon text-danger-emphasis">
+                          <i className="fa-solid fa-users"></i>
+                        </div>
+                        <span className="nav-link-text">Users CRUD Demo</span>
                       </div>
-                      <span className="nav-link-text">Users CRUD Demo</span>
                     </Link>
                   </li>
                 </ul>
@@ -417,10 +461,12 @@ const Sidebar = ({ userRole, logout }) => {
                 aria-expanded="false"
                 aria-controls="authExamples"
               >
-                <div className="nav-link-icon text-success">
-                  <i className="fa-solid fa-gear"></i>
+                <div className="d-flex align-items-center gap-4 py-2">
+                  <div className="nav-link-icon text-success">
+                    <i className="fa-solid fa-gear"></i>
+                  </div>
+                  <span className="nav-link-text fw-bold">Authentication</span>
                 </div>
-                <span className="nav-link-text fw-bold">Authentication</span>
               </a>
               <div className="collapse" id="authExamples">
                 <ul className="nav flex-column ms-4">
@@ -430,11 +476,13 @@ const Sidebar = ({ userRole, logout }) => {
                       aria-current="page"
                       to="/settings"
                     >
-                      <div className="nav-link-icon text-success-emphasis">
-                        <i className="fas fa-lock"></i>{" "}
-                        {/* Icon for Change Password */}
+                      <div className="d-flex align-items-center gap-4 py-2">
+                        <div className="nav-link-icon text-success-emphasis">
+                          <i className="fas fa-lock"></i>{" "}
+                          {/* Icon for Change Password */}
+                        </div>
+                        <span className="nav-link-text">Change Password</span>
                       </div>
-                      <span className="nav-link-text">Change Password</span>
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -444,11 +492,13 @@ const Sidebar = ({ userRole, logout }) => {
                       to="/signin"
                       onClick={handleLogout}
                     >
-                      <div className="nav-link-icon text-success-emphasis">
-                        <i className="fas fa-sign-out-alt"></i>{" "}
-                        {/* Icon for Logout */}
+                      <div className="d-flex align-items-center gap-4 py-2">
+                        <div className="nav-link-icon text-success-emphasis">
+                          <i className="fas fa-sign-out-alt"></i>{" "}
+                          {/* Icon for Logout */}
+                        </div>
+                        <span className="nav-link-text">Logout</span>
                       </div>
-                      <span className="nav-link-text">Logout</span>
                     </Link>
                   </li>
                 </ul>

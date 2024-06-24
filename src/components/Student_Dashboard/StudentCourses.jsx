@@ -24,7 +24,7 @@ const StudentCourses = () => {
 
   if (loading) {
     return (
-      <div className="text-center margin-top-bottom">
+      <div className="text-center margin-top-bottom min-vh-100">
         <Button color="primary" disabled>
           <Spinner size="sm">Loading...</Spinner>
           <span> Loading</span>
@@ -34,8 +34,11 @@ const StudentCourses = () => {
   }
 
   return (
-    <div className="container margin-top-bottom text-center d-flex flex-column gap-4">
-      <h2>Student Courses</h2>
+    <div
+      className="container min-vh-100 text-center d-flex flex-column gap-4 margin-top-bottom"
+      style={{ marginTop: "180px" }}
+    >
+      <h2 className="display-6">Student Courses</h2>
       <p className="fs-4 mt-2">
         Hello, {userData.fullName}, Your enrolled courses are as follows
       </p>

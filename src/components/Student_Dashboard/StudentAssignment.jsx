@@ -119,7 +119,7 @@ const AssignmentList = () => {
 
   if (loading) {
     return (
-      <div className="text-center margin-top-bottom">
+      <div className="text-center margin-top-bottom min-vh-100">
         <Button color="primary" disabled>
           <Spinner size="sm" /> Loading...
         </Button>
@@ -128,8 +128,8 @@ const AssignmentList = () => {
   }
 
   return (
-    <div className="container margin-top-bottom">
-      <h1 className="mb-4 text-center">Submit your assignments</h1>
+    <div className="container min-vh-100" style={{ marginTop: "180px" }}>
+      <h1 className="mb-4 text-center display-6">Submit your assignments</h1>
       <h2 className="mt-5 mb-4 text-center">Current Assignments</h2>
       <div className="table-responsive">
         <table className="table table-striped table-bordered">

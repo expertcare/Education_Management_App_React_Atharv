@@ -26,7 +26,7 @@ const StudentSchedule = () => {
 
   if (loading) {
     return (
-      <div className="text-center margin-top-bottom">
+      <div className="text-center margin-top-bottom min-vh-100">
         <Button color="primary" disabled>
           <Spinner size="sm">Loading...</Spinner>
           <span> Loading</span>
@@ -36,8 +36,11 @@ const StudentSchedule = () => {
   }
 
   return (
-    <div className="container margin-top-bottom text-center d-flex flex-column gap-4">
-      <h2>Student Schedule</h2>
+    <div
+      className="container margin-top-bottom text-center d-flex flex-column min-vh-100 gap-4"
+      style={{ marginTop: "180px" }}
+    >
+      <h2 className="display-6">Student Schedule</h2>
       <p className="fs-4 mt-4">
         Hello {userData.fullName}, here is your schedule
       </p>

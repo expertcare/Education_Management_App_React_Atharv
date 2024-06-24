@@ -96,6 +96,14 @@ const StudentDashboard = () => {
       buttonText: "View Notifications",
       link: "/notifications",
     },
+    {
+      image:
+        "https://img.freepik.com/free-vector/online-certification-with-smartphone_23-2148571385.jpg?t=st=1717146570~exp=1717150170~hmac=028407c7036005de45c351e19134fe539af38b2fc6aa025611145e89006511ec&w=740",
+      title: "Exams",
+      description: "Check and attempt your upcoming exams.",
+      buttonText: "View Notifications",
+      link: "/student_exams",
+    },
   ];
 
   return (

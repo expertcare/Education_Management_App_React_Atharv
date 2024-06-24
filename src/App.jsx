@@ -47,6 +47,11 @@ import StudentCourses from "./components/Student_Dashboard/StudentCourses";
 import FacultyCourses from "./components/Faculty_Dashboard/FacultyCourses";
 import FacultySchedule from "./components/Faculty_Dashboard/FacultySchedule";
 import ContactList from "./components/Admin_Dashboard/ContactList";
+import FacultyExams from "./components/Faculty_Dashboard/FacultyExams";
+
+import ExamCourseList from "./components/Student_Dashboard/ExamCourseList";
+import Exam from "./components/Student_Dashboard/Exam";
+// import ExamCourseCard from "./components/Student_Dashboard/ExamCourseCard";
 
 // import CreateUser from "./components/Admin_Dashboard/CreateUser";
 
@@ -98,6 +103,8 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     path="/notifications"
                     element={<NotificationPopup />}
                   />
+                  <Route path="/student_exams" element={<ExamCourseList />} />
+                  <Route path="/exam/:courseName" element={<Exam />}></Route>
 
                   {/* Add more student-specific routes here */}
                 </>
@@ -122,6 +129,7 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                   />
                   <Route path="/faculty_courses" element={<FacultyCourses />} />
                   <Route path="/faculty_profile" element={<StudentProfile />} />
+                  <Route path="/faculty_exams" element={<FacultyExams />} />
 
                   <Route
                     path="/faculty_schedule"

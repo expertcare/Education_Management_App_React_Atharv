@@ -32,7 +32,7 @@ const NotificationPopup = () => {
 
   if (loading) {
     return (
-      <div className="text-center margin-top-bottom">
+      <div className="text-center margin-top-bottom min-vh-100">
         <Button color="primary" disabled>
           <Spinner size="sm">Loading...</Spinner>
           <span> Loading</span>
@@ -42,8 +42,8 @@ const NotificationPopup = () => {
   }
 
   return (
-    <div className="container margin-top-bottom">
-      <h2 className="text-center mb-5">Notifications</h2>
+    <div className="container min-vh-100" style={{ marginTop: "180px" }}>
+      <h2 className="text-center display-6 mb-5">Notifications</h2>
       <div className="d-flex gap-4 flex-wrap  align-content-center justify-content-around">
         {notifications.map((notification) => (
           <Toast key={notification._id} className="p-2">

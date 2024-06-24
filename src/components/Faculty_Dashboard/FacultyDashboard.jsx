@@ -91,6 +91,14 @@ const FacultyDashboard = () => {
     },
     {
       image:
+        "https://img.freepik.com/free-vector/businessman-holding-pencil-big-complete-checklist-with-tick-marks_1150-35019.jpg?t=st=1717146454~exp=1717150054~hmac=ef35e130b0ed9283c9c13af8625d385ca84c09436f51c054baa3d31cf1e961b9&w=740",
+      title: "Exams",
+      description: "Schedule your Exam and add Question",
+      buttonText: "Schedule Exams",
+      link: "/faculty_exams",
+    },
+    {
+      image:
         "https://img.freepik.com/free-vector/online-certification-with-smartphone_23-2148571385.jpg?t=st=1717146570~exp=1717150170~hmac=028407c7036005de45c351e19134fe539af38b2fc6aa025611145e89006511ec&w=740",
       title: "Notifications",
       description: "Check important notifications.",
