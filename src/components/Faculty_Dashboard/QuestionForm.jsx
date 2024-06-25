@@ -61,7 +61,7 @@ const QuestionForm = () => {
   };
 
   return (
-    <div className="container col-md-8">
+    <div className="container col-md-6">
       <h3 className="text-center mt-5">Add New Questions</h3>
 
       <form onSubmit={handleSubmit}>
