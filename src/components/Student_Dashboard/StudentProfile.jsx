@@ -43,7 +43,7 @@ const StudentProfile = () => {
   return (
     <div
       className="container min-vh-100 d-flex flex-column"
-      style={{ marginTop: "250px" }}
+      style={{ marginTop: "180px" }}
     >
       <h2 className="text-center mb-4 display-6">{capitalizedRole} Profile</h2>
       {userData && (

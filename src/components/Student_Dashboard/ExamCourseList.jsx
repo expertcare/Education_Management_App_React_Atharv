@@ -23,10 +23,10 @@ const CourseList = () => {
   return (
     <div className="container d-flex flex-column min-vh-100">
       <h2 className="display-6 text-center margin-top-bottom">Exam Section</h2>
-      <div className="row">
+      <div className="row col-md-10 mx-auto">
         {courses.map((course) => (
-          <div key={course._id} className="col-lg-4 col-md-6 mb-4">
-            <div className="card h-100">
+          <div key={course._id} className="col-lg-4 col-md-6 mb-5">
+            <div className="card h-100 text-center">
               <div className="card-body">
                 <h5 className="card-title">{course.name}</h5>
                 <p className="card-text">{course.description}</p>

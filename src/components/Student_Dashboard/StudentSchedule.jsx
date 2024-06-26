@@ -38,7 +38,7 @@ const StudentSchedule = () => {
   return (
     <div
       className="container margin-top-bottom text-center d-flex flex-column min-vh-100 gap-4"
-      style={{ marginTop: "180px" }}
+      style={{ marginTop: "15vh" }}
     >
       <h2 className="display-6">Student Schedule</h2>
       <p className="fs-4 mt-4">

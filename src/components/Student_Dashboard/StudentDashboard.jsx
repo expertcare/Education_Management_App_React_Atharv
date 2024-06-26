@@ -101,8 +101,16 @@ const StudentDashboard = () => {
         "https://img.freepik.com/free-vector/college-entrance-exam-concept-illustration_114360-13742.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1719100800&semt=sph",
       title: "Exams",
       description: "Check and attempt your upcoming exams.",
-      buttonText: "View Notifications",
+      buttonText: "View Exams",
       link: "/student_exams",
+    },
+    {
+      image:
+        "https://img.freepik.com/free-photo/documents-paperwork-business-strategy-concept_53876-125434.jpg?w=1480&t=st=1719378014~exp=1719378614~hmac=c562d5d5cc323cff7ec0cb3828f93c05d8f6199c228c44d600668b5f1a17e99f",
+      title: "Results",
+      description: "View Your results",
+      buttonText: "View Results",
+      link: "/student_result",
     },
   ];
 

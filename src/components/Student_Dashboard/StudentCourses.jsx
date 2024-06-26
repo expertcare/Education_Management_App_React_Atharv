@@ -36,7 +36,7 @@ const StudentCourses = () => {
   return (
     <div
       className="container min-vh-100 text-center d-flex flex-column gap-4 margin-top-bottom"
-      style={{ marginTop: "180px" }}
+      style={{ marginTop: "150px" }}
     >
       <h2 className="display-6">Student Courses</h2>
       <p className="fs-4 mt-2">

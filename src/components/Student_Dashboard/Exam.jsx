@@ -117,6 +117,10 @@ const Exam = () => {
 
         // Show exam result after submission
         setShowResult(false);
+
+        // Refresh the page to fetch updated data
+        window.location.reload();
+        alert("You have succesfully submitted the exam");
       } catch (error) {
         // Handle error (e.g., show error message)
         console.error("Error submitting answers", error);

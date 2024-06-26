@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import NavProfile from "./NavProfile";
 import { useUser } from "../context/UserContext";
 import Sidebar from "./Sidebar";
+import logo from "../assets/education_logo.png";
 
 const Header = ({ logout }) => {
   const { userData } = useUser();
@@ -21,12 +22,7 @@ const Header = ({ logout }) => {
         <nav className="navbar navbar-expand-sm bg-body-tertiary bsb-navbar-3 fixed-top">
           <div className="container">
             <Link className="navbar-brand d-sm-none" to="/home">
-              <img
-                src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"
-                alt="BootstrapBrain Logo"
-                width="55"
-              />
-              React
+              <img src={logo} alt="logo" height={50} />
             </Link>
             <button
               className="navbar-toggler"

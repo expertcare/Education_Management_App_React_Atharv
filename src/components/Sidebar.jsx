@@ -9,6 +9,7 @@ const Sidebar = ({ userRole, logout }) => {
   const attendanceLink = `/${userRole}_attendance`;
   const assignmentLink = `/${userRole}_assignment`;
   const examLink = `/${userRole}_exams`;
+  const resultLink = `/${userRole}_result`;
 
   const handleLogout = () => {
     // Call the logout function passed as a prop
@@ -196,11 +197,27 @@ const Sidebar = ({ userRole, logout }) => {
                 >
                   <Link className="nav-link p-3" to={examLink}>
                     <div className="d-flex align-items-center gap-4">
-                      <div className="nav-link-icon text-warning">
+                      <div className="nav-link-icon text-primary">
                         <i className="fa-solid fa-book-open fa-lg"></i>{" "}
                         {/* Icon for Exam */}
                       </div>
                       <span className="nav-link-text fw-bold">Exam</span>
+                    </div>
+                  </Link>
+                </li>
+
+                {/* Results */}
+                <li
+                  className="nav-item border-bottom py-1"
+                  data-bs-dismiss="offcanvas"
+                >
+                  <Link className="nav-link p-3" to={resultLink}>
+                    <div className="d-flex align-items-center gap-4">
+                      <div className="nav-link-icon text-warning">
+                        <i className="fa-solid fa-trophy fa-lg"></i>
+                        {/* Icon for Results */}
+                      </div>
+                      <span className="nav-link-text fw-bold">Results</span>
                     </div>
                   </Link>
                 </li>
