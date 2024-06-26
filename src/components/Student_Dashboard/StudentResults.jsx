@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Button, Spinner, Card, CardBody, CardHeader } from "reactstrap";
 import { useUser } from "../../context/UserContext";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 const StudentResults = () => {
   const { userData } = useUser(); // useUser provides userData with _id and fullName
   const [examMarks, setExamMarks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     const fetchExamMarks = async () => {
@@ -40,9 +43,43 @@ const StudentResults = () => {
     return acc;
   }, {});
 
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF();
+
+    let position = 0;
+
+    doc.setFontSize(18);
+    doc.text(`Student Results - ${userData.fullName}`, 14, 15);
+    position += 20; // Increase vertical position after title
+
+    Object.keys(groupedMarks).forEach((courseName) => {
+      doc.setFontSize(14);
+      doc.text(courseName, 14, position + 5);
+      position += 5; // Increase vertical position after course name
+
+      const tableData = groupedMarks[courseName].map((mark) => [
+        `${new Date(mark.timestamp).toLocaleDateString()} at ${new Date(
+          mark.timestamp
+        ).toLocaleTimeString()}`,
+        `${mark.marks} out of ${Object.keys(mark.answers).length}`,
+        `${mark.percentage}%`,
+      ]);
+
+      doc.autoTable({
+        startY: position + 5,
+        head: [["Submitted On", "Marks", "Percentage"]],
+        body: tableData,
+      });
+
+      position = doc.autoTable.previous.finalY + 5; // Update position after table
+    });
+
+    doc.save(`student_results_${userData.fullName}.pdf`);
+  };
+
   return (
     <div className="container text-center margin-top-bottom">
-      <div className="col-md-8 offset-md-2 min-vh-100">
+      <div className="col-md-8 offset-md-2 min-vh-100" ref={contentRef}>
         <h2 className="m-5 display-6">Student Results</h2>
 
         <p className="fs-5 mb-5">
@@ -86,6 +123,12 @@ const StudentResults = () => {
             ))}
           </div>
         )}
+
+        <div className="text-center mt-3">
+          <Button color="primary" onClick={handleDownloadPDF}>
+            Download Results as PDF
+          </Button>
+        </div>
       </div>
     </div>
   );
