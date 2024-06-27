@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "../context/UserContext";
 
 const SigninSection = ({ login }) => {
   const { updateUser } = useUser();
   const navigate = useNavigate();
-  const [usersData, setUsersData] = useState([]);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -16,63 +15,57 @@ const SigninSection = ({ login }) => {
 
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    const fetchUsersData = async () => {
-      try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/usersData"
-        );
-        setUsersData(response.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUsersData();
-  }, []);
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === "checkbox" ? checked : value;
     setFormData({ ...formData, [name]: newValue });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
     if (!formData.username) newErrors.username = "Please enter your username";
     if (!formData.password) newErrors.password = "Please enter your password";
 
-    setErrors(newErrors);
+    setErrors(newErrors); // Update errors state with newErrors
 
     if (Object.keys(newErrors).length === 0) {
-      // Find user with matching username and password
-      const user =
-        usersData.length > 0 &&
-        usersData.find(
-          (user) =>
-            user.username === formData.username &&
-            user.password === formData.password &&
-            user.role === formData.role
+      try {
+        const response = await axios.post(
+          "https://education-management-server-ruby.vercel.app/api/usersData/login",
+          formData
+        );
+        const user = response.data; // Backend sends user details upon successful login
+
+        if (user) {
+          const role = user.role;
+          console.log("Successfully logged in as:", user.username);
+          console.log("Your role is " + role);
+
+          updateUser(user); // Update user data in context
+          login(role); // Call the login function with the role
+          navigate("/home"); // Navigate to the home page
+        }
+      } catch (error) {
+        console.error(
+          "Error logging in:",
+          error.response?.data?.message || error.message
         );
 
-      if (user) {
-        const role = user.role;
-
-        console.log("Successfully logged in as:", user.username);
-        console.log("Your role is " + role);
-
-        updateUser(user); // Update user data in context
-
-        login(role); // Call the login function with the role
-        console.log(user);
-
-        navigate("/home"); // Navigate to the home page
-      } else {
-        // Display error if username or password is incorrect
-        setErrors({ invalidCredentials: "Invalid username or password" });
-        alert("Invalid username or password");
-        alert("Make sure you have selected correct role");
+        // Handle specific errors from backend
+        if (error.response) {
+          if (error.response.status === 401) {
+            setErrors({ invalidCredentials: error.response.data.message });
+          } else {
+            setErrors({
+              serverError: "Failed to log in. Please try again later.",
+            });
+          }
+        } else {
+          setErrors({
+            serverError: "Network error. Please check your connection.",
+          });
+        }
       }
     }
   };
@@ -94,9 +87,6 @@ const SigninSection = ({ login }) => {
                       className="img-fluid"
                       alt="Sample image"
                     />
-                    {/* <Link to="/signup" className="text-center mt-4">
-                      Create an account
-                    </Link> */}
                   </div>
                   <div className="col-md-10  col-lg-6 col-xl-6 order-1 order-lg-2">
                     <h1 className="fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</h1>
@@ -193,6 +183,18 @@ const SigninSection = ({ login }) => {
                         </div>
                       </div>
 
+                      {/* Display error messages */}
+                      {errors.invalidCredentials && (
+                        <div className="alert alert-danger" role="alert">
+                          {errors.invalidCredentials}
+                        </div>
+                      )}
+                      {errors.serverError && (
+                        <div className="alert alert-danger" role="alert">
+                          {errors.serverError}
+                        </div>
+                      )}
+
                       {/* Remember me checkbox */}
                       <div className="form-check mb-4">
                         <input
@@ -217,27 +219,6 @@ const SigninSection = ({ login }) => {
                         </button>
                       </div>
                     </form>
-                    {/* Social login buttons */}
-                    {/* <div className="d-flex">
-                      <p className="mx-1 mx-md-4 mt-4">or login with</p>
-                      <ul className="socials d-flex mt-4 gap-3">
-                        <li>
-                          <a href="#">
-                            <i className="fa-brands fa-facebook fa-xl me-3 face-icon"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <i className="fa-brands fa-square-twitter fa-xl me-3 twiter-icon"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <i className="fa-brands fa-google fa-xl me-3 google-icon"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div> */}
                   </div>
                 </div>
               </div>

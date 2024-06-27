@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Collapse } from "reactstrap";
+import { Table } from "reactstrap"; // Assuming you have imported Table from reactstrap
 import { useUser } from "../../context/UserContext";
 
 const FacultyResults = () => {
@@ -8,7 +8,6 @@ const FacultyResults = () => {
   const [examMarks, setExamMarks] = useState([]);
   const [studentNames, setStudentNames] = useState({});
   const [courses, setCourses] = useState([]);
-  const [openCards, setOpenCards] = useState({});
 
   useEffect(() => {
     const fetchExamMarks = async () => {
@@ -76,13 +75,6 @@ const FacultyResults = () => {
     return acc;
   }, {});
 
-  const toggleCard = (studentId) => {
-    setOpenCards({
-      ...openCards,
-      [studentId]: !openCards[studentId],
-    });
-  };
-
   return (
     <div
       className="container text-center min-vh-100"
@@ -92,63 +84,54 @@ const FacultyResults = () => {
 
       {courses.map((course) => (
         <div key={course._id} className="mb-4">
-          <h3>{course.name}</h3>
+          <h3 className="mb-4">{course.name}</h3>
 
           {Object.keys(groupedMarks).length === 0 ? (
             <p className="fs-5 mt-5 animated-text">No exam marks found.</p>
           ) : (
-            <div className="row">
-              {Object.keys(groupedMarks).map((studentId) => {
-                const studentMarks = groupedMarks[studentId].filter(
-                  (mark) => mark.courseName === course.name
-                );
-                if (studentMarks.length === 0) return null;
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Course</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Marks</th>
+                  <th>Percentage</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(groupedMarks).map((studentId) => {
+                  const studentMarks = groupedMarks[studentId].filter(
+                    (mark) => mark.courseName === course.name
+                  );
+                  if (studentMarks.length === 0) return null;
 
-                return (
-                  <div key={studentId} className="col-md-6 mb-4">
-                    <div className="border rounded p-3">
-                      <h5>
-                        Student ID: {studentId.substring(studentId.length - 8)}
-                      </h5>
-                      <p>
-                        Student Name: {studentNames[studentId] || "Loading..."}
-                      </p>
-                      <Button
-                        color="primary"
-                        onClick={() => toggleCard(studentId)}
-                        style={{ marginBottom: "1rem" }}
-                      >
-                        {openCards[studentId] ? "Hide Details" : "Show Details"}
-                      </Button>
-                      <Collapse isOpen={openCards[studentId]}>
-                        {studentMarks.map((mark) => (
-                          <div key={mark._id} className="mb-3">
-                            <h6>
-                              <strong>Course:</strong> {mark.courseName}
-                            </h6>
-                            <p>
-                              <strong>Marks:</strong> {mark.marks} out of{" "}
-                              {Object.keys(mark.answers).length}
-                            </p>
-                            <p>
-                              <strong>Percentage:</strong> {mark.percentage}%
-                            </p>
-                            <p>
-                              <strong>Date:</strong>{" "}
-                              {new Date(mark.timestamp).toLocaleDateString()}
-                            </p>
-                            <p>
-                              <strong>Time:</strong>{" "}
-                              {new Date(mark.timestamp).toLocaleTimeString()}
-                            </p>
-                          </div>
-                        ))}
-                      </Collapse>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  return studentMarks.map((mark, index) => (
+                    <tr key={`${studentId}-${index}`}>
+                      {index === 0 && (
+                        <>
+                          <td rowSpan={studentMarks.length}>
+                            {studentId.substring(studentId.length - 8)}
+                          </td>
+                          <td rowSpan={studentMarks.length}>
+                            {studentNames[studentId] || "Loading..."}
+                          </td>
+                        </>
+                      )}
+                      <td>{mark.courseName}</td>
+                      <td>{new Date(mark.timestamp).toLocaleDateString()}</td>
+                      <td>{new Date(mark.timestamp).toLocaleTimeString()}</td>
+                      <td>
+                        {mark.marks} out of {Object.keys(mark.answers).length}
+                      </td>
+                      <td>{mark.percentage}%</td>
+                    </tr>
+                  ));
+                })}
+              </tbody>
+            </Table>
           )}
         </div>
       ))}

@@ -100,7 +100,7 @@ const AssignmentCheck = ({ assignments }) => {
   };
 
   const filteredAssignments = assignments.filter(
-    (assignment) => assignment.userId === userData.id
+    (assignment) => assignment.userId === userData._id
   );
 
   return (

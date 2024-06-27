@@ -17,12 +17,13 @@ const NotificationPopup = () => {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/notifications"
+        `https://education-management-server-ruby.vercel.app/api/notifications/${userData.role}`
       );
-      const filteredNotifications = response.data.filter(
-        (notification) => notification.role === userData.role
-      );
-      setNotifications(filteredNotifications);
+      // const filteredNotifications = response.data.filter(
+      //   (notification) => notification.role === userData.role
+      // );
+
+      setNotifications(response.data);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching notifications: ", error);

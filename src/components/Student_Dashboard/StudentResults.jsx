@@ -4,6 +4,7 @@ import { Button, Spinner, Card, CardBody, CardHeader } from "reactstrap";
 import { useUser } from "../../context/UserContext";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const StudentResults = () => {
   const { userData } = useUser(); // useUser provides userData with _id and fullName
@@ -99,25 +100,31 @@ const StudentResults = () => {
             {Object.keys(groupedMarks).map((courseName) => (
               <div key={courseName} className="col">
                 {groupedMarks[courseName].map((mark) => (
-                  <Card key={mark._id} className="mb-4">
-                    <CardHeader>
-                      <h4>{courseName}</h4>
-                    </CardHeader>
-                    <CardBody>
-                      <p className="card-text">
-                        Submitted on{" "}
-                        {new Date(mark.timestamp).toLocaleDateString()} at{" "}
-                        {new Date(mark.timestamp).toLocaleTimeString()}
-                      </p>
-                      <p className="card-text">
-                        <strong>Marks:</strong> {mark.marks} out of{" "}
-                        {Object.keys(mark.answers).length}
-                      </p>
-                      <p className="card-text">
-                        <strong>Percentage:</strong> {mark.percentage}%
-                      </p>
-                    </CardBody>
-                  </Card>
+                  <Link
+                    key={mark._id}
+                    to={`/exam/${encodeURIComponent(courseName)}`} // Navigate to /exam/:courseName
+                    className="text-decoration-none"
+                  >
+                    <Card className="mb-4">
+                      <CardHeader>
+                        <h4>{courseName}</h4>
+                      </CardHeader>
+                      <CardBody>
+                        <p className="card-text">
+                          Submitted on{" "}
+                          {new Date(mark.timestamp).toLocaleDateString()} at{" "}
+                          {new Date(mark.timestamp).toLocaleTimeString()}
+                        </p>
+                        <p className="card-text">
+                          <strong>Marks:</strong> {mark.marks} out of{" "}
+                          {Object.keys(mark.answers).length}
+                        </p>
+                        <p className="card-text">
+                          <strong>Percentage:</strong> {mark.percentage}%
+                        </p>
+                      </CardBody>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             ))}

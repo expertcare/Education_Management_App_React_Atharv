@@ -30,7 +30,7 @@ const AssignmentList = () => {
           const submission = submissionsResponse.data.find(
             (submission) =>
               submission.assignmentId === assignment._id &&
-              submission.userId === userData.id
+              submission.userId === userData._id
           );
           const grade = gradesResponse.data.find(
             (grade) =>
@@ -85,7 +85,7 @@ const AssignmentList = () => {
     const formData = new FormData();
     formData.append("file", assignment.file);
     formData.append("assignmentId", assignmentId);
-    formData.append("userId", userData.id);
+    formData.append("userId", userData._id);
     formData.append("userName", userData.fullName);
 
     try {

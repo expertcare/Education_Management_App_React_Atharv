@@ -67,7 +67,7 @@ const StudentAttendanceRecord = () => {
       <h2 className="text-center">Attendance Record</h2>
       <p className="fs-4 my-4 text-center">
         Hello {userData.fullName}, Your ID of student is{" "}
-        {userData.id.substring(userData.id.length - 8)}
+        {userData._id.substring(userData._id.length - 8)}
       </p>
 
       {/* Search input field */}
@@ -104,7 +104,7 @@ const StudentAttendanceRecord = () => {
                 <tbody>
                   {groupedAttendance[date].map((record) =>
                     record.students
-                      .filter((student) => student.id === userData.id)
+                      .filter((student) => student.id === userData._id)
                       .map((student) => (
                         <tr key={`${record.id}-${student.id}`}>
                           <td>{student.id.substring(student.id.length - 8)}</td>

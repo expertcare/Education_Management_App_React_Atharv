@@ -19,12 +19,10 @@ const StudentDashboard = () => {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/notifications"
+        `https://education-management-server-ruby.vercel.app/api/notifications/${userData.role}`
       );
-      const filteredNotifications = response.data.filter(
-        (notification) => notification.role === userData.role
-      );
-      setNotifications(filteredNotifications);
+
+      setNotifications(response.data);
     } catch (error) {
       console.error("Error fetching notifications: ", error);
     }

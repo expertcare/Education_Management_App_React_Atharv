@@ -14,7 +14,7 @@ const FacultyAssignment = () => {
     title: "",
     description: "",
     dueDate: "",
-    userId: userData.id, // Add userId to formData
+    userId: userData._id, // Add userId to formData
   });
   const [editingAssignmentId, setEditingAssignmentId] = useState(null);
 
@@ -26,7 +26,7 @@ const FacultyAssignment = () => {
     axios
       .get(API_URL, {
         params: {
-          userId: userData.id,
+          userId: userData._id,
         },
       })
       .then((response) => {
@@ -44,7 +44,7 @@ const FacultyAssignment = () => {
       axios
         .put(`${API_URL}/${editingAssignmentId}`, {
           ...formData,
-          userId: userData.id,
+          userId: userData._id,
         })
         .then(() => {
           fetchAssignments();
@@ -56,7 +56,7 @@ const FacultyAssignment = () => {
     } else {
       // Add new assignment
       axios
-        .post(API_URL, { ...formData, userId: userData.id })
+        .post(API_URL, { ...formData, userId: userData._id })
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -73,7 +73,7 @@ const FacultyAssignment = () => {
       title: assignment.title,
       description: assignment.description,
       dueDate: assignment.dueDate,
-      userId: userData.id,
+      userId: userData._id,
     });
     setEditingAssignmentId(assignment._id);
   };
@@ -81,7 +81,7 @@ const FacultyAssignment = () => {
   const handleDelete = (id) => {
     axios
       .delete(`${API_URL}/${id}`, {
-        data: { userId: userData.id },
+        data: { userId: userData._id },
       })
       .then(() => {
         fetchAssignments();
@@ -105,14 +105,14 @@ const FacultyAssignment = () => {
       title: "",
       description: "",
       dueDate: "",
-      userId: userData.id,
+      userId: userData._id,
     });
     setEditingAssignmentId(null);
   };
 
   // Filter assignments based on userId
   const filteredAssignments = assignments.filter(
-    (assignment) => assignment.userId === userData.id
+    (assignment) => assignment.userId === userData._id
   );
 
   return (
