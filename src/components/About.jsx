@@ -1,109 +1,166 @@
 import React from "react";
-import { Container, Row, Col, Button } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const About = () => {
+const AboutUs = () => {
   return (
-    <>
-      <Container className="pt-5 ">
-        <Row className="mt-5">
-          <Col md="6" className="mb-4">
-            <img
-              src="https://img.freepik.com/free-vector/programming-concept-illustration_114360-1351.jpg?w=740&t=st=1717422615~exp=1717423215~hmac=504473763b68549c27f4be8ab1a146d5975350fc77ebdb321c43f99dd887b420"
-              alt="About Us"
-              className="img-fluid"
-            />
-          </Col>
-          <Col md="6" className="mb-4 mt-4">
-            <div>
-              <h2 className="mb-4">About Us</h2>
-              <p className="fs-5 mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                fringilla magna id quam accumsan, vel posuere nisi ultricies.
-                Donec vel lorem et ante viverra aliquam. Ut ac metus ac purus
-                aliquam aliquet in ac justo. Sed at justo vel purus eleifend
-                tristique. Nullam feugiat dapibus risus, non laoreet mi
-                sollicitudin non. Mauris vel malesuada sapien. Phasellus
-                vehicula magna nec mauris efficitur, vel tempor justo consequat.
-                .
-              </p>
-              <button
-                type="button"
-                className="btn bsb-btn-xl btn-outline-primary rounded-pill px-4"
-              >
-                Learn More
-              </button>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-
-      {/* <!-- About 2 - Bootstrap Brain Component --> */}
-      <section className="py-3 py-md-5">
-        <Container>
-          <Row className="gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
-            <Col lg="6">
-              <Row className="justify-content-xl-center">
-                <Col xl="10">
-                  <h2 className="mb-3">Why Choose Us?</h2>
-                  <p className="lead fs-5 mb-3 mb-xl-5">
-                    With years of experience and deep industry knowledge, we
-                    have a proven track record of success and are constantly
-                    pushing ourselves to stay ahead of the curve.
-                  </p>
-                  <div className="d-flex align-items-center mb-3">
-                    <div className="me-3 text-primary">
-                      <FontAwesomeIcon className="fa-xl" icon={faCheckCircle} />
-                    </div>
-                    <div>
-                      <p className="fs-5 m-0">
-                        Our evolution procedure is super intelligent.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-3">
-                    <div className="me-3 text-primary">
-                      <FontAwesomeIcon className="fa-xl" icon={faCheckCircle} />
-                    </div>
-                    <div>
-                      <p className="fs-5 m-0">
-                        We deliver services beyond expectations.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-4 mb-xl-5">
-                    <div className="me-3 text-primary">
-                      <FontAwesomeIcon className="fa-xl" icon={faCheckCircle} />
-                    </div>
-                    <div>
-                      <p className="fs-5 m-0">
-                        Let's hire us to reach your objectives.
-                      </p>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn bsb-btn-xl btn-outline-primary rounded-pill px-4 p-2"
-                  >
-                    Connect Now
-                  </button>
-                </Col>
-              </Row>
-            </Col>
-            <Col lg="6">
+    <div style={{ marginBottom: "120px" }}>
+      <Container>
+        {/* About us*/}
+        <section className="py-4">
+          <Row className="align-items-center">
+            <Col md={6}>
               <img
+                src="https://img.freepik.com/free-vector/isometric-online-education-round-concept-with-devices-online-training-graduation-cap-students-books-magnifier-alarm-clock-backpack-certificate-pencil-illustration_1284-51233.jpg?t=st=1719495901~exp=1719499501~hmac=10acde1182bae65382558f37d83aaa7713a007be20fdbe49697cd0d7954e24d6&w=740"
+                alt="About"
                 className="img-fluid rounded"
-                loading="lazy"
-                src="https://img.freepik.com/free-photo/guy-shows-document-girl-group-young-freelancers-office-have-conversation-working_146671-13569.jpg?t=st=1717652326~exp=1717655926~hmac=cbd4bd8fccac6b2b5bac32929f687db352e969f8fc3888bd23b3b7ba31218b40&w=740"
-                alt="About 2"
               />
             </Col>
+            <Col md={6}>
+              <div className="p-4">
+                <h2 className="mb-4">About Us</h2>
+                <p>
+                  Welcome to our website, your ultimate destination for
+                  efficient education management solutions. We specialize in
+                  providing a comprehensive platform designed to streamline
+                  educational administration processes, catering specifically to
+                  the needs of administrators, students, and faculty members
+                  alike.
+                </p>
+              </div>
+            </Col>
           </Row>
-        </Container>
-      </section>
-    </>
+        </section>
+
+        {/* Mission */}
+        <section className="mission-section py-4">
+          <Row className="align-items-center">
+            <Col md={6} className="order-md-2">
+              <img
+                src="https://img.freepik.com/free-vector/qualification-increase-course-skills-improvement-coaching-professional-development-school-authority-initiative-training-teachers-concept_335657-816.jpg?t=st=1719495759~exp=1719499359~hmac=e627e7cf3f26d97a819c9a3a9154792be8ba5060da99f06aecb52b0141e4780f&w=740"
+                alt="Mission"
+                className="img-fluid rounded"
+              />
+            </Col>
+            <Col md={6} className="order-md-1">
+              <div className="p-4">
+                <h2 className="mb-4">Our Mission</h2>
+                <p>
+                  Our mission is to revolutionize the way educational
+                  institutions manage their daily operations. We aim to simplify
+                  administrative tasks, enhance communication channels, and
+                  empower educators and learners to achieve their full
+                  potential.
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </section>
+
+        {/* Why choose us */}
+        <section className="py-4">
+          <Row className="align-items-center">
+            <Col md={6} className="order-md-1">
+              <img
+                src="https://img.freepik.com/free-vector/man-working-with-computer-people-talking_1262-19832.jpg?t=st=1719496273~exp=1719499873~hmac=a4a76e19645c19eb12798adfbe3e1de0d14e0b313151cf48b71fe4fda946d3d9&w=740"
+                alt="Mission"
+                className="img-fluid rounded-1"
+              />
+            </Col>
+            <Col md={6} className="order-md-2">
+              <div className="p-4">
+                <h2 className="mb-4">Why Choose Us?</h2>
+                <p>
+                  Whether you represent a school, college, or university, our
+                  platform is designed to cater to your specific needs. Embrace
+                  the next generation of education management with us.
+                </p>
+                <Link to="/contact">
+                  <Button variant="primary">Contact Us</Button>
+                </Link>
+              </div>
+            </Col>
+          </Row>
+        </section>
+
+        {/* What We Offer Section */}
+        <div className="my-5">
+          <h2 className="text-center mb-5">What We Offer</h2>
+          <Row xs={1} md={2} lg={3} className="g-4">
+            {/* Administrative Tools */}
+            <Col>
+              <Card className="h-100">
+                <Card.Body>
+                  <Card.Title>Administrative Tools</Card.Title>
+                  <Card.Text>
+                    Our platform equips administrators with powerful tools to
+                    effortlessly manage student and faculty profiles,
+                    assignments, attendance, courses, and results.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            {/* Efficient Communication */}
+            <Col>
+              <Card className="h-100">
+                <Card.Body>
+                  <Card.Title>Efficient Communication</Card.Title>
+                  <Card.Text>
+                    Facilitating seamless communication between administrators,
+                    faculty members, and students through integrated
+                    notification systems.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            {/* Comprehensive Student Management */}
+            <Col>
+              <Card className="h-100">
+                <Card.Body>
+                  <Card.Title>Comprehensive Student Management</Card.Title>
+                  <Card.Text>
+                    From enrollment to graduation, our platform supports the
+                    entire student lifecycle, ensuring a smooth and organized
+                    experience.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            {/* Empowering Educators */}
+            <Col>
+              <Card className="h-100">
+                <Card.Body>
+                  <Card.Title>Empowering Educators</Card.Title>
+                  <Card.Text>
+                    Providing faculty members with the resources they need to
+                    create, manage, and grade assignments, track attendance, and
+                    monitor student progress effectively.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            {/* Enhanced Learning Experience */}
+            <Col>
+              <Card className="h-100">
+                <Card.Body>
+                  <Card.Title>Enhanced Learning Experience</Card.Title>
+                  <Card.Text>
+                    Enabling students to access course materials, submit
+                    assignments, track their progress, and receive timely
+                    updates and notifications.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      </Container>
+    </div>
   );
 };
 
-export default About;
+export default AboutUs;

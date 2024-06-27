@@ -17,10 +17,10 @@ const Home = () => {
     >
       <div className="container text-center text-white">
         <h1 className="display-4">Welcome to Our Website</h1>
-        <p className="lead mt-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida,
-          nisl vitae tincidunt dapibus, quam sapien lobortis lorem, nec suscipit
-          massa dolor sit amet justo.
+        <p className="lead my-4">
+          Our education management app streamlines administrative tasks for
+          educational institutions, offering features such as student
+          enrollment, attendance tracking, and many more.
         </p>
         <Link to="/about">
           <button className="btn my-btn">Learn More</button>
