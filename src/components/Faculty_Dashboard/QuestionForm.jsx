@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const QuestionForm = () => {
   const { userData } = useUser(); // Assuming useUser provides access to user data
@@ -14,9 +15,7 @@ const QuestionForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/courses"
-        );
+        const response = await axios.get(`${API_URL}/api/courses`);
         const filteredCourses = response.data.filter(
           (course) => course.faculty === userData.fullName
         );
@@ -39,10 +38,7 @@ const QuestionForm = () => {
         courseName: selectedCourse, // Assign selected courseName here
         courseFaculty: userData.fullName,
       };
-      await axios.post(
-        "https://education-management-server-ruby.vercel.app/api/questions",
-        newQuestion
-      );
+      await axios.post(`${API_URL}/api/questions`, newQuestion);
       setSubmitMessage("Question added successfully!");
       // Reset form fields after submission
       setQuestion("");

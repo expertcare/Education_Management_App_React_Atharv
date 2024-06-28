@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Spinner } from "reactstrap";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const StudentCourses = () => {
   const [courses, setCourses] = useState([]);
@@ -11,7 +12,7 @@ const StudentCourses = () => {
 
   useEffect(() => {
     axios
-      .get("https://education-management-server-ruby.vercel.app/api/courses")
+      .get(`${API_URL}/api/courses`)
       .then((response) => {
         setCourses(response.data);
         setLoading(false);

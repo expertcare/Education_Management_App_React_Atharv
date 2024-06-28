@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table } from "reactstrap"; // Assuming you have imported Table from reactstrap
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const FacultyResults = () => {
   const { userData } = useUser();
@@ -12,9 +13,7 @@ const FacultyResults = () => {
   useEffect(() => {
     const fetchExamMarks = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/exam_marks"
-        );
+        const response = await axios.get(`${API_URL}/api/exam_marks`);
         setExamMarks(response.data);
 
         // Extract unique studentIds
@@ -26,7 +25,7 @@ const FacultyResults = () => {
         const namesPromises = uniqueStudentIds.map(async (id) => {
           try {
             const nameResponse = await axios.get(
-              `https://education-management-server-ruby.vercel.app/api/usersData/${id}/name`
+              `${API_URL}/api/usersData/${id}/name`
             );
             return { [id]: nameResponse.data.name };
           } catch (error) {
@@ -50,9 +49,7 @@ const FacultyResults = () => {
 
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/courses"
-        );
+        const response = await axios.get(`${API_URL}/api/courses`);
         const filteredCourses = response.data.filter(
           (course) => course.faculty === userData.fullName
         );

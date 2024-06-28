@@ -3,6 +3,7 @@ import axios from "axios";
 import { Spinner } from "reactstrap";
 import { Modal, Button } from "react-bootstrap";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const FacultyAttendance = () => {
   const [students, setStudents] = useState([]);
@@ -18,9 +19,7 @@ const FacultyAttendance = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/student_schedule"
-        );
+        const response = await axios.get(`${API_URL}/api/student_schedule`);
         const filteredschedules = response.data.filter(
           (schedule) => schedule.teacher === userData.fullName
         );
@@ -40,7 +39,7 @@ const FacultyAttendance = () => {
     setSelectedDate(today);
 
     axios
-      .get("https://education-management-server-ruby.vercel.app/api/usersData")
+      .get(`${API_URL}/api/usersData`)
       .then((response) => {
         // Filter users to get only students data
         const studentUsers = response.data.filter(
@@ -94,10 +93,7 @@ const FacultyAttendance = () => {
 
     // Send the attendance data to the server
     axios
-      .post(
-        "https://education-management-server-ruby.vercel.app/api/attendance",
-        attendanceData
-      )
+      .post(`${API_URL}/api/attendance`, attendanceData)
       .then((response) => {
         console.log("Attendance submitted successfully:", response.data);
         // Show the pop-up message when attendance is successfully added

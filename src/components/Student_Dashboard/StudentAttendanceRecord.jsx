@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Spinner } from "reactstrap";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const StudentAttendanceRecord = () => {
   const [attendanceData, setAttendanceData] = useState([]);
@@ -13,9 +14,7 @@ const StudentAttendanceRecord = () => {
     const fetchAttendanceData = async () => {
       try {
         console.log("Fetching attendance data...");
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/attendance"
-        );
+        const response = await axios.get(`${API_URL}/api/attendance`);
         console.log("Response:", response.data);
         const data = response.data;
 

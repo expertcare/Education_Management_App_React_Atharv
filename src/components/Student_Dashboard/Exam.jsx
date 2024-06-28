@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button, Spinner } from "reactstrap";
 import { useParams } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const Exam = () => {
   const { userData } = useUser();
@@ -21,7 +22,7 @@ const Exam = () => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          `https://education-management-server-ruby.vercel.app/api/questions/${courseName}`
+          `${API_URL}/api/questions/${courseName}`
         );
         setQuestions(response.data);
         setLoading(false);
@@ -35,7 +36,7 @@ const Exam = () => {
     const fetchExamMarks = async () => {
       try {
         const response = await axios.get(
-          `https://education-management-server-ruby.vercel.app/api/exam_marks/${userData._id}/${courseName}`
+          `${API_URL}/api/exam_marks/${userData._id}/${courseName}`
         );
         if (response.data) {
           setMarks(response.data.marks);
@@ -98,15 +99,12 @@ const Exam = () => {
         });
 
         // Example endpoint for submitting answers
-        const response = await axios.post(
-          "https://education-management-server-ruby.vercel.app/api/exam_marks",
-          {
-            studentId: userData._id,
-            courseName,
-            answers,
-            marks: calculatedMarks, // Send calculated marks to backend
-          }
-        );
+        const response = await axios.post(`${API_URL}/api/exam_marks`, {
+          studentId: userData._id,
+          courseName,
+          answers,
+          marks: calculatedMarks, // Send calculated marks to backend
+        });
 
         // Handle success (e.g., show success message)
         console.log("Answers submitted successfully", response.data);

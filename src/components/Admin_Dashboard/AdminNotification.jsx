@@ -3,9 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
-
-const API_URL =
-  "https://education-management-server-ruby.vercel.app/api/notifications";
+import { API_URL } from "../../constants";
 
 const AdminNotification = () => {
   const [notifications, setNotifications] = useState([]);
@@ -21,7 +19,7 @@ const AdminNotification = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(`${API_URL}/api/notifications`);
       setNotifications(response.data);
     } catch (error) {
       console.error("Error fetching notifications: ", error);
@@ -36,7 +34,7 @@ const AdminNotification = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(API_URL, notification);
+      await axios.post(`${API_URL}/api/notifications`, notification);
       alert("Notification saved successfully!");
       setNotification({ title: "", message: "", role: "student" }); // Reset role after submission
       fetchNotifications();
@@ -48,7 +46,7 @@ const AdminNotification = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(`${API_URL}/api/notifications/${id}`);
       alert("Notification deleted successfully!");
       fetchNotifications();
     } catch (error) {

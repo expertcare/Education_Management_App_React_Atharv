@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useUser } from "../context/UserContext";
 import axios from "axios";
+import { API_URL } from "../constants";
 
 const SettingsPrivacyPage = () => {
   const { userData } = useUser();
@@ -27,7 +28,7 @@ const SettingsPrivacyPage = () => {
     try {
       // Make a PUT request to update the user data including the new password
       const response = await axios.put(
-        `https://education-management-server-ruby.vercel.app/api/usersData/${userData.id}`,
+        `${API_URL}/api/usersData/${userData.id}`,
         {
           ...userData,
           password: newPassword, // Include the new password in the updated user data

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../../constants";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -23,9 +24,7 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/usersData"
-      );
+      const response = await axios.get(`${API_URL}/api/usersData`);
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -34,17 +33,14 @@ const UserList = () => {
 
   const createUser = async () => {
     try {
-      await axios.post(
-        "https://education-management-server-ruby.vercel.app/api/usersData",
-        {
-          username,
-          password,
-          role,
-          fullName,
-          email,
-          gender,
-        }
-      );
+      await axios.post(`${API_URL}/api/usersData`, {
+        username,
+        password,
+        role,
+        fullName,
+        email,
+        gender,
+      });
       setUsername("");
       setPassword("");
       setRole("");
@@ -60,9 +56,7 @@ const UserList = () => {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(
-        `https://education-management-server-ruby.vercel.app/api/usersData/${id}`
-      );
+      await axios.delete(`${API_URL}/api/usersData/${id}`);
       fetchUsers();
       alert("User deleted successfully!");
     } catch (error) {
@@ -72,17 +66,14 @@ const UserList = () => {
 
   const updateUser = async () => {
     try {
-      await axios.put(
-        `https://education-management-server-ruby.vercel.app/api/usersData/${editUserId}`,
-        {
-          username: editUsername,
-          password: editPassword,
-          role: editRole,
-          fullName: editFullName,
-          email: editEmail,
-          gender: editGender,
-        }
-      );
+      await axios.put(`${API_URL}/api/usersData/${editUserId}`, {
+        username: editUsername,
+        password: editPassword,
+        role: editRole,
+        fullName: editFullName,
+        email: editEmail,
+        gender: editGender,
+      });
       setEditUserId(null);
       fetchUsers();
       alert("User updated successfully!");

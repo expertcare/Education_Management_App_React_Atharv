@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AssignmentCheck from "./AssignmentCheck";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
-const API_URL =
-  "https://education-management-server-ruby.vercel.app/api/assignments";
+const API = `${API_URL}/api/assignments`;
 
 const FacultyAssignment = () => {
   const { userData } = useUser(); // Note the parentheses to invoke useUser hook
@@ -24,7 +24,7 @@ const FacultyAssignment = () => {
 
   const fetchAssignments = () => {
     axios
-      .get(API_URL, {
+      .get(API, {
         params: {
           userId: userData._id,
         },
@@ -42,7 +42,7 @@ const FacultyAssignment = () => {
     if (editingAssignmentId) {
       // Update existing assignment
       axios
-        .put(`${API_URL}/${editingAssignmentId}`, {
+        .put(`${API}/${editingAssignmentId}`, {
           ...formData,
           userId: userData._id,
         })
@@ -56,7 +56,7 @@ const FacultyAssignment = () => {
     } else {
       // Add new assignment
       axios
-        .post(API_URL, { ...formData, userId: userData._id })
+        .post(API, { ...formData, userId: userData._id })
         .then(() => {
           fetchAssignments();
           resetForm();
@@ -80,7 +80,7 @@ const FacultyAssignment = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`${API_URL}/${id}`, {
+      .delete(`${API}/${id}`, {
         data: { userId: userData._id },
       })
       .then(() => {

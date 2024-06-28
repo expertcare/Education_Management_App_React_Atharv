@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_URL } from "../constants";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -15,10 +16,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://education-management-server-ruby.vercel.app/api/contacts",
-        formData
-      );
+      await axios.post(`${API_URL}/api/contacts`, formData);
       alert("Form submitted successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {

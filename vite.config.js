@@ -6,14 +6,14 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://education-management-server-ruby.vercel.app",
+        target: "http://localhost:3000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
 
       // "/api": " https://education-management-server.onrender.com",
 
-      // "/api": "https://education-management-server-ruby.vercel.app",
+      // "/api": "http://localhost:3000",
     },
   },
 

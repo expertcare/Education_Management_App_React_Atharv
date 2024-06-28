@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
 import { Button, Spinner } from "reactstrap";
+import { API_URL } from "../../constants";
 
 const AssignmentList = () => {
   const [assignments, setAssignments] = useState([]);
@@ -14,15 +15,9 @@ const AssignmentList = () => {
 
   const fetchAssignments = async () => {
     try {
-      const assignmentsResponse = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/assignments"
-      );
-      const submissionsResponse = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/submissions"
-      );
-      const gradesResponse = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/grades"
-      );
+      const assignmentsResponse = await axios.get(`${API_URL}/api/assignments`);
+      const submissionsResponse = await axios.get(`${API_URL}/api/submissions`);
+      const gradesResponse = await axios.get(`${API_URL}/api/grades`);
 
       // Combine assignments with submission status and grades
       const assignmentsWithStatus = assignmentsResponse.data.map(
@@ -96,7 +91,7 @@ const AssignmentList = () => {
       };
 
       const response = await axios.post(
-        "https://education-management-server-ruby.vercel.app/api/submissions",
+        `${API_URL}/api/submissions`,
         formData,
         config
       );

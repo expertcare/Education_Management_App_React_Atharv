@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "../context/UserContext";
+import { API_URL } from "../constants";
 
 const SigninSection = ({ login }) => {
   const { updateUser } = useUser();
@@ -32,7 +33,7 @@ const SigninSection = ({ login }) => {
     if (Object.keys(newErrors).length === 0) {
       try {
         const response = await axios.post(
-          "https://education-management-server-ruby.vercel.app/api/usersData/login",
+          `${API_URL}/api/usersData/login`,
           formData
         );
         const user = response.data; // Backend sends user details upon successful login

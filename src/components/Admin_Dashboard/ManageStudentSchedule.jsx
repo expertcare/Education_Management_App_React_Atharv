@@ -3,11 +3,7 @@ import axios from "axios";
 import { Button, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
-
-const COURSES_URL =
-  "https://education-management-server-ruby.vercel.app/api/courses";
-const SCHEDULE_URL =
-  "https://education-management-server-ruby.vercel.app/api/student_schedule";
+import { API_URL } from "../../constants";
 
 const ManageStudentSchedule = () => {
   const [schedule, setSchedule] = useState([]);
@@ -38,7 +34,7 @@ const ManageStudentSchedule = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get(COURSES_URL);
+      const response = await axios.get(`${API_URL}/api/courses`);
       setCourses(response.data);
     } catch (error) {
       console.error("Error fetching courses: ", error);
@@ -47,7 +43,7 @@ const ManageStudentSchedule = () => {
 
   const fetchSchedule = async () => {
     try {
-      const response = await axios.get(SCHEDULE_URL);
+      const response = await axios.get(`${API_URL}/api/student_schedule`);
       setSchedule(response.data);
       setLoading(false);
     } catch (error) {
@@ -57,7 +53,7 @@ const ManageStudentSchedule = () => {
 
   const addScheduleItem = async () => {
     try {
-      await axios.post(SCHEDULE_URL, newScheduleItem);
+      await axios.post(`${API_URL}/api/student_schedule`, newScheduleItem);
       fetchSchedule();
       setNewScheduleItem({ time: "", subject: "", teacher: "" });
     } catch (error) {
@@ -67,7 +63,7 @@ const ManageStudentSchedule = () => {
 
   const deleteScheduleItem = async (id) => {
     try {
-      await axios.delete(`${SCHEDULE_URL}/${id}`);
+      await axios.delete(`${API_URL}/api/student_schedule/${id}`);
       fetchSchedule();
     } catch (error) {
       console.error("Error deleting schedule item: ", error);
@@ -76,7 +72,7 @@ const ManageStudentSchedule = () => {
 
   const updateScheduleItem = async (id, updatedItem) => {
     try {
-      await axios.put(`${SCHEDULE_URL}/${id}`, updatedItem);
+      await axios.put(`${API_URL}/api/student_schedule/${id}`, updatedItem);
       fetchSchedule();
       setIsEditing(null);
     } catch (error) {

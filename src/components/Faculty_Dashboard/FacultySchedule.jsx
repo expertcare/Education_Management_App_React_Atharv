@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Spinner } from "reactstrap";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const FacultySchedule = () => {
   const { userData } = useUser();
@@ -12,9 +13,7 @@ const FacultySchedule = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/student_schedule"
-        );
+        const response = await axios.get(`${API_URL}/api/student_schedule`);
         const filteredschedules = response.data.filter(
           (schedule) => schedule.teacher === userData.fullName
         );

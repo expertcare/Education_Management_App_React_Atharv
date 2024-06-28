@@ -5,11 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const API_URL =
-  "https://education-management-server-ruby.vercel.app/api/courses";
-const USERS_API_URL =
-  "https://education-management-server-ruby.vercel.app/api/usersData";
+import { API_URL } from "../../constants";
 
 function ManageCourse() {
   const [courses, setCourses] = useState([]);
@@ -30,7 +26,7 @@ function ManageCourse() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(`${API_URL}/api/courses`);
       setCourses(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -39,7 +35,7 @@ function ManageCourse() {
 
   const fetchFacultyData = async () => {
     try {
-      const response = await axios.get(USERS_API_URL);
+      const response = await axios.get(`${API_URL}/api/usersData`);
       const facultyData = response.data.filter(
         (user) => user.role === "faculty"
       );
@@ -52,7 +48,7 @@ function ManageCourse() {
 
   const handleAddCourse = async () => {
     try {
-      await axios.post(API_URL, newCourse);
+      await axios.post(`${API_URL}/api/courses`, newCourse);
       setShowAddModal(false);
       setNewCourse({ name: "", faculty: "" });
       fetchData();
@@ -65,7 +61,7 @@ function ManageCourse() {
 
   const handleDeleteCourse = async (id) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(`${API_URL}/api/courses/${id}`);
       fetchData();
       toast.warn("Course deleted");
     } catch (error) {
@@ -76,7 +72,10 @@ function ManageCourse() {
 
   const handleEditCourse = async () => {
     try {
-      await axios.put(`${API_URL}/${editedCourse.id}`, editedCourse);
+      await axios.put(
+        `${API_URL}/api/courses/${editedCourse.id}`,
+        editedCourse
+      );
       setShowEditModal(false);
       setEditedCourse({ id: null, name: "", faculty: "" });
       fetchData();

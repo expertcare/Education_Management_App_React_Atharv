@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Toast, ToastBody, ToastHeader, Button, Spinner } from "reactstrap";
 import { useUser } from "../context/UserContext";
+import { API_URL } from "../constants";
 
 const NotificationPopup = () => {
   const { userData } = useUser();
@@ -17,7 +18,7 @@ const NotificationPopup = () => {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get(
-        `https://education-management-server-ruby.vercel.app/api/notifications/${userData.role}`
+        `${API_URL}/api/notifications/${userData.role}`
       );
       // const filteredNotifications = response.data.filter(
       //   (notification) => notification.role === userData.role

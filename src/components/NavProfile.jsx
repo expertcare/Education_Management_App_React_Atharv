@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom here
 import axios from "axios";
 import { useUser } from "../context/UserContext";
+import { API_URL } from "../constants";
 
 const NavProfile = ({ logout }) => {
   const [notifications, setNotifications] = useState([]);
@@ -18,7 +19,7 @@ const NavProfile = ({ logout }) => {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get(
-        `https://education-management-server-ruby.vercel.app/api/notifications/${userData.role}`
+        `${API_URL}/api/notifications/${userData.role}`
       );
       setNotifications(response.data);
     } catch (error) {

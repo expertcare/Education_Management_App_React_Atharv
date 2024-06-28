@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { API_URL } from "../../constants";
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -8,9 +9,7 @@ const CourseList = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/courses"
-        );
+        const response = await axios.get(`${API_URL}/api/courses`);
         setCourses(response.data);
       } catch (error) {
         console.error("Error fetching courses: ", error);

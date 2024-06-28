@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "../Dashboard";
 import { useUser } from "../../context/UserContext";
 import axios from "axios";
+import { API_URL } from "../../constants";
 
 const FacultyDashboard = () => {
   const { userData } = useUser();
@@ -19,9 +20,7 @@ const FacultyDashboard = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/notifications"
-      );
+      const response = await axios.get(`${API_URL}/api/notifications`);
       const filteredNotifications = response.data.filter(
         (notification) => notification.role === userData.role
       );

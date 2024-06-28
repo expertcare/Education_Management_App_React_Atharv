@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../constants";
 
 const SignupSection = () => {
   const navigate = useNavigate();
@@ -74,10 +75,7 @@ const SignupSection = () => {
 
     try {
       // Make a POST request to your JSON server endpoint using Axios
-      const response = await axios.post(
-        "https://education-management-server-ruby.vercel.app/api/signupData",
-        formData
-      );
+      const response = await axios.post(`${API_URL}/api/signupData`, formData);
 
       // Display message with submitted name
       setSubmittedName(formData.name);

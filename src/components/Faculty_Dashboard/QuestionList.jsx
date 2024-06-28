@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const QuestionList = () => {
   const { userData } = useUser();
@@ -9,9 +10,7 @@ const QuestionList = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/questions"
-        );
+        const response = await axios.get(`${API_URL}/api/questions`);
 
         // Filter questions where courseFaculty matches userData.fullName
         const filteredQuestions = response.data.filter(

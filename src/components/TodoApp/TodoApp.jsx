@@ -5,6 +5,7 @@ import AddTodo from "./AddTodo";
 import TodoItems from "./TodoItems";
 import WelcomeMessage from "./WelcomeMessage";
 import EditTodo from "./EditTodo";
+import { API_URL } from "../../constants";
 
 function TodoApp() {
   const [todoItems, setTodoItems] = useState([]);
@@ -17,9 +18,7 @@ function TodoApp() {
   // Function to fetch all todo items
   const fetchTodoItems = async () => {
     try {
-      const response = await axios.get(
-        "https://education-management-server-ruby.vercel.app/api/todoItems"
-      );
+      const response = await axios.get(`${API_URL}/api/todoItems`);
       setTodoItems(response.data);
     } catch (error) {
       console.error("Error fetching todo items:", error);
@@ -29,13 +28,10 @@ function TodoApp() {
   // Function to handle adding a new todo item
   const handleNewItem = async (itemName, itemDueDate) => {
     try {
-      const response = await axios.post(
-        "https://education-management-server-ruby.vercel.app/api/todoItems",
-        {
-          name: itemName,
-          dueDate: itemDueDate,
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/todoItems`, {
+        name: itemName,
+        dueDate: itemDueDate,
+      });
       setTodoItems([...todoItems, response.data]);
       console.log(`New Item Added: ${itemName} Date:${itemDueDate}`);
     } catch (error) {
@@ -46,9 +42,7 @@ function TodoApp() {
   // Function to handle deleting a todo item
   const handleDeleteItem = async (todoItemId) => {
     try {
-      await axios.delete(
-        `https://education-management-server-ruby.vercel.app/api/todoItems/${todoItemId}`
-      );
+      await axios.delete(`${API_URL}/api/todoItems/${todoItemId}`);
       const newTodoItems = todoItems.filter((item) => item.id !== todoItemId);
       setTodoItems(newTodoItems);
     } catch (error) {
@@ -67,7 +61,7 @@ function TodoApp() {
   const handleSaveEdit = async (todoItemId, newName, newDueDate) => {
     try {
       const response = await axios.put(
-        `https://education-management-server-ruby.vercel.app/api/todoItems/${todoItemId}`,
+        `${API_URL}/api/todoItems/${todoItemId}`,
         {
           name: newName,
           dueDate: newDueDate,

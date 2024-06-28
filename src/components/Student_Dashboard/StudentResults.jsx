@@ -5,6 +5,7 @@ import { useUser } from "../../context/UserContext";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { API_URL } from "../../constants";
 
 const StudentResults = () => {
   const { userData } = useUser(); // useUser provides userData with _id and fullName
@@ -15,9 +16,9 @@ const StudentResults = () => {
   useEffect(() => {
     const fetchExamMarks = async () => {
       try {
-        const response = await axios.get(
-          "https://education-management-server-ruby.vercel.app/api/exam_marks"
-        );
+        console.log(API_URL, "process.env.API_URL");
+        // const response = await axios.get(API_URL + "api/exam_marks");
+        const response = await axios.get(`${API_URL}/api/exam_marks`);
         setExamMarks(response.data);
         setLoading(false);
       } catch (error) {

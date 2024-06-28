@@ -3,6 +3,7 @@ import { useUser } from "../../context/UserContext";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { API_URL } from "../../constants";
 
 const StudentProfile = () => {
   const { userData, updateUser } = useUser();
@@ -28,7 +29,7 @@ const StudentProfile = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://education-management-server-ruby.vercel.app/api/usersData/${userData.id}`,
+        `${API_URL}/api/usersData/${userData._id}`,
         { ...userData, ...updatedUserData } // Merge updated fields with existing user data
       );
       console.log("User data updated:", response.data);

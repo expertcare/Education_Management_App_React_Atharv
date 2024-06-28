@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
+import { API_URL } from "../../constants";
 
 const AssignmentCheck = ({ assignments }) => {
   const [submissions, setSubmissions] = useState([]);
@@ -12,31 +13,27 @@ const AssignmentCheck = ({ assignments }) => {
 
   const fetchSubmissions = () => {
     axios
-      .get(
-        "https://education-management-server-ruby.vercel.app/api/submissions"
-      )
+      .get(`${API_URL}/api/submissions`)
       .then((response) => {
         const fetchedSubmissions = response.data;
 
         // Fetch grades for each submission
-        axios
-          .get("https://education-management-server-ruby.vercel.app/api/grades")
-          .then((gradesResponse) => {
-            const gradesMap = {};
-            gradesResponse.data.forEach((grade) => {
-              gradesMap[grade.submissionId] = grade.grade;
-            });
-
-            // Merge grades into submissions
-            const submissionsWithGrades = fetchedSubmissions.map(
-              (submission) => ({
-                ...submission,
-                grade: gradesMap[submission._id] || "--", // Set grade or default to "--" if not graded
-              })
-            );
-
-            setSubmissions(submissionsWithGrades);
+        axios.get(`${API_URL}/api/grades`).then((gradesResponse) => {
+          const gradesMap = {};
+          gradesResponse.data.forEach((grade) => {
+            gradesMap[grade.submissionId] = grade.grade;
           });
+
+          // Merge grades into submissions
+          const submissionsWithGrades = fetchedSubmissions.map(
+            (submission) => ({
+              ...submission,
+              grade: gradesMap[submission._id] || "--", // Set grade or default to "--" if not graded
+            })
+          );
+
+          setSubmissions(submissionsWithGrades);
+        });
       })
       .catch((error) => {
         console.error("Error fetching submissions:", error);
@@ -70,10 +67,7 @@ const AssignmentCheck = ({ assignments }) => {
     };
 
     axios
-      .post(
-        "https://education-management-server-ruby.vercel.app/api/grades",
-        gradeData
-      )
+      .post(`${API_URL}/api/grades`, gradeData)
       .then(() => {
         fetchSubmissions(); // Refresh submissions after adding grade
         // Optionally, clear the selected grade after submission
