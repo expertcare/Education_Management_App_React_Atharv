@@ -16,9 +16,10 @@ const StudentResults = () => {
   useEffect(() => {
     const fetchExamMarks = async () => {
       try {
-        console.log(API_URL, "process.env.API_URL");
-        // const response = await axios.get(API_URL + "api/exam_marks");
-        const response = await axios.get(`${API_URL}/api/exam_marks`);
+        const response = await axios.get(
+          `${API_URL}/api/exam_marks/${userData._id}`
+        );
+
         setExamMarks(response.data);
         setLoading(false);
       } catch (error) {
@@ -31,13 +32,8 @@ const StudentResults = () => {
     fetchExamMarks();
   }, []);
 
-  // Filter exam marks based on userData._id (assuming it represents studentId)
-  const filteredExamMarks = examMarks.filter(
-    (mark) => mark.studentId === userData._id
-  );
-
   // Group exam marks by course name
-  const groupedMarks = filteredExamMarks.reduce((acc, mark) => {
+  const groupedMarks = examMarks.reduce((acc, mark) => {
     if (!acc[mark.courseName]) {
       acc[mark.courseName] = [];
     }

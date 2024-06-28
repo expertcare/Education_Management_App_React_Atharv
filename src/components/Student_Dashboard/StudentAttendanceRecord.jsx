@@ -14,7 +14,9 @@ const StudentAttendanceRecord = () => {
     const fetchAttendanceData = async () => {
       try {
         console.log("Fetching attendance data...");
-        const response = await axios.get(`${API_URL}/api/attendance`);
+        const response = await axios.get(
+          `${API_URL}/api/attendance/${userData._id}`
+        );
         console.log("Response:", response.data);
         const data = response.data;
 
@@ -102,19 +104,17 @@ const StudentAttendanceRecord = () => {
                 </thead>
                 <tbody>
                   {groupedAttendance[date].map((record) =>
-                    record.students
-                      .filter((student) => student.id === userData._id)
-                      .map((student) => (
-                        <tr key={`${record.id}-${student.id}`}>
-                          <td>{student.id.substring(student.id.length - 8)}</td>
-                          <td>{record.date}</td>
-                          <td>{student.attendance}</td>
-                          {/* Display time and subject */}
-                          <td>{record.schedules[0].time}</td>
-                          <td>{record.schedules[0].subject}</td>
-                          <td>{record.schedules[0].teacher}</td>
-                        </tr>
-                      ))
+                    record.students.map((student) => (
+                      <tr key={`${record.id}-${student.id}`}>
+                        <td>{student.id.substring(student.id.length - 8)}</td>
+                        <td>{record.date}</td>
+                        <td>{student.attendance}</td>
+                        {/* Display time and subject */}
+                        <td>{record.schedules[0].time}</td>
+                        <td>{record.schedules[0].subject}</td>
+                        <td>{record.schedules[0].teacher}</td>
+                      </tr>
+                    ))
                   )}
                 </tbody>
               </table>

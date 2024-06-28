@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { API_URL } from "../../constants";
 
@@ -18,6 +20,9 @@ const UserList = () => {
   const [editEmail, setEditEmail] = useState("");
   const [editGender, setEditGender] = useState("");
 
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
+
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -31,7 +36,37 @@ const UserList = () => {
     }
   };
 
+  const validateEmail = (email) => {
+    // Basic email validation regex
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
+  const validateUsername = (username) => {
+    // Username must contain at least one alphabetical character
+    return /[a-zA-Z]/.test(username);
+  };
+
+  const validateFullName = (fullName) => {
+    // Full name must contain at least one alphabetical character
+    return /[a-zA-Z]/.test(fullName);
+  };
+
   const createUser = async () => {
+    if (!validateFullName(fullName)) {
+      toast.error("Please enter a valid name.");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    if (!validateUsername(username)) {
+      toast.error("Please enter a valid username.");
+      return;
+    }
+
     try {
       await axios.post(`${API_URL}/api/usersData`, {
         username,
@@ -48,19 +83,31 @@ const UserList = () => {
       setEmail("");
       setGender("");
       fetchUsers();
-      alert("User created successfully!");
+      toast.success("User created successfully!");
     } catch (error) {
-      console.error("Error creating user:", error);
+      if (error.response && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to create user. Please try again later.");
+      }
     }
   };
 
   const deleteUser = async (id) => {
-    try {
-      await axios.delete(`${API_URL}/api/usersData/${id}`);
-      fetchUsers();
-      alert("User deleted successfully!");
-    } catch (error) {
-      console.error("Error deleting user:", error);
+    // Display confirmation dialog
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+
+    if (confirmed) {
+      try {
+        await axios.delete(`${API_URL}/api/usersData/${id}`);
+        fetchUsers();
+        toast.warn("User deleted successfully!");
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        alert("Failed to delete user. Please try again later.");
+      }
     }
   };
 
@@ -76,9 +123,9 @@ const UserList = () => {
       });
       setEditUserId(null);
       fetchUsers();
-      alert("User updated successfully!");
+      toast.success("User updated successfully!");
     } catch (error) {
-      console.error("Error updating user:", error);
+      toast.error("Failed to update user. Please try again later.");
     }
   };
 
@@ -105,7 +152,7 @@ const UserList = () => {
                 <th>Email</th>
                 <th>Gender</th>
                 <th>Username</th>
-                <th>Password</th>
+                {/* <th>Password</th> */}
                 <th>Role</th>
                 <th>Action</th>
               </tr>
@@ -159,7 +206,7 @@ const UserList = () => {
                       user.username
                     )}
                   </td>
-                  <td>
+                  {/* <td>
                     {user.id === editUserId ? (
                       <input
                         type="password"
@@ -169,7 +216,7 @@ const UserList = () => {
                     ) : (
                       user.password
                     )}
-                  </td>
+                  </td> */}
                   <td>
                     {user.id === editUserId ? (
                       <select
@@ -320,6 +367,8 @@ const UserList = () => {
       {renderUsersByRole("student")}
       {renderUsersByRole("faculty")}
       {renderUsersByRole("admin")}
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

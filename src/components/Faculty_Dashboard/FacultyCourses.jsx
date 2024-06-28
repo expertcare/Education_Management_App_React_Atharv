@@ -13,11 +13,11 @@ const FacultyCourses = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/courses`);
-        const filteredCourses = response.data.filter(
-          (course) => course.faculty === userData.fullName
+        const response = await axios.get(
+          `${API_URL}/api/courses/${userData.fullName}`
         );
-        setCourses(filteredCourses);
+        setCourses(response.data);
+
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);

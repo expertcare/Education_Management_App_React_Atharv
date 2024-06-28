@@ -20,11 +20,10 @@ const FacultyDashboard = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/notifications`);
-      const filteredNotifications = response.data.filter(
-        (notification) => notification.role === userData.role
+      const response = await axios.get(
+        `${API_URL}/api/notifications/${userData.role}`
       );
-      setNotifications(filteredNotifications);
+      setNotifications(response.data);
     } catch (error) {
       console.error("Error fetching notifications: ", error);
     }
@@ -117,7 +116,7 @@ const FacultyDashboard = () => {
   return (
     <>
       <Dashboard title="Faculty Dashboard" cards={cards} />;
-      <ToastContainer className="mt-5" />
+      {/* <ToastContainer /> */}
     </>
   );
 };

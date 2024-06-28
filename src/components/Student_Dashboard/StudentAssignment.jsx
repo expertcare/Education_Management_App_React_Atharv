@@ -3,6 +3,8 @@ import axios from "axios";
 import { useUser } from "../../context/UserContext";
 import { Button, Spinner } from "reactstrap";
 import { API_URL } from "../../constants";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AssignmentList = () => {
   const [assignments, setAssignments] = useState([]);
@@ -16,16 +18,16 @@ const AssignmentList = () => {
   const fetchAssignments = async () => {
     try {
       const assignmentsResponse = await axios.get(`${API_URL}/api/assignments`);
-      const submissionsResponse = await axios.get(`${API_URL}/api/submissions`);
+      const submissionsResponse = await axios.get(
+        `${API_URL}/api/submissions/${userData._id}`
+      );
       const gradesResponse = await axios.get(`${API_URL}/api/grades`);
 
       // Combine assignments with submission status and grades
       const assignmentsWithStatus = assignmentsResponse.data.map(
         (assignment) => {
           const submission = submissionsResponse.data.find(
-            (submission) =>
-              submission.assignmentId === assignment._id &&
-              submission.userId === userData._id
+            (submission) => submission.assignmentId === assignment._id
           );
           const grade = gradesResponse.data.find(
             (grade) =>
@@ -96,7 +98,8 @@ const AssignmentList = () => {
         config
       );
 
-      alert("Submission successful!");
+      toast.success("Submission successful!");
+
       const updatedAssignments = assignments.map((assignment) =>
         assignment._id === assignmentId
           ? { ...assignment, submitted: true }
@@ -198,6 +201,8 @@ const AssignmentList = () => {
           </tbody>
         </table>
       </div>
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

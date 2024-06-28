@@ -14,37 +14,42 @@ const SettingsPrivacyPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Check if old password matches userData.password
-    if (oldPassword !== userData.password) {
-      setErrorMessage("Old password is incorrect");
+
+    // Client-side validation
+    if (!oldPassword || !newPassword || !confirmPassword) {
+      setErrorMessage("All fields are required.");
       return;
     }
-    // Check if new password matches confirm password
+
     if (newPassword !== confirmPassword) {
       setErrorMessage("Passwords do not match");
       return;
     }
 
     try {
-      // Make a PUT request to update the user data including the new password
+      // Make a PUT request to update the password
       const response = await axios.put(
-        `${API_URL}/api/usersData/${userData.id}`,
+        `${API_URL}/api/usersData/${userData._id}/change-password`,
         {
-          ...userData,
-          password: newPassword, // Include the new password in the updated user data
+          currentPassword: oldPassword,
+          newPassword: newPassword,
         }
       );
-      console.log("User data updated:", response.data);
-      alert("Password is succesfully updated");
-      // Clear form fields after submission
+
+      console.log("Password updated successfully:", response.data);
+      alert("Password updated successfully");
+      // Clear form fields and error message after successful update
       setOldPassword("");
       setNewPassword("");
       setConfirmPassword("");
-      // Clear error message
       setErrorMessage("");
     } catch (error) {
-      console.error("Error updating user data:", error);
-      setErrorMessage("Failed to update password. Please try again later.");
+      console.error("Error updating password:", error);
+      if (error.response && error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage("Failed to update password. Please try again later.");
+      }
     }
   };
 

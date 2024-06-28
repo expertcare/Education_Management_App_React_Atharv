@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { UserProvider } from "./context/UserContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -207,30 +209,28 @@ const App = () => {
   const [userRole, setUserRole] = useState(""); // State to store user's role
 
   useEffect(() => {
-    // Check if user is logged in from local storage
-    const storedIsLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
-
-    if (storedIsLoggedIn === true) {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // Verify token with backend
+      // For simplicity, assuming token is valid and not expired
       setIsLoggedIn(true);
       const storedUserRole = localStorage.getItem("userRole");
       setUserRole(storedUserRole);
     }
-    setIsInitialized(true); // Set initialization flag
+    setIsInitialized(true);
   }, []);
 
   const login = (role) => {
     setIsLoggedIn(true);
     setUserRole(role);
-    console.log(userRole);
-    localStorage.setItem("isLoggedIn", JSON.stringify(true)); // Store logged-in state in local storage
-    localStorage.setItem("userRole", role); // Store user's role in local storage
+    localStorage.setItem("userRole", role);
   };
 
   const logout = () => {
     setIsLoggedIn(false);
     setUserRole("");
-    localStorage.setItem("isLoggedIn", JSON.stringify(false));
-    localStorage.removeItem("userRole"); // Remove user's role from local storage
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
   };
 
   // Don't render anything until the initialization is complete
@@ -246,6 +246,8 @@ const App = () => {
         logout={logout}
         userRole={userRole}
       />
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </Router>
   );
 };

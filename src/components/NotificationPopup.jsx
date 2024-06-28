@@ -20,9 +20,6 @@ const NotificationPopup = () => {
       const response = await axios.get(
         `${API_URL}/api/notifications/${userData.role}`
       );
-      // const filteredNotifications = response.data.filter(
-      //   (notification) => notification.role === userData.role
-      // );
 
       setNotifications(response.data);
       setLoading(false);

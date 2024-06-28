@@ -3,6 +3,7 @@ import axios from "axios";
 import AssignmentCheck from "./AssignmentCheck";
 import { useUser } from "../../context/UserContext";
 import { API_URL } from "../../constants";
+import { toast } from "react-toastify";
 
 const API = `${API_URL}/api/assignments`;
 
@@ -49,9 +50,11 @@ const FacultyAssignment = () => {
         .then(() => {
           fetchAssignments();
           resetForm();
+          toast.success("Assignment updated successfully");
         })
         .catch((error) => {
           console.error("Error updating assignment:", error);
+          toast.error("Failed to update assignment. Please try again later.");
         });
     } else {
       // Add new assignment
@@ -60,9 +63,11 @@ const FacultyAssignment = () => {
         .then(() => {
           fetchAssignments();
           resetForm();
+          toast.success("Assignment added successfully");
         })
         .catch((error) => {
           console.error("Error adding assignment:", error);
+          toast.error("Failed to update assignment. Please try again later.");
         });
     }
   };
@@ -86,9 +91,11 @@ const FacultyAssignment = () => {
       .then(() => {
         fetchAssignments();
         resetForm();
+        toast.warn("Assignment deleted successfully");
       })
       .catch((error) => {
         console.error("Error deleting assignment:", error);
+        toast.error("Failed to delete assignment. Please try again later.");
       });
   };
 

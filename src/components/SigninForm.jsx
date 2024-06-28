@@ -36,7 +36,10 @@ const SigninSection = ({ login }) => {
           `${API_URL}/api/usersData/login`,
           formData
         );
-        const user = response.data; // Backend sends user details upon successful login
+        const { user, token } = response.data; // Backend sends user details upon successful login
+
+        // Save token and user details in local storage
+        localStorage.setItem("token", token);
 
         if (user) {
           const role = user.role;
