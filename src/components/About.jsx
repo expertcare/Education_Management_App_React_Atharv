@@ -89,10 +89,12 @@ const AboutUs = () => {
           <Row xs={1} md={2} lg={3} className="g-4">
             {/* Administrative Tools */}
             <Col>
-              <Card className="h-100">
-                <Card.Body>
-                  <Card.Title>Administrative Tools</Card.Title>
-                  <Card.Text>
+              <Card className="h-100 shadow-sm">
+                <Card.Body className="d-flex flex-column align-items-center">
+                  <Card.Title className="text-center mb-3">
+                    Administrative Tools
+                  </Card.Title>
+                  <Card.Text className="text-center">
                     Our platform equips administrators with powerful tools to
                     effortlessly manage student and faculty profiles,
                     assignments, attendance, courses, and results.
@@ -103,10 +105,12 @@ const AboutUs = () => {
 
             {/* Efficient Communication */}
             <Col>
-              <Card className="h-100">
-                <Card.Body>
-                  <Card.Title>Efficient Communication</Card.Title>
-                  <Card.Text>
+              <Card className="h-100 shadow-sm">
+                <Card.Body className="d-flex flex-column align-items-center">
+                  <Card.Title className="text-center mb-3">
+                    Efficient Communication
+                  </Card.Title>
+                  <Card.Text className="text-center">
                     Facilitating seamless communication between administrators,
                     faculty members, and students through integrated
                     notification systems.
@@ -117,10 +121,12 @@ const AboutUs = () => {
 
             {/* Comprehensive Student Management */}
             <Col>
-              <Card className="h-100">
-                <Card.Body>
-                  <Card.Title>Comprehensive Student Management</Card.Title>
-                  <Card.Text>
+              <Card className="h-100 shadow-sm">
+                <Card.Body className="d-flex flex-column align-items-center">
+                  <Card.Title className="text-center mb-3">
+                    Comprehensive Student Management
+                  </Card.Title>
+                  <Card.Text className="text-center">
                     From enrollment to graduation, our platform supports the
                     entire student lifecycle, ensuring a smooth and organized
                     experience.
@@ -131,10 +137,12 @@ const AboutUs = () => {
 
             {/* Empowering Educators */}
             <Col>
-              <Card className="h-100">
-                <Card.Body>
-                  <Card.Title>Empowering Educators</Card.Title>
-                  <Card.Text>
+              <Card className="h-100 shadow-sm">
+                <Card.Body className="d-flex flex-column align-items-center">
+                  <Card.Title className="text-center mb-3">
+                    Empowering Educators
+                  </Card.Title>
+                  <Card.Text className="text-center">
                     Providing faculty members with the resources they need to
                     create, manage, and grade assignments, track attendance, and
                     monitor student progress effectively.
@@ -145,10 +153,12 @@ const AboutUs = () => {
 
             {/* Enhanced Learning Experience */}
             <Col>
-              <Card className="h-100">
-                <Card.Body>
-                  <Card.Title>Enhanced Learning Experience</Card.Title>
-                  <Card.Text>
+              <Card className="h-100 shadow-sm">
+                <Card.Body className="d-flex flex-column align-items-center">
+                  <Card.Title className="text-center mb-3">
+                    Enhanced Learning Experience
+                  </Card.Title>
+                  <Card.Text className="text-center">
                     Enabling students to access course materials, submit
                     assignments, track their progress, and receive timely
                     updates and notifications.

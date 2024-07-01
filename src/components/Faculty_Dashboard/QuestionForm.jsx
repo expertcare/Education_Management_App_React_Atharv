@@ -3,7 +3,7 @@ import axios from "axios";
 import { useUser } from "../../context/UserContext";
 import { API_URL } from "../../constants";
 
-const QuestionForm = () => {
+const QuestionForm = ({ fetchQuestions }) => {
   const { userData } = useUser(); // Assuming useUser provides access to user data
   const [courses, setCourses] = useState([]);
   const [question, setQuestion] = useState("");
@@ -15,11 +15,13 @@ const QuestionForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/courses`);
-        const filteredCourses = response.data.filter(
-          (course) => course.faculty === userData.fullName
+        const response = await axios.get(
+          `${API_URL}/api/courses/${userData.fullName}`
         );
-        setCourses(filteredCourses);
+        // const filteredCourses = response.data.filter(
+        //   (course) => course.faculty === userData.fullName
+        // );
+        setCourses(response.data);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -40,11 +42,15 @@ const QuestionForm = () => {
       };
       await axios.post(`${API_URL}/api/questions`, newQuestion);
       setSubmitMessage("Question added successfully!");
+
       // Reset form fields after submission
       setQuestion("");
       setOptions(["", "", "", ""]);
       setCorrectAnswer(0);
       setSelectedCourse("");
+
+      // Call fetchQuestions from props to update QuestionList
+      fetchQuestions();
     } catch (err) {
       console.error(err);
       setSubmitMessage("Failed to add question. Please try again.");
@@ -57,7 +63,7 @@ const QuestionForm = () => {
   };
 
   return (
-    <div className="container col-md-6">
+    <div className="container col-md-6 mb-5">
       <h3 className="text-center mt-5">Add New Questions</h3>
 
       <form onSubmit={handleSubmit}>
@@ -120,9 +126,11 @@ const QuestionForm = () => {
           </select>
         </div>
 
-        <button type="submit" className="btn btn-primary mt-3">
-          Add Question
-        </button>
+        <div className="text-center">
+          <button type="submit" className="btn btn-primary mt-3">
+            Add Question
+          </button>
+        </div>
       </form>
 
       {submitMessage && (

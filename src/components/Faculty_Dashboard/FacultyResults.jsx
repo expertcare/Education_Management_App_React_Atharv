@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table } from "reactstrap"; // Assuming you have imported Table from reactstrap
+import { Table } from "reactstrap";
 import { useUser } from "../../context/UserContext";
 import { API_URL } from "../../constants";
 
@@ -16,12 +16,10 @@ const FacultyResults = () => {
         const response = await axios.get(`${API_URL}/api/exam_marks`);
         setExamMarks(response.data);
 
-        // Extract unique studentIds
         const uniqueStudentIds = [
           ...new Set(response.data.map((mark) => mark.studentId)),
         ];
 
-        // Fetch student names for each unique studentId
         const namesPromises = uniqueStudentIds.map(async (id) => {
           try {
             const nameResponse = await axios.get(
@@ -30,11 +28,10 @@ const FacultyResults = () => {
             return { [id]: nameResponse.data.name };
           } catch (error) {
             console.error(`Error fetching name for student ID ${id}:`, error);
-            return { [id]: "Unknown" }; // Handle error gracefully
+            return { [id]: "Unknown" };
           }
         });
 
-        // Resolve all promises and set studentNames state
         const namesResults = await Promise.all(namesPromises);
         const namesObject = namesResults.reduce(
           (acc, result) => ({ ...acc, ...result }),
@@ -43,7 +40,6 @@ const FacultyResults = () => {
         setStudentNames(namesObject);
       } catch (error) {
         console.error("Error fetching exam marks:", error);
-        // Handle error fetching data (e.g., set a state for error message)
       }
     };
 
@@ -61,7 +57,7 @@ const FacultyResults = () => {
 
     fetchExamMarks();
     fetchCourses();
-  }, [userData.fullName]); // Add userData.fullName to the dependency array
+  }, [userData.fullName]);
 
   // Group exam marks by studentId
   const groupedMarks = examMarks.reduce((acc, mark) => {
@@ -79,59 +75,68 @@ const FacultyResults = () => {
     >
       <h2 className="mb-5 display-6">Students Results</h2>
 
-      {courses.map((course) => (
-        <div key={course._id} className="mb-4">
-          <h3 className="mb-4">{course.name}</h3>
+      {courses.map((course) => {
+        // Check if there are marks for this course
+        const courseMarksExist = Object.values(groupedMarks).some((marks) =>
+          marks.some((mark) => mark.courseName === course.name)
+        );
 
-          {Object.keys(groupedMarks).length === 0 ? (
-            <p className="fs-5 mt-5 animated-text">No exam marks found.</p>
-          ) : (
-            <Table responsive>
-              <thead>
-                <tr>
-                  <th>Student ID</th>
-                  <th>Student Name</th>
-                  <th>Course</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Marks</th>
-                  <th>Percentage</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(groupedMarks).map((studentId) => {
-                  const studentMarks = groupedMarks[studentId].filter(
-                    (mark) => mark.courseName === course.name
-                  );
-                  if (studentMarks.length === 0) return null;
+        return (
+          <div key={course._id} className="mb-4">
+            <h3 className="mb-4">{course.name}</h3>
 
-                  return studentMarks.map((mark, index) => (
-                    <tr key={`${studentId}-${index}`}>
-                      {index === 0 && (
-                        <>
-                          <td rowSpan={studentMarks.length}>
-                            {studentId.substring(studentId.length - 8)}
-                          </td>
-                          <td rowSpan={studentMarks.length}>
-                            {studentNames[studentId] || "Loading..."}
-                          </td>
-                        </>
-                      )}
-                      <td>{mark.courseName}</td>
-                      <td>{new Date(mark.timestamp).toLocaleDateString()}</td>
-                      <td>{new Date(mark.timestamp).toLocaleTimeString()}</td>
-                      <td>
-                        {mark.marks} out of {Object.keys(mark.answers).length}
-                      </td>
-                      <td>{mark.percentage}%</td>
-                    </tr>
-                  ));
-                })}
-              </tbody>
-            </Table>
-          )}
-        </div>
-      ))}
+            {courseMarksExist ? (
+              <Table responsive>
+                <thead>
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Course</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Marks</th>
+                    <th>Percentage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.keys(groupedMarks).map((studentId) => {
+                    const studentMarks = groupedMarks[studentId].filter(
+                      (mark) => mark.courseName === course.name
+                    );
+                    if (studentMarks.length === 0) return null;
+
+                    return studentMarks.map((mark, index) => (
+                      <tr key={`${studentId}-${index}`}>
+                        {index === 0 && (
+                          <>
+                            <td rowSpan={studentMarks.length}>
+                              {studentId.substring(studentId.length - 8)}
+                            </td>
+                            <td rowSpan={studentMarks.length}>
+                              {studentNames[studentId] || "Loading..."}
+                            </td>
+                          </>
+                        )}
+                        <td>{mark.courseName}</td>
+                        <td>{new Date(mark.timestamp).toLocaleDateString()}</td>
+                        <td>{new Date(mark.timestamp).toLocaleTimeString()}</td>
+                        <td>
+                          {mark.marks} out of {Object.keys(mark.answers).length}
+                        </td>
+                        <td>{mark.percentage}%</td>
+                      </tr>
+                    ));
+                  })}
+                </tbody>
+              </Table>
+            ) : (
+              <p className="fs-5 mt-5 animated-text">
+                Result not found for {course.name}.
+              </p>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };

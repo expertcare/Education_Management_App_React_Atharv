@@ -4,6 +4,7 @@ import { Button, Spinner } from "reactstrap";
 import { useParams } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { API_URL } from "../../constants";
+import { toast } from "react-toastify";
 
 const Exam = () => {
   const { userData } = useUser();
@@ -61,6 +62,10 @@ const Exam = () => {
       fetchQuestions();
       fetchExamMarks(); // Fetch exam marks when courseName changes
     }
+
+    // if(showResult){
+    //   fetchExamMarks();
+    // }
   }, [courseName, userData._id]);
 
   const handleStartExam = () => {
@@ -118,7 +123,8 @@ const Exam = () => {
 
         // Refresh the page to fetch updated data
         window.location.reload();
-        alert("You have succesfully submitted the exam");
+
+        toast.success("You have succesfully submitted the exam");
       } catch (error) {
         // Handle error (e.g., show error message)
         console.error("Error submitting answers", error);

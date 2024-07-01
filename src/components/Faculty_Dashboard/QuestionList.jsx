@@ -1,44 +1,74 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useUser } from "../../context/UserContext";
 import { API_URL } from "../../constants";
+import { toast } from "react-toastify";
 
-const QuestionList = () => {
-  const { userData } = useUser();
-  const [questions, setQuestions] = useState([]);
+const QuestionList = ({ questions, fetchQuestions }) => {
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${API_URL}/api/questions/${id}`);
+      fetchQuestions(); // Fetch updated list of questions after deletion
+      toast.warn("Question deleted");
+    } catch (err) {
+      console.error("Error deleting question:", err);
+    }
+  };
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/api/questions`);
+  const handleDeleteAll = async (courseName) => {
+    try {
+      await axios.delete(`${API_URL}/api/questions/${courseName}`);
+      fetchQuestions(); // Fetch updated list of questions after deletion
+      toast.warn("All questions deleted");
+    } catch (err) {
+      console.error("Error deleting all questions:", err);
+    }
+  };
 
-        // Filter questions where courseFaculty matches userData.fullName
-        const filteredQuestions = response.data.filter(
-          (question) => question.courseFaculty === userData.fullName
-        );
-        setQuestions(filteredQuestions);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchQuestions();
-  }, [userData.fullName]); // Trigger fetch when userData.fullName changes
+  if (questions.length === 0) {
+    return (
+      <div className="container mt-5">
+        <h2 className="text-center mb-4">Question Bank</h2>
+        <p className="text-center animated-text mt-5">
+          No questions available.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-4">Question Bank</h2>
 
+      {/* <div className="mb-3">
+        <button
+          className="btn btn-danger mb-3"
+          onClick={() => handleDeleteAll(questions[0].courseName)}
+        >
+          Delete All
+        </button>
+      </div> */}
+
       <div className="row">
         {questions.map((question) => (
           <div key={question._id} className="col-lg-6 mb-4">
             <div className="card">
-              <div className="card-body">
+              <div className="card-header d-flex justify-content-between align-items-center">
                 <h5 className="card-title">{question.question}</h5>
+                <span
+                  className="text-danger"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleDelete(question._id)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </span>
+              </div>
+              <div className="card-body">
                 <ul className="list-group list-group-flush">
                   {question.options.map((option, index) => (
                     <li key={index} className="list-group-item">
                       <input type="radio" disabled />{" "}
-                      {/* Use radio button for options */}
                       <span className="m-2">{option}</span>
                     </li>
                   ))}
