@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
 import { API_URL } from "../../constants";
+import { toast } from "react-toastify";
 
 const AdminNotification = () => {
   const [notifications, setNotifications] = useState([]);
@@ -35,7 +36,7 @@ const AdminNotification = () => {
     e.preventDefault();
     try {
       await axios.post(`${API_URL}/api/notifications`, notification);
-      alert("Notification saved successfully!");
+      toast.success("Notification saved successfully!");
       setNotification({ title: "", message: "", role: "student" }); // Reset role after submission
       fetchNotifications();
     } catch (error) {
@@ -47,7 +48,7 @@ const AdminNotification = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${API_URL}/api/notifications/${id}`);
-      alert("Notification deleted successfully!");
+      toast.warn("Notification deleted successfully!");
       fetchNotifications();
     } catch (error) {
       console.error("Error deleting notification: ", error);
@@ -70,6 +71,7 @@ const AdminNotification = () => {
             name="title"
             value={notification.title}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-3">
@@ -82,6 +84,7 @@ const AdminNotification = () => {
             name="message"
             value={notification.message}
             onChange={handleChange}
+            required
           ></textarea>
         </div>
         <div className="mb-3">
@@ -94,6 +97,7 @@ const AdminNotification = () => {
             name="role"
             value={notification.role}
             onChange={handleChange}
+            required
           >
             <option value="student">Student</option>
             <option value="faculty">Faculty</option>

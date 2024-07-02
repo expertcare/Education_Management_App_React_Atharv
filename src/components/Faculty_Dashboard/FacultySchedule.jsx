@@ -33,10 +33,15 @@ const FacultySchedule = () => {
       <h3 className="my-4 fs-5">Hello {userData.fullName}, Your schedules</h3>
       {loading ? (
         <div className="text-center margin-top-bottom">
-          <Button color="primary" disabled>
-            <Spinner size="sm">Loading...</Spinner>
-            <span> Loading</span>
-          </Button>
+          <Spinner
+            color="primary"
+            style={{
+              height: "3rem",
+              width: "3rem",
+            }}
+          >
+            Loading...
+          </Spinner>
         </div>
       ) : (
         <table className="table table-striped table-bordered">

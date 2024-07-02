@@ -105,7 +105,7 @@ const StudentDashboard = () => {
     },
     {
       image:
-        "https://img.freepik.com/free-photo/documents-paperwork-business-strategy-concept_53876-125434.jpg?w=1480&t=st=1719378014~exp=1719378614~hmac=c562d5d5cc323cff7ec0cb3828f93c05d8f6199c228c44d600668b5f1a17e99f",
+        "https://img.freepik.com/free-vector/man-getting-award-writing_74855-5891.jpg?w=826&t=st=1719894848~exp=1719895448~hmac=3eacebbf041e10625cdaa1a17773b093149f0938748a32f3d7ab600a92797c2a",
       title: "Results",
       description: "View Your results",
       buttonText: "View Results",
@@ -116,7 +116,6 @@ const StudentDashboard = () => {
   return (
     <>
       <Dashboard title="Student Dashboard" cards={cards} />;
-      <ToastContainer className="mt-5" />
     </>
   );
 };

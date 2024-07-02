@@ -9,6 +9,8 @@ import { API_URL } from "../../constants";
 const FacultyExams = () => {
   const { userData } = useUser();
   const [questions, setQuestions] = useState([]);
+  const [showQuestionForm, setShowQuestionForm] = useState(false);
+  const [showFileUpload, setShowFileUpload] = useState(false);
 
   // Function to fetch questions
   const fetchQuestions = async () => {
@@ -33,12 +35,31 @@ const FacultyExams = () => {
     console.log(file);
   };
 
+  const toggleQuestionForm = () => {
+    setShowQuestionForm(true);
+    setShowFileUpload(false);
+  };
+
+  const toggleFileUpload = () => {
+    setShowFileUpload(true);
+    setShowQuestionForm(false);
+  };
+
   return (
     <div className="margin-top-bottom">
       <h2 className="text-center display-6">Manage your Exam</h2>
-      <QuestionForm fetchQuestions={fetchQuestions} />
-      {/* <p className="text-center fs-5">OR</p> */}
-      <FileUploadComponent fetchQuestions={fetchQuestions} />
+      <div className="text-center m-4">
+        <button className="btn btn-primary me-2" onClick={toggleQuestionForm}>
+          Add Question
+        </button>
+        <button className="btn btn-primary" onClick={toggleFileUpload}>
+          Upload File
+        </button>
+      </div>
+      {showQuestionForm && <QuestionForm fetchQuestions={fetchQuestions} />}
+      {showFileUpload && (
+        <FileUploadComponent fetchQuestions={fetchQuestions} />
+      )}
       <QuestionList questions={questions} fetchQuestions={fetchQuestions} />
     </div>
   );

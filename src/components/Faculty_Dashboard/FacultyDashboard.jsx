@@ -89,10 +89,10 @@ const FacultyDashboard = () => {
     },
     {
       image:
-        "https://img.freepik.com/free-vector/businessman-holding-pencil-big-complete-checklist-with-tick-marks_1150-35019.jpg?t=st=1717146454~exp=1717150054~hmac=ef35e130b0ed9283c9c13af8625d385ca84c09436f51c054baa3d31cf1e961b9&w=740",
+        "https://img.freepik.com/free-vector/man-getting-award-writing_74855-5891.jpg?w=826&t=st=1719894848~exp=1719895448~hmac=3eacebbf041e10625cdaa1a17773b093149f0938748a32f3d7ab600a92797c2a",
       title: "Results",
-      description: "View students results for your courses.",
-      buttonText: "Manage Assignments",
+      description: "View Results of your subject",
+      buttonText: "View Results",
       link: "/faculty_result",
     },
     {
@@ -115,7 +115,7 @@ const FacultyDashboard = () => {
 
   return (
     <>
-      <Dashboard title="Faculty Dashboard" cards={cards} />;
+      <Dashboard title="Faculty Dashboard" cards={cards} />
       {/* <ToastContainer /> */}
     </>
   );

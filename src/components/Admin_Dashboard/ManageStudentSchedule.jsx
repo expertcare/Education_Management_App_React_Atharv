@@ -4,6 +4,7 @@ import { Button, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { API_URL } from "../../constants";
+import { toast } from "react-toastify";
 
 const ManageStudentSchedule = () => {
   const [schedule, setSchedule] = useState([]);
@@ -55,15 +56,18 @@ const ManageStudentSchedule = () => {
     try {
       await axios.post(`${API_URL}/api/student_schedule`, newScheduleItem);
       fetchSchedule();
+      toast.success("New schedule added");
       setNewScheduleItem({ time: "", subject: "", teacher: "" });
     } catch (error) {
       console.error("Error adding schedule item: ", error);
+      toast.warn(error.response.data.message);
     }
   };
 
   const deleteScheduleItem = async (id) => {
     try {
       await axios.delete(`${API_URL}/api/student_schedule/${id}`);
+      toast.warn("Schedule deleted");
       fetchSchedule();
     } catch (error) {
       console.error("Error deleting schedule item: ", error);
@@ -74,6 +78,7 @@ const ManageStudentSchedule = () => {
     try {
       await axios.put(`${API_URL}/api/student_schedule/${id}`, updatedItem);
       fetchSchedule();
+      toast.success("Schedule updated");
       setIsEditing(null);
     } catch (error) {
       console.error("Error updating schedule item: ", error);
@@ -195,10 +200,15 @@ const ManageStudentSchedule = () => {
 
       {loading ? (
         <div className="text-center margin-top-bottom">
-          <Button color="primary" disabled>
-            <Spinner size="sm">Loading...</Spinner>
-            <span> Loading</span>
-          </Button>
+          <Spinner
+            color="primary"
+            style={{
+              height: "3rem",
+              width: "3rem",
+            }}
+          >
+            Loading...
+          </Spinner>
         </div>
       ) : (
         <div className="table-responsive mt-5">

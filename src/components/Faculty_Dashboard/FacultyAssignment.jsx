@@ -8,20 +8,22 @@ import { toast } from "react-toastify";
 const API = `${API_URL}/api/assignments`;
 
 const FacultyAssignment = () => {
-  const { userData } = useUser(); // Note the parentheses to invoke useUser hook
+  const { userData } = useUser();
   const [assignments, setAssignments] = useState([]);
+  const [courses, setCourses] = useState([]); // State for courses dropdown
   const [formData, setFormData] = useState({
     section: "",
-    title: "",
     description: "",
     dueDate: "",
-    userId: userData._id, // Add userId to formData
+    userId: userData._id,
+    courseName: "", // New field for courseName in formData
   });
   const [editingAssignmentId, setEditingAssignmentId] = useState(null);
 
   useEffect(() => {
     fetchAssignments();
-  }, []);
+    fetchCourses(); // Fetch courses when component mounts or userData.fullName changes
+  }, [userData.fullName]);
 
   const fetchAssignments = () => {
     axios
@@ -38,10 +40,20 @@ const FacultyAssignment = () => {
       });
   };
 
+  const fetchCourses = () => {
+    axios
+      .get(`${API_URL}/api/courses/${userData.fullName}`)
+      .then((response) => {
+        setCourses(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching courses:", error);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editingAssignmentId) {
-      // Update existing assignment
       axios
         .put(`${API}/${editingAssignmentId}`, {
           ...formData,
@@ -57,7 +69,6 @@ const FacultyAssignment = () => {
           toast.error("Failed to update assignment. Please try again later.");
         });
     } else {
-      // Add new assignment
       axios
         .post(API, { ...formData, userId: userData._id })
         .then(() => {
@@ -75,10 +86,10 @@ const FacultyAssignment = () => {
   const handleEdit = (assignment) => {
     setFormData({
       section: assignment.section,
-      title: assignment.title,
       description: assignment.description,
       dueDate: assignment.dueDate,
       userId: userData._id,
+      courseName: assignment.courseName, // Assuming assignment has a courseName field
     });
     setEditingAssignmentId(assignment._id);
   };
@@ -109,24 +120,41 @@ const FacultyAssignment = () => {
   const resetForm = () => {
     setFormData({
       section: "",
-      title: "",
       description: "",
       dueDate: "",
       userId: userData._id,
+      courseName: "",
     });
     setEditingAssignmentId(null);
   };
 
-  // Filter assignments based on userId
   const filteredAssignments = assignments.filter(
     (assignment) => assignment.userId === userData._id
   );
 
   return (
-    <div className="container margin-top-bottom col-lg-8 ">
+    <div className="container margin-top-bottom col-lg-8">
       <h2 className="m-5 display-6 text-center">Add/Edit Assignments</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group mt-2">
+          <label htmlFor="course">Course:</label>
+          <select
+            className="form-control"
+            id="course"
+            name="courseName" // Update to courseName instead of courseName
+            value={formData.courseName}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select a course</option>
+            {courses.map((course) => (
+              <option key={course._id} value={course.name}>
+                {course.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-group mt-3">
           <label htmlFor="section">Section:</label>
           <input
             type="text"
@@ -138,19 +166,7 @@ const FacultyAssignment = () => {
             required
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
+        <div className="form-group mt-3">
           <label htmlFor="description">Description:</label>
           <textarea
             className="form-control"
@@ -161,7 +177,7 @@ const FacultyAssignment = () => {
             required
           ></textarea>
         </div>
-        <div className="form-group">
+        <div className="form-group mt-3">
           <label htmlFor="dueDate">Due Date:</label>
           <input
             type="date"
@@ -173,6 +189,7 @@ const FacultyAssignment = () => {
             required
           />
         </div>
+
         <button type="submit" className="btn my-btn2 mt-2 text-center">
           {editingAssignmentId ? "Update" : "Submit"}
         </button>
@@ -199,7 +216,6 @@ const FacultyAssignment = () => {
             <thead>
               <tr>
                 <th>Section</th>
-                <th>Title</th>
                 <th>Description</th>
                 <th>Due Date</th>
                 <th>Actions</th>
@@ -209,7 +225,6 @@ const FacultyAssignment = () => {
               {filteredAssignments.map((assignment) => (
                 <tr key={assignment._id}>
                   <td>{assignment.section}</td>
-                  <td>{assignment.title}</td>
                   <td>{assignment.description}</td>
                   <td>{assignment.dueDate}</td>
                   <td>

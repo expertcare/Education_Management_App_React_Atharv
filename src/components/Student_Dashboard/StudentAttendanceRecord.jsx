@@ -39,11 +39,18 @@ const StudentAttendanceRecord = () => {
 
   if (loading) {
     return (
-      <div className="text-center margin-top-bottom">
-        <Button color="primary" disabled>
-          <Spinner size="sm">Loading...</Spinner>
-          <span> Loading</span>
-        </Button>
+      <div className="container margin-top-bottom text-center min-vh-100">
+        <h2 className="text-center">Attendance Record</h2>
+        <Spinner
+          color="primary"
+          style={{
+            height: "3rem",
+            width: "3rem",
+            marginTop: "80px",
+          }}
+        >
+          Loading...
+        </Spinner>
       </div>
     );
   }

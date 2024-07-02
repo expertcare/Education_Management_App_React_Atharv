@@ -25,11 +25,18 @@ const StudentCourses = () => {
 
   if (loading) {
     return (
-      <div className="text-center margin-top-bottom min-vh-100">
-        <Button color="primary" disabled>
-          <Spinner size="sm">Loading...</Spinner>
-          <span> Loading</span>
-        </Button>
+      <div className="text-center margin-top-bottom vh-100">
+        <Spinner
+          color="primary"
+          className="d-flex justify-content-center"
+          style={{
+            height: "3rem",
+            width: "3rem",
+            marginTop: "120px",
+          }}
+        >
+          Loading...
+        </Spinner>
       </div>
     );
   }

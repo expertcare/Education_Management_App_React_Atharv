@@ -86,7 +86,12 @@ const AboutUs = () => {
         {/* What We Offer Section */}
         <div className="my-5">
           <h2 className="text-center mb-5">What We Offer</h2>
-          <Row xs={1} md={2} lg={3} className="g-4">
+          <Row
+            xs={1}
+            md={2}
+            lg={3}
+            className="d-flex justify-content-evenly mx-4 g-4"
+          >
             {/* Administrative Tools */}
             <Col>
               <Card className="h-100 shadow-sm">

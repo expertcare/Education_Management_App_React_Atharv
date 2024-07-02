@@ -31,11 +31,21 @@ const NotificationPopup = () => {
 
   if (loading) {
     return (
-      <div className="text-center margin-top-bottom min-vh-100">
-        <Button color="primary" disabled>
-          <Spinner size="sm">Loading...</Spinner>
-          <span> Loading</span>
-        </Button>
+      <div
+        className="continer text-center min-vh-100"
+        style={{ marginTop: "180px" }}
+      >
+        <h2 className="text-center display-6 mb-5">Notifications</h2>
+        <Spinner
+          color="primary"
+          style={{
+            height: "3rem",
+            width: "3rem",
+            marginTop: "3rem",
+          }}
+        >
+          Loading...
+        </Spinner>
       </div>
     );
   }

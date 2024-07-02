@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Spinner } from "reactstrap";
-import { Modal, Button } from "react-bootstrap";
+import { Spinner, Modal, Button } from "react-bootstrap";
 import { useUser } from "../../context/UserContext";
 import { API_URL } from "../../constants";
+import { toast } from "react-toastify";
 
 const FacultyAttendance = () => {
   const [students, setStudents] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
-  const [showPopup, setShowPopup] = useState(false); // State to manage the visibility of the pop-up
-  const [attendanceSubmitted, setAttendanceSubmitted] = useState(false); // State to track whether attendance has been submitted
-
+  const [showPopup, setShowPopup] = useState(false);
+  const [attendanceSubmitted, setAttendanceSubmitted] = useState(false); // Track attendance submission status
   const { userData } = useUser();
-
-  const [schedules, setschedules] = useState([]);
+  const [schedules, setSchedules] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${API_URL}/api/student_schedule`);
-        const filteredschedules = response.data.filter(
+        const filteredSchedules = response.data.filter(
           (schedule) => schedule.teacher === userData.fullName
         );
-        setschedules(filteredschedules);
+        setSchedules(filteredSchedules);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -31,24 +29,21 @@ const FacultyAttendance = () => {
     };
 
     fetchData();
-  }, [userData.fullName]); // Add userData.fullName to the dependency array
+  }, [userData.fullName]);
 
   useEffect(() => {
-    // Set today's date as default selected date
     const today = new Date().toISOString().substr(0, 10);
     setSelectedDate(today);
 
     axios
       .get(`${API_URL}/api/usersData`)
       .then((response) => {
-        // Filter users to get only students data
         const studentUsers = response.data.filter(
           (user) => user.role === "student"
         );
-        // Initialize attendance status for each student as 'present'
         const studentsWithAttendance = studentUsers.map((student) => ({
           ...student,
-          attendance: "present", // You can change this default value if needed
+          attendance: "present",
         }));
         setStudents(studentsWithAttendance);
         setLoading(false);
@@ -58,26 +53,24 @@ const FacultyAttendance = () => {
       });
   }, []);
 
-  // Function to handle attendance status change
   const handleAttendanceChange = (studentId, newStatus) => {
-    const updatedStudents = students.map((student) => {
-      if (student.id === studentId) {
-        return { ...student, attendance: newStatus };
-      }
-      return student;
-    });
+    const updatedStudents = students.map((student) =>
+      student.id === studentId ? { ...student, attendance: newStatus } : student
+    );
     setStudents(updatedStudents);
   };
 
-  // Function to handle date selection
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
-    // perform any additional actions here based on the selected date
   };
 
-  // Function to handle attendance submission
   const handleSubmitAttendance = () => {
-    // Prepare the data to be sent to the server
+    // Check if attendance has already been submitted
+    if (attendanceSubmitted) {
+      alert("Attendance already submitted for the selected date.");
+      return;
+    }
+
     const attendanceData = {
       date: selectedDate,
       schedules: schedules.map((schedule) => ({
@@ -91,17 +84,17 @@ const FacultyAttendance = () => {
       })),
     };
 
-    // Send the attendance data to the server
     axios
       .post(`${API_URL}/api/attendance`, attendanceData)
       .then((response) => {
         console.log("Attendance submitted successfully:", response.data);
-        // Show the pop-up message when attendance is successfully added
         setShowPopup(true);
-        setAttendanceSubmitted(true); // Set the state to indicate attendance has been submitted
+        setAttendanceSubmitted(true); // Update state to indicate attendance submitted
+        toast.success(response.data.message);
       })
       .catch((error) => {
         console.error("Error submitting attendance:", error);
+        toast.warn(error.response.data.message);
       });
   };
 
@@ -139,10 +132,15 @@ const FacultyAttendance = () => {
 
           {loading ? (
             <div className="text-center margin-top-bottom">
-              <Button color="primary" disabled>
-                <Spinner size="sm">Loading...</Spinner>
-                <span> Loading</span>
-              </Button>
+              <Spinner
+                color="primary"
+                style={{
+                  height: "3rem",
+                  width: "3rem",
+                }}
+              >
+                Loading...
+              </Spinner>
             </div>
           ) : (
             <div className="table-responsive">
@@ -162,7 +160,6 @@ const FacultyAttendance = () => {
                       <td>{student.fullName}</td>
                       <td>{student.gender}</td>
                       <td>
-                        {/* Render dropdown menu or checkbox for attendance */}
                         <select
                           value={student.attendance}
                           onChange={(e) =>
@@ -188,7 +185,6 @@ const FacultyAttendance = () => {
         </>
       )}
 
-      {/* Pop-up message */}
       <Modal show={showPopup} onHide={() => setShowPopup(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Success</Modal.Title>

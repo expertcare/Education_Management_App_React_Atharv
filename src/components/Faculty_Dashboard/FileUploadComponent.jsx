@@ -45,7 +45,7 @@ const FileUploadComponent = ({ fetchQuestions }) => {
   };
 
   return (
-    <div className="container col-md-6 my-4">
+    <div className="container col-md-6 margin-top-bottom">
       <h3 className="text-center mb-4">Upload Excel File</h3>
       <Form>
         <Form.Group className="mb-3">

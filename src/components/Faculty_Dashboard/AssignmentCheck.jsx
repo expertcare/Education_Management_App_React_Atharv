@@ -130,7 +130,7 @@ const AssignmentCheck = ({ assignments }) => {
               <table className="table table-striped table-bordered text-center">
                 <thead>
                   <tr>
-                    <th>User ID</th>
+                    <th>Student ID</th>
                     <th>Student Name</th>
                     <th>Date Submitted</th>
                     <th>File</th>

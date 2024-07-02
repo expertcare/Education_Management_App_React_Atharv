@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../constants";
+import { toast } from "react-toastify";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const ContactUs = () => {
     e.preventDefault();
     try {
       await axios.post(`${API_URL}/api/contacts`, formData);
-      alert("Form submitted successfully!");
+      toast.success("Form submitted successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);

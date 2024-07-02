@@ -55,7 +55,7 @@ function ManageCourse() {
       toast.success("Course added successfully");
     } catch (error) {
       console.error("Error adding course:", error);
-      toast.error("Error adding course");
+      toast.error(error.response.data.message);
     }
   };
 
@@ -107,13 +107,13 @@ function ManageCourse() {
       <Button className="my-2" onClick={() => setShowAddModal(true)}>
         Add Course
       </Button>
-      <ToastContainer className="mt-5" />
+
       {courses.length === 0 ? (
         <p className="fs-4 m-5 animated-text">
           Courses have not been assigned yet
         </p>
       ) : (
-        <Table className="mt-4 text-center" striped bordered hover>
+        <Table striped bordered hover responsive className="mt-5">
           <thead>
             <tr>
               <th>Course Code</th>

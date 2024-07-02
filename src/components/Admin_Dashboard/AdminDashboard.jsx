@@ -66,7 +66,7 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <Dashboard title="Admin Dashboard" cards={cards} />;
+      <Dashboard title="Admin Dashboard" cards={cards} />
     </>
   );
 };
