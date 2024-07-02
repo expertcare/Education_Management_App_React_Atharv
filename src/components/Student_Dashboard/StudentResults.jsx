@@ -4,11 +4,11 @@ import { Button, Spinner, Card, CardBody, CardHeader } from "reactstrap";
 import { useUser } from "../../context/UserContext";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import { API_URL } from "../../constants";
 
 const StudentResults = () => {
-  const { userData } = useUser(); // useUser provides userData with _id and fullName
+  const { userData } = useUser();
   const [examMarks, setExamMarks] = useState([]);
   const [loading, setLoading] = useState(true);
   const contentRef = useRef(null);
@@ -25,21 +25,12 @@ const StudentResults = () => {
       } catch (error) {
         console.error("Error fetching exam marks:", error);
         setLoading(false);
-        // Handle error fetching data (e.g., set a state for error message)
+        // Handle error fetching data
       }
     };
 
     fetchExamMarks();
-  }, []);
-
-  // Group exam marks by course name
-  const groupedMarks = examMarks.reduce((acc, mark) => {
-    if (!acc[mark.courseName]) {
-      acc[mark.courseName] = [];
-    }
-    acc[mark.courseName].push(mark);
-    return acc;
-  }, {});
+  }, [userData._id]);
 
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
@@ -48,12 +39,12 @@ const StudentResults = () => {
 
     doc.setFontSize(18);
     doc.text(`Student Results - ${userData.fullName}`, 14, 15);
-    position += 20; // Increase vertical position after title
+    position += 20;
 
     Object.keys(groupedMarks).forEach((courseName) => {
       doc.setFontSize(14);
       doc.text(courseName, 14, position + 5);
-      position += 5; // Increase vertical position after course name
+      position += 5;
 
       const tableData = groupedMarks[courseName].map((mark) => [
         `${new Date(mark.timestamp).toLocaleDateString()} at ${new Date(
@@ -61,19 +52,31 @@ const StudentResults = () => {
         ).toLocaleTimeString()}`,
         `${mark.marks} out of ${Object.keys(mark.answers).length}`,
         `${mark.percentage}%`,
+        `${mark.passFailStatus}`, // Display pass/fail status
+        `${mark.grade}`, // Display grade
       ]);
 
       doc.autoTable({
         startY: position + 5,
-        head: [["Submitted On", "Marks", "Percentage"]],
+        head: [
+          ["Submitted On", "Marks", "Percentage", "Status", "Grade"], // Add Status and Grade columns
+        ],
         body: tableData,
       });
 
-      position = doc.autoTable.previous.finalY + 5; // Update position after table
+      position = doc.autoTable.previous.finalY + 10;
     });
 
     doc.save(`student_results_${userData.fullName}.pdf`);
   };
+
+  const groupedMarks = examMarks.reduce((acc, mark) => {
+    if (!acc[mark.courseName]) {
+      acc[mark.courseName] = [];
+    }
+    acc[mark.courseName].push(mark);
+    return acc;
+  }, {});
 
   return (
     <div className="container text-center margin-top-bottom">
@@ -86,9 +89,15 @@ const StudentResults = () => {
 
         {loading ? (
           <div className="text-center margin-top-bottom">
-            <Button color="primary" disabled>
-              <Spinner size="sm" /> Loading...
-            </Button>
+            <Spinner
+              color="primary"
+              style={{
+                height: "3rem",
+                width: "3rem",
+              }}
+            >
+              Loading...
+            </Spinner>
           </div>
         ) : Object.keys(groupedMarks).length === 0 ? (
           <p className="fs-5 mt-5 animated-text">No exam marks found.</p>
@@ -99,7 +108,7 @@ const StudentResults = () => {
                 {groupedMarks[courseName].map((mark) => (
                   <Link
                     key={mark._id}
-                    to={`/exam/${encodeURIComponent(courseName)}`} // Navigate to /exam/:courseName
+                    to={`/exam/${encodeURIComponent(courseName)}`}
                     className="text-decoration-none"
                   >
                     <Card className="mb-4">
@@ -118,6 +127,12 @@ const StudentResults = () => {
                         </p>
                         <p className="card-text">
                           <strong>Percentage:</strong> {mark.percentage}%
+                        </p>
+                        <p className="card-text">
+                          <strong>Status:</strong> {mark.passFailStatus}
+                        </p>
+                        <p className="card-text">
+                          <strong>Grade:</strong> {mark.grade}
                         </p>
                       </CardBody>
                     </Card>

@@ -25,11 +25,21 @@ const StudentSchedule = () => {
 
   if (loading) {
     return (
-      <div className="text-center margin-top-bottom min-vh-100">
-        <Button color="primary" disabled>
-          <Spinner size="sm">Loading...</Spinner>
-          <span> Loading</span>
-        </Button>
+      <div
+        className="container margin-top-bottom text-center  min-vh-100"
+        style={{ marginTop: "15vh" }}
+      >
+        <h2 className="display-6">Student Schedule</h2>
+        <Spinner
+          color="primary"
+          style={{
+            height: "3rem",
+            width: "3rem",
+            marginTop: "120px",
+          }}
+        >
+          Loading...
+        </Spinner>
       </div>
     );
   }

@@ -28,7 +28,6 @@ const StudentCourses = () => {
       <div className="text-center margin-top-bottom vh-100">
         <Spinner
           color="primary"
-          className="d-flex justify-content-center"
           style={{
             height: "3rem",
             width: "3rem",
