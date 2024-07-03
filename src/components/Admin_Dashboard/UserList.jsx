@@ -19,9 +19,7 @@ const UserList = () => {
   const [editFullName, setEditFullName] = useState("");
   const [editEmail, setEditEmail] = useState("");
   const [editGender, setEditGender] = useState("");
-
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [editIsActive, setEditIsActive] = useState(true); // New state for editing user activation
 
   useEffect(() => {
     fetchUsers();
@@ -120,6 +118,7 @@ const UserList = () => {
         fullName: editFullName,
         email: editEmail,
         gender: editGender,
+        isActive: editIsActive, // Include editIsActive in the request
       });
       setEditUserId(null);
       fetchUsers();
@@ -137,6 +136,7 @@ const UserList = () => {
     setEditFullName(user.fullName);
     setEditEmail(user.email);
     setEditGender(user.gender);
+    setEditIsActive(user.isActive); // Set editIsActive state
   };
 
   const renderUsersByRole = (role) => {
@@ -152,8 +152,8 @@ const UserList = () => {
                 <th>Email</th>
                 <th>Gender</th>
                 <th>Username</th>
-                {/* <th>Password</th> */}
                 <th>Role</th>
+                <th>Active</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -206,17 +206,6 @@ const UserList = () => {
                       user.username
                     )}
                   </td>
-                  {/* <td>
-                    {user.id === editUserId ? (
-                      <input
-                        type="password"
-                        value={editPassword}
-                        onChange={(e) => setEditPassword(e.target.value)}
-                      />
-                    ) : (
-                      user.password
-                    )}
-                  </td> */}
                   <td>
                     {user.id === editUserId ? (
                       <select
@@ -229,6 +218,19 @@ const UserList = () => {
                       </select>
                     ) : (
                       user.role
+                    )}
+                  </td>
+                  <td>
+                    {user.id === editUserId ? (
+                      <input
+                        type="checkbox"
+                        checked={editIsActive}
+                        onChange={(e) => setEditIsActive(e.target.checked)}
+                      />
+                    ) : user.isActive ? (
+                      "Yes"
+                    ) : (
+                      "No"
                     )}
                   </td>
 
@@ -311,6 +313,7 @@ const UserList = () => {
               <option value="female">Female</option>
             </select>
           </div>
+
           <div className="col-md-4">
             <input
               type="text"
@@ -321,6 +324,7 @@ const UserList = () => {
               required
             />
           </div>
+
           <div className="col-md-4">
             <input
               type="password"
@@ -331,6 +335,7 @@ const UserList = () => {
               required
             />
           </div>
+
           <div className="col-md-4">
             <select
               className="form-select mb-3"
@@ -344,6 +349,7 @@ const UserList = () => {
               <option value="admin">Admin</option>
             </select>
           </div>
+
           <div className="col-md-12 text-center">
             <button
               className="btn btn-primary"
@@ -367,8 +373,6 @@ const UserList = () => {
       {renderUsersByRole("student")}
       {renderUsersByRole("faculty")}
       {renderUsersByRole("admin")}
-
-      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

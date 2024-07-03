@@ -22,7 +22,7 @@ const AssignmentCourseList = () => {
   return (
     <div className="container d-flex flex-column min-vh-100">
       <h2 className="display-6 text-center margin-top-bottom">
-        Submit Your Assignments
+        Assignments Section
       </h2>
       <div className="row col-md-10 mx-auto">
         {courses.map((course) => (
