@@ -28,7 +28,10 @@ const FacultySchedule = () => {
   }, [userData.fullName]); // Add userData.fullName to the dependency array
 
   return (
-    <div className="container col-lg-7 margin-top-bottom">
+    <div
+      className="container col-lg-7 margin-top-bottom min-vh-100"
+      style={{ marginTop: "20vh" }}
+    >
       <h2 className="text-center mb-4">Faculty Schedules</h2>
       <h3 className="my-4 fs-5">Hello {userData.fullName}, Your schedules</h3>
       {loading ? (

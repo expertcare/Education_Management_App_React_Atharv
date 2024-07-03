@@ -53,7 +53,7 @@ const QuestionForm = ({ fetchQuestions }) => {
       fetchQuestions();
     } catch (err) {
       console.error(err);
-      setSubmitMessage("Failed to add question. Please try again.");
+      setSubmitMessage(err.response.data.message);
     } finally {
       // Clear message after 3 seconds
       setTimeout(() => {
