@@ -96,7 +96,7 @@ const AdminNotification = () => {
   };
 
   return (
-    <div className="container margin-top-bottom">
+    <div className="container margin-top-bottom min-vh-100">
       <h2 className="text-center">Manage Notifications</h2>
       <form onSubmit={handleSubmit} className="mx-auto col-md-8">
         <div className="mb-3">

@@ -102,7 +102,7 @@ function ManageCourse() {
   };
 
   return (
-    <Container className="margin-top-bottom text-center">
+    <Container className="margin-top-bottom text-center min-vh-100">
       <h1>Course Management</h1>
       <Button className="my-2" onClick={() => setShowAddModal(true)}>
         Add Course

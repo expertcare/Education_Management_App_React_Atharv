@@ -118,7 +118,7 @@ const ManageStudentSchedule = () => {
   };
 
   return (
-    <div className="container margin-top-bottom col-md-8">
+    <div className="container margin-top-bottom col-md-8 min-vh-100">
       <h2 className="text-center">Manage Class Schedule</h2>
       <div className="mb-3">
         <label htmlFor="timeInput" className="form-label">
