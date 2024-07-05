@@ -56,6 +56,8 @@ import Exam from "./components/Student_Dashboard/Exam";
 import StudentResults from "./components/Student_Dashboard/StudentResults";
 import FacultyResults from "./components/Faculty_Dashboard/FacultyResults";
 import AssignmentCourseList from "./components/Student_Dashboard/AssignmentCourseList";
+import FacultyAssignmentSection from "./components/Faculty_Dashboard/FacultyAssignmentSection";
+import AssignmentCheck from "./components/Faculty_Dashboard/AssignmentCheck";
 // import ExamCourseCard from "./components/Student_Dashboard/ExamCourseCard";
 
 // import CreateUser from "./components/Admin_Dashboard/CreateUser";
@@ -126,10 +128,20 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     path="/faculty_dashboard"
                     element={<FacultyDashboard />}
                   />
+
                   <Route
                     path="/faculty_assignment"
+                    element={<FacultyAssignmentSection />}
+                  />
+                  <Route
+                    path="/view_assignments"
                     element={<FacultyAssignment />}
                   />
+                  <Route
+                    path="/check_assignments"
+                    element={<AssignmentCheck />}
+                  />
+
                   <Route
                     path="/faculty_attendance"
                     element={<FacultyAttendance />}

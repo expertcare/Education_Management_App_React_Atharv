@@ -27,11 +27,7 @@ const FacultyAssignment = () => {
 
   const fetchAssignments = () => {
     axios
-      .get(API, {
-        params: {
-          userId: userData._id,
-        },
-      })
+      .get(`${API_URL}/api/assignments/faculty/${userData._id}`)
       .then((response) => {
         setAssignments(response.data);
       })
@@ -128,9 +124,63 @@ const FacultyAssignment = () => {
     setEditingAssignmentId(null);
   };
 
-  const filteredAssignments = assignments.filter(
-    (assignment) => assignment.userId === userData._id
-  );
+  // Function to group assignments by courseName
+  const groupAssignmentsByCourse = () => {
+    const groupedAssignments = {};
+    assignments.forEach((assignment) => {
+      const courseName = assignment.courseName;
+      if (!groupedAssignments[courseName]) {
+        groupedAssignments[courseName] = [];
+      }
+      groupedAssignments[courseName].push(assignment);
+    });
+    return groupedAssignments;
+  };
+
+  // Render different tables for each course
+  const renderTables = () => {
+    const groupedAssignments = groupAssignmentsByCourse();
+    return Object.keys(groupedAssignments).map((courseName) => (
+      <div key={courseName} className="mt-5">
+        <h3 className="text-center mb-4">{courseName} Assignments</h3>
+        <div className="table-responsive">
+          <table className="table table-striped table-bordered text-center">
+            <thead>
+              <tr>
+                <th>Section</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {groupedAssignments[courseName].map((assignment) => (
+                <tr key={assignment._id}>
+                  <td>{assignment.section}</td>
+                  <td>{assignment.description}</td>
+                  <td>{assignment.dueDate}</td>
+                  <td>
+                    <button
+                      className="btn btn-primary btn-sm px-4 m-2"
+                      onClick={() => handleEdit(assignment)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger btn-sm px-3 m-2"
+                      onClick={() => handleDelete(assignment._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <div className="container margin-top-bottom col-lg-8">
@@ -141,7 +191,7 @@ const FacultyAssignment = () => {
           <select
             className="form-control"
             id="course"
-            name="courseName" // Update to courseName instead of courseName
+            name="courseName"
             value={formData.courseName}
             onChange={handleChange}
             required
@@ -204,50 +254,12 @@ const FacultyAssignment = () => {
           </button>
         )}
       </form>
-      {/* Current Assignments */}
-      <h2 className="m-5 display-6 text-center">Current Assignments</h2>
-      {filteredAssignments.length === 0 ? (
-        <p className="fs-5 m-5 text-center animated-text margin-top-bottom">
-          Add your Assignments
-        </p>
-      ) : (
-        <div className="table-responsive">
-          <table className="table table-striped table-bordered text-center">
-            <thead>
-              <tr>
-                <th>Section</th>
-                <th>Description</th>
-                <th>Due Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredAssignments.map((assignment) => (
-                <tr key={assignment._id}>
-                  <td>{assignment.section}</td>
-                  <td>{assignment.description}</td>
-                  <td>{assignment.dueDate}</td>
-                  <td>
-                    <button
-                      className="btn btn-primary btn-sm px-4 m-2"
-                      onClick={() => handleEdit(assignment)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-danger btn-sm px-3 m-2"
-                      onClick={() => handleDelete(assignment._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      <AssignmentCheck assignments={assignments} />
+
+      {/* Render tables for each course */}
+      {assignments.length > 0 && renderTables()}
+
+      {/* Display AssignmentCheck component */}
+      {/* <AssignmentCheck assignments={assignments} /> */}
     </div>
   );
 };

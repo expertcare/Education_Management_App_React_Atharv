@@ -143,11 +143,13 @@ const StudentResults = () => {
           </div>
         )}
 
-        <div className="text-center mt-3">
-          <Button color="primary" onClick={handleDownloadPDF}>
-            Download Results as PDF
-          </Button>
-        </div>
+        {Object.keys(groupedMarks).length !== 0 && (
+          <div className="text-center mt-3">
+            <Button color="primary" onClick={handleDownloadPDF}>
+              Download Results as PDF
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
