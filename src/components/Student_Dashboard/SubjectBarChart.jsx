@@ -64,6 +64,16 @@ const SubjectBarChart = () => {
     );
   }
 
+  if (examMarks.length === 0) {
+    // Display message if there's an error or examMarks array is empty
+    return (
+      <div className="container card shadow py-3" style={{ height: "180px" }}>
+        <h3 className="text-center">Exam Marks</h3>
+        <p className="text-center mt-5">No exam marks found.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="container card shadow py-3">
       <h3 className="text-center">Exam Marks</h3>

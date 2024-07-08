@@ -128,7 +128,7 @@ const Sidebar = ({ userRole, logout }) => {
                         >
                           <div className="d-flex align-items-center gap-4 py-2">
                             <div className="nav-link-icon text-danger-emphasis">
-                              <i className="fa-solid fa-chalkboard-user"></i>
+                              <i className="fa-solid fa-chart-simple"></i>
                             </div>
                             <span className="nav-link-text">
                               Data Dashboard
@@ -164,7 +164,7 @@ const Sidebar = ({ userRole, logout }) => {
                         >
                           <div className="d-flex align-items-center gap-4 py-2">
                             <div className="nav-link-icon text-info-emphasis">
-                              <i className="fa-solid fa-graduation-cap"></i>
+                              <i className="fa-solid fa-chart-simple"></i>
                             </div>
                             <span className="nav-link-text">
                               Data dashboard
