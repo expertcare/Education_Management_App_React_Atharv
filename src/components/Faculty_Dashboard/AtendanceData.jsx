@@ -10,6 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { API_URL } from "../../constants";
 
 const AttendanceData = ({ attendanceSubmitted }) => {
   const { userData } = useUser();
@@ -20,7 +21,7 @@ const AttendanceData = ({ attendanceSubmitted }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/attendance/teacher/${teacherName}`
+          `${API_URL}/api/attendance/teacher/${teacherName}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
