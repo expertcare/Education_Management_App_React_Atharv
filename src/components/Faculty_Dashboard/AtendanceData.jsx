@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../context/UserContext";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const AttendanceData = ({ attendanceSubmitted }) => {
   const { userData } = useUser();
@@ -16,7 +26,7 @@ const AttendanceData = ({ attendanceSubmitted }) => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setAttendanceData(data); // Assuming data from API is an array of attendance records with attendancePercentage field
+        setAttendanceData(data); // Assuming data from API is an array of attendance records with date and attendancePercentage fields
       } catch (error) {
         console.error("Error fetching attendance data:", error);
         // Handle error state if needed
@@ -26,44 +36,57 @@ const AttendanceData = ({ attendanceSubmitted }) => {
     fetchData();
   }, [attendanceSubmitted]); // Fetch data whenever attendanceSubmitted changes
 
-  // Group attendance data by subject
-  const groupedAttendanceData = attendanceData.reduce((acc, record) => {
-    const subject = record.schedules[0].subject;
-    if (!acc[subject]) {
-      acc[subject] = [];
-    }
-    acc[subject].push(record);
-    return acc;
-  }, {});
+  // Prepare data for chart (show only last 5 records)
+  const last5AttendanceData = attendanceData.slice(-5); // Get last 5 records
+
+  const dataForChart = last5AttendanceData.map((record) => ({
+    date: record.date,
+    attendancePercentage: record.attendancePercentage,
+  }));
 
   return (
-    <div className="mt-5 text-center container">
-      <h2>Attendance Data</h2>
-      {Object.keys(groupedAttendanceData).map((subject) => (
-        <div key={subject} className="table-responsive">
-          <h3 className="mt-5">{subject}</h3>
-          <table className="mt-5 table table-striped table-bordered col-md-8">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Teacher</th>
-                <th>Attendance Percentage (%)</th>
+    <div className="mt-2 text-center container">
+      <h4 className="mb-4">Attendance Data</h4>
+      <div style={{ width: "100%", height: 400 }}>
+        <ResponsiveContainer>
+          <LineChart data={dataForChart}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis domain={[0, 100]} />{" "}
+            {/* Explicitly set the domain for YAxis */}
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="attendancePercentage"
+              stroke="#8884d8"
+              name="Attendance Percentage"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+      {/* <div className="table-responsive mt-5">
+        <table className="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Teacher</th>
+              <th>Attendance Percentage (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {last5AttendanceData.map((record) => (
+              <tr key={record._id}>
+                <td>{record.date}</td>
+                <td>{record.schedules[0].time}</td>
+                <td>{record.schedules[0].teacher}</td>
+                <td>{record.attendancePercentage}</td>
               </tr>
-            </thead>
-            <tbody>
-              {groupedAttendanceData[subject].map((record) => (
-                <tr key={record._id}>
-                  <td>{record.date}</td>
-                  <td>{record.schedules[0].time}</td>
-                  <td>{record.schedules[0].teacher}</td>
-                  <td>{record.attendancePercentage}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ))}
+            ))}
+          </tbody>
+        </table>
+      </div> */}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants";
+import SubjectBarChart from "./SubjectBarChart";
 
 const StudentResults = () => {
   const { userData } = useUser();
@@ -151,6 +152,8 @@ const StudentResults = () => {
           </div>
         )}
       </div>
+
+      <SubjectBarChart />
     </div>
   );
 };

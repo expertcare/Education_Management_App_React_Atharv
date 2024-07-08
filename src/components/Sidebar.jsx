@@ -102,39 +102,77 @@ const Sidebar = ({ userRole, logout }) => {
                       </li>
                     </>
                   ) : userRole === "faculty" ? (
-                    <li className="nav-item" data-bs-dismiss="offcanvas">
-                      <Link
-                        className="nav-link active"
-                        aria-current="page"
-                        to="/faculty_dashboard"
-                      >
-                        <div className="d-flex align-items-center gap-4 py-2">
-                          <div className="nav-link-icon text-danger-emphasis">
-                            <i className="fa-solid fa-chalkboard-user"></i>
+                    <>
+                      <li className="nav-item" data-bs-dismiss="offcanvas">
+                        <Link
+                          className="nav-link active"
+                          aria-current="page"
+                          to="/faculty_dashboard"
+                        >
+                          <div className="d-flex align-items-center gap-4 py-2">
+                            <div className="nav-link-icon text-danger-emphasis">
+                              <i className="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <span className="nav-link-text">
+                              Faculty Dashboard
+                            </span>
                           </div>
-                          <span className="nav-link-text">
-                            Faculty Dashboard
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
+                        </Link>
+                      </li>
+
+                      <li className="nav-item" data-bs-dismiss="offcanvas">
+                        <Link
+                          className="nav-link active"
+                          aria-current="page"
+                          to="/faculty_data_dashboard"
+                        >
+                          <div className="d-flex align-items-center gap-4 py-2">
+                            <div className="nav-link-icon text-danger-emphasis">
+                              <i className="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <span className="nav-link-text">
+                              Data Dashboard
+                            </span>
+                          </div>
+                        </Link>
+                      </li>
+                    </>
                   ) : userRole === "student" ? (
-                    <li className="nav-item" data-bs-dismiss="offcanvas">
-                      <Link
-                        className="nav-link active"
-                        aria-current="page"
-                        to="/student_dashboard"
-                      >
-                        <div className="d-flex align-items-center gap-4 py-2">
-                          <div className="nav-link-icon text-info-emphasis">
-                            <i className="fa-solid fa-graduation-cap"></i>
+                    <>
+                      <li className="nav-item" data-bs-dismiss="offcanvas">
+                        <Link
+                          className="nav-link active"
+                          aria-current="page"
+                          to="/student_dashboard"
+                        >
+                          <div className="d-flex align-items-center gap-4 py-2">
+                            <div className="nav-link-icon text-info-emphasis">
+                              <i className="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <span className="nav-link-text">
+                              Student Dashboard
+                            </span>
                           </div>
-                          <span className="nav-link-text">
-                            Student Dashboard
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
+                        </Link>
+                      </li>
+
+                      <li className="nav-item" data-bs-dismiss="offcanvas">
+                        <Link
+                          className="nav-link active"
+                          aria-current="page"
+                          to="/student_Data_Visulisation"
+                        >
+                          <div className="d-flex align-items-center gap-4 py-2">
+                            <div className="nav-link-icon text-info-emphasis">
+                              <i className="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <span className="nav-link-text">
+                              Data dashboard
+                            </span>
+                          </div>
+                        </Link>
+                      </li>
+                    </>
                   ) : null}
                 </ul>
               </div>

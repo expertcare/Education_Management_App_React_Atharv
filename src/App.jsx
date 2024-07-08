@@ -58,6 +58,8 @@ import FacultyResults from "./components/Faculty_Dashboard/FacultyResults";
 import AssignmentCourseList from "./components/Student_Dashboard/AssignmentCourseList";
 import FacultyAssignmentSection from "./components/Faculty_Dashboard/FacultyAssignmentSection";
 import AssignmentCheck from "./components/Faculty_Dashboard/AssignmentCheck";
+import StudentDataDashboard from "./components/Student_Dashboard/StudentDataDashboard";
+import FacultyDataDashboard from "./components/Faculty_Dashboard/FacultyDataDashboard";
 // import ExamCourseCard from "./components/Student_Dashboard/ExamCourseCard";
 
 // import CreateUser from "./components/Admin_Dashboard/CreateUser";
@@ -119,6 +121,11 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                   <Route path="/exam/:courseName" element={<Exam />}></Route>
                   <Route path="/student_result" element={<StudentResults />} />
 
+                  <Route
+                    path="/student_Data_Visulisation"
+                    element={<StudentDataDashboard />}
+                  />
+
                   {/* Add more student-specific routes here */}
                 </>
               )}
@@ -128,7 +135,6 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     path="/faculty_dashboard"
                     element={<FacultyDashboard />}
                   />
-
                   <Route
                     path="/faculty_assignment"
                     element={<FacultyAssignmentSection />}
@@ -141,7 +147,6 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                     path="/check_assignments"
                     element={<AssignmentCheck />}
                   />
-
                   <Route
                     path="/faculty_attendance"
                     element={<FacultyAttendance />}
@@ -154,12 +159,15 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                   <Route path="/faculty_profile" element={<StudentProfile />} />
                   <Route path="/faculty_exams" element={<FacultyExams />} />
                   <Route path="/faculty_result" element={<FacultyResults />} />
-
                   <Route
                     path="/faculty_schedule"
                     element={<FacultySchedule />}
                   />
 
+                  <Route
+                    path="/faculty_data_dashboard"
+                    element={<FacultyDataDashboard />}
+                  />
                   {/* Add more faculty-specific routes here */}
                 </>
               )}

@@ -95,7 +95,7 @@ const FacultyAttendance = () => {
   };
 
   return (
-    <div className="container margin-top-bottom">
+    <div className="container margin-top-bottom col-md-6">
       <h2 className="mt-4 mb-4 text-center">Students Attendance List</h2>
 
       <>
