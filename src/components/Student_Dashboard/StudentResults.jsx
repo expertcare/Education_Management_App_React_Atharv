@@ -12,6 +12,8 @@ const StudentResults = () => {
   const { userData } = useUser();
   const [examMarks, setExamMarks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [finalPercentage, setFinalPercentage] = useState(0);
+  const [finalStatus, setFinalStatus] = useState("");
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -21,7 +23,9 @@ const StudentResults = () => {
           `${API_URL}/api/exam_marks/${userData._id}`
         );
 
-        setExamMarks(response.data);
+        setExamMarks(response.data.examMarks);
+        setFinalPercentage(response.data.finalPercentage);
+        setFinalStatus(response.data.finalStatus);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching exam marks:", error);
@@ -67,6 +71,15 @@ const StudentResults = () => {
 
       position = doc.autoTable.previous.finalY + 10;
     });
+
+    // Add final percentage and status to the PDF
+    doc.setFontSize(14);
+    doc.text(
+      `Final Percentage: ${finalPercentage.toFixed(2)}%`,
+      14,
+      position + 10
+    );
+    doc.text(`Final Status: ${finalStatus}`, 14, position + 20);
 
     doc.save(`student_results_${userData.fullName}.pdf`);
   };
@@ -145,15 +158,25 @@ const StudentResults = () => {
         )}
 
         {Object.keys(groupedMarks).length !== 0 && (
-          <div className="text-center mt-3">
-            <Button color="primary" onClick={handleDownloadPDF}>
-              Download Results as PDF
-            </Button>
-          </div>
-        )}
-      </div>
+          <>
+            <div className="mt-5">
+              <h4 className="text-center">Overall Results</h4>
+              <p className="text-center">
+                Final Percentage: {finalPercentage.toFixed(2)}%
+              </p>
+              <p className="text-center">Final Status: {finalStatus}</p>
+            </div>
 
-      <SubjectBarChart />
+            <div className="text-center mt-3 mb-5">
+              <Button color="primary" onClick={handleDownloadPDF}>
+                Download Results as PDF
+              </Button>
+            </div>
+          </>
+        )}
+
+        <SubjectBarChart />
+      </div>
     </div>
   );
 };

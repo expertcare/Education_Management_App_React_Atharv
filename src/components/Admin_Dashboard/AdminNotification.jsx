@@ -12,7 +12,8 @@ const AdminNotification = () => {
     title: "",
     message: "",
     role: "student",
-    selectedUser: "", // New state to store selected user's ID
+    selectedUser: "",
+    date: new Date().toISOString().split("T")[0], // Initialize date with current date
   });
   const [users, setUsers] = useState([]);
   const [sendToAll, setSendToAll] = useState(false); // State to decide whether to send to all
@@ -76,6 +77,7 @@ const AdminNotification = () => {
         message: "",
         role: "student",
         selectedUser: "",
+        date: new Date().toISOString().split("T")[0], // Reset date to current date
       });
       fetchNotifications();
     } catch (error) {
@@ -144,6 +146,21 @@ const AdminNotification = () => {
             <option value="student">Student</option>
             <option value="faculty">Faculty</option>
           </select>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="dateInput" className="form-label">
+            Date:
+          </label>
+          <input
+            type="date"
+            className="form-control"
+            id="dateInput"
+            name="date"
+            value={notification.date}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div className="mb-3 form-check">

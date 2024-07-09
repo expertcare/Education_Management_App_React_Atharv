@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../context/UserContext";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { Chart } from "react-google-charts";
 import { API_URL } from "../../constants";
 
 const AttendanceData = ({ attendanceSubmitted }) => {
@@ -40,54 +31,42 @@ const AttendanceData = ({ attendanceSubmitted }) => {
   // Prepare data for chart (show only last 5 records)
   const last5AttendanceData = attendanceData.slice(-5); // Get last 5 records
 
-  const dataForChart = last5AttendanceData.map((record) => ({
-    date: record.date,
-    attendancePercentage: record.attendancePercentage,
-  }));
+  // Format data for Google Charts
+  const dataForChart = [
+    ["Date", "Attendance Percentage"], // Header row
+    ...last5AttendanceData.map((record) => [
+      new Date(record.date),
+      parseFloat(record.attendancePercentage),
+    ]),
+  ];
 
   return (
     <div className="mt-2 text-center container">
-      <h4 className="mb-4">Attendance Data</h4>
-      <div style={{ width: "100%", height: 400 }}>
-        <ResponsiveContainer>
-          <LineChart data={dataForChart}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis domain={[0, 100]} />{" "}
-            {/* Explicitly set the domain for YAxis */}
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="attendancePercentage"
-              stroke="#8884d8"
-              name="Attendance Percentage"
-            />
-          </LineChart>
-        </ResponsiveContainer>
+      <h4>Attendance Data</h4>
+      <div style={{ width: "100%", minHeight: 400 }}>
+        <Chart
+          width={"100%"}
+          height={"400px"}
+          chartType="LineChart"
+          loader={<div>Loading Chart</div>}
+          data={dataForChart}
+          options={{
+            hAxis: {
+              title: "Date",
+              format: "MMM yyyy", // Optional formatting of date axis
+            },
+            vAxis: {
+              title: "Attendance Percentage",
+              minValue: 0,
+              maxValue: 100,
+            },
+            chartArea: { width: "80%", height: "70%" },
+            legend: { position: "bottom" },
+            // curveType: "function",
+          }}
+          rootProps={{ "data-testid": "1" }}
+        />
       </div>
-      {/* <div className="table-responsive mt-5">
-        <table className="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Teacher</th>
-              <th>Attendance Percentage (%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {last5AttendanceData.map((record) => (
-              <tr key={record._id}>
-                <td>{record.date}</td>
-                <td>{record.schedules[0].time}</td>
-                <td>{record.schedules[0].teacher}</td>
-                <td>{record.attendancePercentage}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div> */}
     </div>
   );
 };
