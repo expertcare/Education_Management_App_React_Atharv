@@ -29,8 +29,8 @@ const FacultySubject = () => {
           <img
             src="https://img.freepik.com/premium-vector/elearning-digital-design_24877-45735.jpg?w=826"
             alt="Graduated-student-photo"
-            className="img-fluid"
-            // width="120px"
+            // className="img-fluid"
+            width="120px"
           />
         </div>
         <div className="w-50">

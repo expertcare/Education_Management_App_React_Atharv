@@ -56,7 +56,7 @@ const CalendarComponent = () => {
           <h3 className="mb-4">Calendar</h3>
           <Calendar onChange={handleDateChange} value={selectedDate} />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-6 mt-5">
           <h4 className="mb-4">Events for {selectedDate.toDateString()}</h4>
           <ul className="list-group">
             {filteredNotifications.length > 0 ? (

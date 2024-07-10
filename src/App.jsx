@@ -60,6 +60,7 @@ import FacultyAssignmentSection from "./components/Faculty_Dashboard/FacultyAssi
 import AssignmentCheck from "./components/Faculty_Dashboard/AssignmentCheck";
 import StudentDataDashboard from "./components/Student_Dashboard/StudentDataDashboard";
 import FacultyDataDashboard from "./components/Faculty_Dashboard/FacultyDataDashboard";
+import AdminDataDashboard from "./components/Admin_Dashboard/AdminDataDashboard";
 // import ExamCourseCard from "./components/Student_Dashboard/ExamCourseCard";
 
 // import CreateUser from "./components/Admin_Dashboard/CreateUser";
@@ -197,6 +198,11 @@ const MainContent = ({ isLoggedIn, login, logout, userRole }) => {
                   />
                   <Route path="/admin_profile" element={<StudentProfile />} />
                   <Route path="/admin/contact_list" element={<ContactList />} />
+
+                  <Route
+                    path="/Admin_Data_Visulisation"
+                    element={<AdminDataDashboard />}
+                  />
 
                   {/* <Route path="/admin/manage_users" element={<CreateUser />} /> */}
                   <Route path="/dashboard" element={<Dashboard />} />

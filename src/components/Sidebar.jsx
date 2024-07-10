@@ -100,6 +100,22 @@ const Sidebar = ({ userRole, logout }) => {
                           </div>
                         </Link>
                       </li>
+                      <li className="nav-item" data-bs-dismiss="offcanvas">
+                        <Link
+                          className="nav-link active"
+                          aria-current="page"
+                          to="/Admin_Data_Visulisation"
+                        >
+                          <div className="d-flex align-items-center gap-4 py-2">
+                            <div className="nav-link-icon text-info-emphasis">
+                              <i className="fa-solid fa-chart-simple"></i>
+                            </div>
+                            <span className="nav-link-text">
+                              Data dashboard
+                            </span>
+                          </div>
+                        </Link>
+                      </li>
                     </>
                   ) : userRole === "faculty" ? (
                     <>

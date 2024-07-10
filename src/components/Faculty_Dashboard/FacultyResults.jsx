@@ -3,6 +3,7 @@ import axios from "axios";
 import { Table } from "reactstrap";
 import { useUser } from "../../context/UserContext";
 import { API_URL } from "../../constants";
+import ResultBarCharts from "./ResultBarChart";
 
 const FacultyResults = () => {
   const { userData } = useUser();
@@ -137,6 +138,13 @@ const FacultyResults = () => {
           </div>
         );
       })}
+      <div className="row mb-5">
+        {courses.map((course) => (
+          <div key={course._id}>
+            <ResultBarCharts course={course.name} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
