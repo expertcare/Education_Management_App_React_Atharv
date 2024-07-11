@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 import { Chart } from "react-google-charts";
+import { API_URL } from "../../constants";
 
 const CourseDetailsChart = () => {
   const [coursesDetails, setCoursesDetails] = useState([]);
@@ -10,7 +11,7 @@ const CourseDetailsChart = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/exam_marks/all_exam_status"
+          `${API_URL}/api/exam_marks/all_exam_status`
         );
         setCoursesDetails(response.data.coursesDetails);
       } catch (error) {
